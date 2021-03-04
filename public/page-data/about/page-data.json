@@ -1,0 +1,16 @@
+{
+  "componentChunkName": "component---src-pages-about-tsx",
+  "path": "/about/",
+  "result": {
+    "data": {
+      "site": {
+        "siteMetadata": {
+          "title": "거북이 개발자의 엉금엉금 스토리",
+          "description": "38세 비전공자가 개발자로 전직하며 남기는 기록들"
+        }
+      }
+    },
+    "pageContext": {}
+  },
+  "staticQueryHashes": []
+}
