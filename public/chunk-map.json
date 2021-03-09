@@ -1,28 +1,31 @@
 {
-  "polyfill": ["/polyfill-a8fd5f3c9a0a48501800.js"],
-  "app": ["/app-ff84d11348f691518b5b.js"],
+  "polyfill": ["/polyfill-aa31a558d1e59c5d37ec.js"],
+  "app": ["/app-79552ac07e46f3c7a993.js"],
   "component---src-pages-404-tsx": [
     "/component---src-pages-404-tsx-809e2fc61527e5e65f5a.js"
   ],
+  "component---src-pages-about-tsx": [
+    "/component---src-pages-about-tsx-4bd4b8880dd152459819.js"
+  ],
   "component---src-pages-category-dev-tsx": [
-    "/component---src-pages-category-dev-tsx-2092c33cdc9892eb995d.js"
+    "/component---src-pages-category-dev-tsx-0552e453bfe137b9222f.js"
   ],
   "component---src-pages-category-index-tsx": [
-    "/component---src-pages-category-index-tsx-6504d054554551c57aed.js"
+    "/component---src-pages-category-index-tsx-1e630a396442f25b56e0.js"
   ],
   "component---src-pages-category-series-tsx": [
-    "/component---src-pages-category-series-tsx-d69dded472f3ffb660c2.js"
+    "/component---src-pages-category-series-tsx-13b4cfa1459cacc826c2.js"
   ],
   "component---src-pages-category-think-tsx": [
-    "/component---src-pages-category-think-tsx-ef8ca7402fd34849cfe9.js"
+    "/component---src-pages-category-think-tsx-4eb941e5dcef86da2a9f.js"
   ],
   "component---src-pages-index-tsx": [
-    "/component---src-pages-index-tsx-0e7d0fb13df547dba8b8.js"
+    "/component---src-pages-index-tsx-0fe17fb47887ca79ece9.js"
   ],
   "component---src-pages-tags-index-tsx": [
-    "/component---src-pages-tags-index-tsx-aebf5fbeb52cd1465dce.js"
+    "/component---src-pages-tags-index-tsx-44a99f7d8ffc421e48c5.js"
   ],
   "component---src-templates-blog-post-index-tsx": [
-    "/component---src-templates-blog-post-index-tsx-2e277cf1d894c75a429c.js"
+    "/component---src-templates-blog-post-index-tsx-3ab724e49fe93fa8e7fb.js"
   ]
 }

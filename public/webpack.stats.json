@@ -2,8 +2,8 @@
   "errors": [],
   "warnings": [
     "./src/components/Button/style.ts\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Button/style.ts\n    Used by 3 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Button/index.tsx\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/button/style.ts\n    Used by 5 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/templates/blog-post/post-tag.tsx",
-    "./src/components/Icon/index.tsx\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/index.tsx\n    Used by 7 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Header/index.tsx\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/index.tsx\n    Used by 4 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/pages/index.tsx",
-    "./src/components/Icon/style.ts\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/style.ts\n    Used by 13 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/pages/index.tsx\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/style.ts\n    Used by 5 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Category/index.tsx",
+    "./src/components/Icon/index.tsx\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/index.tsx\n    Used by 6 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Header/index.tsx\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/index.tsx\n    Used by 4 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/pages/index.tsx",
+    "./src/components/Icon/style.ts\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/style.ts\n    Used by 12 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/pages/index.tsx\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/style.ts\n    Used by 5 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Category/index.tsx",
     "./src/components/Icon/images/icon-article.png\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/node_modules/url-loader/dist/cjs.js??ref--7-0!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/images/icon-article.png\n    Used by 2 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/style.ts\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/node_modules/url-loader/dist/cjs.js??ref--7-0!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/images/icon-article.png\n    Used by 2 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/style.ts",
     "./src/components/Icon/images/icon-email.png\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/node_modules/url-loader/dist/cjs.js??ref--7-0!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/images/icon-email.png\n    Used by 2 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/style.ts\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/node_modules/url-loader/dist/cjs.js??ref--7-0!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/images/icon-email.png\n    Used by 2 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/style.ts",
     "./src/components/Icon/images/icon-github.png\nThere are multiple modules with names that only differ in casing.\nThis can lead to unexpected behavior when compiling on a filesystem with other case-semantic.\nUse equal casing. Compare these module identifiers:\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/node_modules/url-loader/dist/cjs.js??ref--7-0!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/images/icon-github.png\n    Used by 2 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/Icon/style.ts\n* /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/node_modules/url-loader/dist/cjs.js??ref--7-0!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/images/icon-github.png\n    Used by 2 module(s), i. e.\n    /Users/apple/Documents/workspace/Joshua-Moon.github.io/node_modules/gatsby/dist/utils/babel-loader.js??ref--13!/Users/apple/Documents/workspace/Joshua-Moon.github.io/src/components/icon/style.ts",
@@ -14,30 +14,28 @@
   ],
   "namedChunkGroups": {
     "polyfill": {
-      "chunks": [2, 0, 13],
+      "chunks": [2, 14],
       "assets": [
-        "webpack-runtime-f2c55bba732e9e9c8d05.js",
-        "webpack-runtime-f2c55bba732e9e9c8d05.js.map",
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
-        "polyfill-a8fd5f3c9a0a48501800.js",
-        "polyfill-a8fd5f3c9a0a48501800.js.map"
+        "webpack-runtime-12041042b0c3e19e9798.js",
+        "webpack-runtime-12041042b0c3e19e9798.js.map",
+        "polyfill-aa31a558d1e59c5d37ec.js",
+        "polyfill-aa31a558d1e59c5d37ec.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
     "app": {
-      "chunks": [2, 12, 14, 3],
+      "chunks": [2, 13, 15, 3],
       "assets": [
-        "webpack-runtime-f2c55bba732e9e9c8d05.js",
-        "webpack-runtime-f2c55bba732e9e9c8d05.js.map",
-        "framework-81279cacaab4bdba7685.js",
-        "framework-81279cacaab4bdba7685.js.map",
+        "webpack-runtime-12041042b0c3e19e9798.js",
+        "webpack-runtime-12041042b0c3e19e9798.js.map",
+        "framework-29ba174b433dc5858bed.js",
+        "framework-29ba174b433dc5858bed.js.map",
         "styles.36da5594f23fa853030e.css",
-        "styles-e383b929d2d4095ae339.js",
-        "styles-e383b929d2d4095ae339.js.map",
-        "app-ff84d11348f691518b5b.js",
-        "app-ff84d11348f691518b5b.js.map"
+        "styles-540f25bd5e5cb35d6f53.js",
+        "styles-540f25bd5e5cb35d6f53.js.map",
+        "app-79552ac07e46f3c7a993.js",
+        "app-79552ac07e46f3c7a993.js.map"
       ],
       "children": {},
       "childAssets": {}
@@ -45,99 +43,108 @@
     "component---src-pages-404-tsx": {
       "chunks": [0, 4],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
         "component---src-pages-404-tsx-809e2fc61527e5e65f5a.js",
         "component---src-pages-404-tsx-809e2fc61527e5e65f5a.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
-    "component---src-pages-category-dev-tsx": {
-      "chunks": [0, 1, 5],
+    "component---src-pages-about-tsx": {
+      "chunks": [5],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
+        "component---src-pages-about-tsx-4bd4b8880dd152459819.js",
+        "component---src-pages-about-tsx-4bd4b8880dd152459819.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---src-pages-category-dev-tsx": {
+      "chunks": [0, 1, 6],
+      "assets": [
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js.map",
-        "component---src-pages-category-dev-tsx-2092c33cdc9892eb995d.js",
-        "component---src-pages-category-dev-tsx-2092c33cdc9892eb995d.js.map"
+        "component---src-pages-category-dev-tsx-0552e453bfe137b9222f.js",
+        "component---src-pages-category-dev-tsx-0552e453bfe137b9222f.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
     "component---src-pages-category-index-tsx": {
-      "chunks": [0, 1, 6],
+      "chunks": [0, 1, 7],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js.map",
-        "component---src-pages-category-index-tsx-6504d054554551c57aed.js",
-        "component---src-pages-category-index-tsx-6504d054554551c57aed.js.map"
+        "component---src-pages-category-index-tsx-1e630a396442f25b56e0.js",
+        "component---src-pages-category-index-tsx-1e630a396442f25b56e0.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
     "component---src-pages-category-series-tsx": {
-      "chunks": [0, 1, 7],
+      "chunks": [0, 1, 8],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js.map",
-        "component---src-pages-category-series-tsx-d69dded472f3ffb660c2.js",
-        "component---src-pages-category-series-tsx-d69dded472f3ffb660c2.js.map"
+        "component---src-pages-category-series-tsx-13b4cfa1459cacc826c2.js",
+        "component---src-pages-category-series-tsx-13b4cfa1459cacc826c2.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
     "component---src-pages-category-think-tsx": {
-      "chunks": [0, 1, 8],
+      "chunks": [0, 1, 9],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js.map",
-        "component---src-pages-category-think-tsx-ef8ca7402fd34849cfe9.js",
-        "component---src-pages-category-think-tsx-ef8ca7402fd34849cfe9.js.map"
+        "component---src-pages-category-think-tsx-4eb941e5dcef86da2a9f.js",
+        "component---src-pages-category-think-tsx-4eb941e5dcef86da2a9f.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
     "component---src-pages-index-tsx": {
-      "chunks": [0, 1, 9],
+      "chunks": [0, 1, 10],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js.map",
-        "component---src-pages-index-tsx-0e7d0fb13df547dba8b8.js",
-        "component---src-pages-index-tsx-0e7d0fb13df547dba8b8.js.map"
+        "component---src-pages-index-tsx-0fe17fb47887ca79ece9.js",
+        "component---src-pages-index-tsx-0fe17fb47887ca79ece9.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
     "component---src-pages-tags-index-tsx": {
-      "chunks": [0, 1, 10],
+      "chunks": [0, 1, 11],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
         "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js.map",
-        "component---src-pages-tags-index-tsx-aebf5fbeb52cd1465dce.js",
-        "component---src-pages-tags-index-tsx-aebf5fbeb52cd1465dce.js.map"
+        "component---src-pages-tags-index-tsx-44a99f7d8ffc421e48c5.js",
+        "component---src-pages-tags-index-tsx-44a99f7d8ffc421e48c5.js.map"
       ],
       "children": {},
       "childAssets": {}
     },
     "component---src-templates-blog-post-index-tsx": {
-      "chunks": [0, 11],
+      "chunks": [0, 12],
       "assets": [
-        "commons-3f5b5e33545b619e73dd.js",
-        "commons-3f5b5e33545b619e73dd.js.map",
-        "component---src-templates-blog-post-index-tsx-2e277cf1d894c75a429c.js",
-        "component---src-templates-blog-post-index-tsx-2e277cf1d894c75a429c.js.map"
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+        "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js.map",
+        "component---src-templates-blog-post-index-tsx-3ab724e49fe93fa8e7fb.js",
+        "component---src-templates-blog-post-index-tsx-3ab724e49fe93fa8e7fb.js.map"
       ],
       "children": {},
       "childAssets": {}
@@ -145,54 +152,56 @@
   },
   "assetsByChunkName": {
     "polyfill": [
-      "webpack-runtime-f2c55bba732e9e9c8d05.js",
-      "commons-3f5b5e33545b619e73dd.js",
-      "polyfill-a8fd5f3c9a0a48501800.js"
+      "webpack-runtime-12041042b0c3e19e9798.js",
+      "polyfill-aa31a558d1e59c5d37ec.js"
     ],
     "app": [
-      "webpack-runtime-f2c55bba732e9e9c8d05.js",
-      "framework-81279cacaab4bdba7685.js",
+      "webpack-runtime-12041042b0c3e19e9798.js",
+      "framework-29ba174b433dc5858bed.js",
       "styles.36da5594f23fa853030e.css",
-      "styles-e383b929d2d4095ae339.js",
-      "app-ff84d11348f691518b5b.js"
+      "styles-540f25bd5e5cb35d6f53.js",
+      "app-79552ac07e46f3c7a993.js"
     ],
     "component---src-pages-404-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
       "component---src-pages-404-tsx-809e2fc61527e5e65f5a.js"
     ],
+    "component---src-pages-about-tsx": [
+      "component---src-pages-about-tsx-4bd4b8880dd152459819.js"
+    ],
     "component---src-pages-category-dev-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
       "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
-      "component---src-pages-category-dev-tsx-2092c33cdc9892eb995d.js"
+      "component---src-pages-category-dev-tsx-0552e453bfe137b9222f.js"
     ],
     "component---src-pages-category-index-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
       "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
-      "component---src-pages-category-index-tsx-6504d054554551c57aed.js"
+      "component---src-pages-category-index-tsx-1e630a396442f25b56e0.js"
     ],
     "component---src-pages-category-series-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
       "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
-      "component---src-pages-category-series-tsx-d69dded472f3ffb660c2.js"
+      "component---src-pages-category-series-tsx-13b4cfa1459cacc826c2.js"
     ],
     "component---src-pages-category-think-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
       "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
-      "component---src-pages-category-think-tsx-ef8ca7402fd34849cfe9.js"
+      "component---src-pages-category-think-tsx-4eb941e5dcef86da2a9f.js"
     ],
     "component---src-pages-index-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
       "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
-      "component---src-pages-index-tsx-0e7d0fb13df547dba8b8.js"
+      "component---src-pages-index-tsx-0fe17fb47887ca79ece9.js"
     ],
     "component---src-pages-tags-index-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
       "819ef3b1c8326137e35fd0d2b9c20c180c55c5d8-2c6d53467c1aa3e88b02.js",
-      "component---src-pages-tags-index-tsx-aebf5fbeb52cd1465dce.js"
+      "component---src-pages-tags-index-tsx-44a99f7d8ffc421e48c5.js"
     ],
     "component---src-templates-blog-post-index-tsx": [
-      "commons-3f5b5e33545b619e73dd.js",
-      "component---src-templates-blog-post-index-tsx-2e277cf1d894c75a429c.js"
+      "0c843e636ebb3dcd03f8cfbdfdfa41dcbfca0f76-b0822a35f9d0388372a2.js",
+      "component---src-templates-blog-post-index-tsx-3ab724e49fe93fa8e7fb.js"
     ]
   }
 }

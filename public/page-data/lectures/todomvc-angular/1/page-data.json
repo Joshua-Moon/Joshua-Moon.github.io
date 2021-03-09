@@ -5,8 +5,8 @@
     "data": {
       "site": {
         "siteMetadata": {
-          "title": "김정환 블로그",
-          "url": "https://jeonghwan-kim.github.io"
+          "title": "IT퍼포머",
+          "url": "https://joshua-moon.github.io"
         }
       },
       "markdownRemark": {
@@ -216,5 +216,5 @@
       }
     }
   },
-  "staticQueryHashes": ["1591182808"]
+  "staticQueryHashes": ["3141419394"]
 }

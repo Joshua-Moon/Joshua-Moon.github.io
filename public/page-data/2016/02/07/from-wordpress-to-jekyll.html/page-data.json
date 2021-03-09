@@ -5,8 +5,8 @@
     "data": {
       "site": {
         "siteMetadata": {
-          "title": "김정환 블로그",
-          "url": "https://jeonghwan-kim.github.io"
+          "title": "IT퍼포머",
+          "url": "https://joshua-moon.github.io"
         }
       },
       "markdownRemark": {
@@ -1074,17 +1074,6 @@
             }
           },
           {
-            "id": "d5dafe6d-90a5-5367-bf82-d399b9cab937",
-            "fields": {
-              "slug": "/2016/02/07/from-wordpress-to-jekyll.html",
-              "date": "2016-02-07T00:00:00.000Z"
-            },
-            "frontmatter": {
-              "title": "워드프레스에서 지킬로 블로그 이동",
-              "seriesId": null
-            }
-          },
-          {
             "id": "b6e9237c-50cd-5f74-a5fd-74b566053aba",
             "fields": {
               "slug": "/2016/02/07/jekyll-customizing.html",
@@ -1092,6 +1081,17 @@
             },
             "frontmatter": {
               "title": "Jekyll 커스터마이징 1 - 코멘트와 페이지네이션",
+              "seriesId": null
+            }
+          },
+          {
+            "id": "d5dafe6d-90a5-5367-bf82-d399b9cab937",
+            "fields": {
+              "slug": "/2016/02/07/from-wordpress-to-jekyll.html",
+              "date": "2016-02-07T00:00:00.000Z"
+            },
+            "frontmatter": {
+              "title": "워드프레스에서 지킬로 블로그 이동",
               "seriesId": null
             }
           },
@@ -2178,6 +2178,20 @@
       "videoId": null,
       "previous": {
         "fields": {
+          "slug": "/sequelize-seed-%ec%8b%9c%eb%93%9c-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ea%b4%80%eb%a6%ac%ed%95%98%ea%b8%b0/",
+          "date": "2016-02-03T12:02:53.000Z",
+          "beforeGatsby": true
+        },
+        "frontmatter": {
+          "title": "Sequelize Seed - 시드 데이터 관리하기",
+          "category": "dev",
+          "permalink": "/sequelize-seed-%ec%8b%9c%eb%93%9c-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ea%b4%80%eb%a6%ac%ed%95%98%ea%b8%b0/",
+          "seriesId": null,
+          "videoId": null
+        }
+      },
+      "next": {
+        "fields": {
           "slug": "/2016/02/07/jekyll-customizing.html",
           "date": "2016-02-07T00:00:00.000Z",
           "beforeGatsby": true
@@ -2189,22 +2203,8 @@
           "seriesId": null,
           "videoId": null
         }
-      },
-      "next": {
-        "fields": {
-          "slug": "/2016/02/20/beanstalk-in-seoul.html",
-          "date": "2016-02-20T00:00:00.000Z",
-          "beforeGatsby": true
-        },
-        "frontmatter": {
-          "title": "서울에서 Elastic Beanstalk 사용하기",
-          "category": "dev",
-          "permalink": "/2016/02/20/beanstalk-in-seoul.html",
-          "seriesId": null,
-          "videoId": null
-        }
       }
     }
   },
-  "staticQueryHashes": ["1591182808"]
+  "staticQueryHashes": ["3141419394"]
 }

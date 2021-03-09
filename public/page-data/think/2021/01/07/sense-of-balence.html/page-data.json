@@ -5,7 +5,7 @@
     "data": {
       "site": {
         "siteMetadata": {
-          "title": "거북이 개발자의 엉금엉금 스토리",
+          "title": "IT퍼포머",
           "url": "https://joshua-moon.github.io"
         }
       },
@@ -1162,17 +1162,6 @@
             }
           },
           {
-            "id": "f497e549-04de-50e6-be78-27381f37987c",
-            "fields": {
-              "slug": "/2016/05/13/image-resizing-with-lambda.html",
-              "date": "2016-05-13T00:00:00.000Z"
-            },
-            "frontmatter": {
-              "title": "람다를 이용해 이미지 리사이징 서버 만들기",
-              "seriesId": null
-            }
-          },
-          {
             "id": "8e706a3b-2d66-59f7-89a3-5b5b366cd149",
             "fields": {
               "slug": "/2016/05/13/swagger-parser.html",
@@ -1180,6 +1169,17 @@
             },
             "frontmatter": {
               "title": "스웨거 문서 문법 체크하기",
+              "seriesId": null
+            }
+          },
+          {
+            "id": "f497e549-04de-50e6-be78-27381f37987c",
+            "fields": {
+              "slug": "/2016/05/13/image-resizing-with-lambda.html",
+              "date": "2016-05-13T00:00:00.000Z"
+            },
+            "frontmatter": {
+              "title": "람다를 이용해 이미지 리사이징 서버 만들기",
               "seriesId": null
             }
           },
@@ -2167,6 +2167,14 @@
               "date": "2021-01-07T00:00:00.000Z"
             },
             "frontmatter": { "title": "균형 감각", "seriesId": null }
+          },
+          {
+            "id": "13b3e00a-723f-50d5-91d2-79d253b77ad0",
+            "fields": {
+              "slug": "/2021/03/09/my-first-blog",
+              "date": "2021-03-09T00:00:00.000Z"
+            },
+            "frontmatter": { "title": "", "seriesId": null }
           }
         ]
       }
@@ -2190,7 +2198,20 @@
           "videoId": null
         }
       },
-      "next": null
+      "next": {
+        "fields": {
+          "slug": "/2021/03/09/my-first-blog",
+          "date": "2021-03-09T00:00:00.000Z",
+          "beforeGatsby": false
+        },
+        "frontmatter": {
+          "title": "",
+          "category": null,
+          "permalink": null,
+          "seriesId": null,
+          "videoId": null
+        }
+      }
     }
   },
   "staticQueryHashes": ["3141419394"]

@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ noBorder }) => {
       <Container>
         <Styled.SiteTitle>
           <Styled.SiteLogo>
-            <Link to="/">김정환블로그</Link>
+            <Link to="/">IT퍼포머</Link>
           </Styled.SiteLogo>
         </Styled.SiteTitle>
         <Styled.NavList>
@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ noBorder }) => {
           </Nav>
           <Nav to="/#videos">
             <Icon type={IconType.Video} />
-            <span>VIDEOS</span>
+            <span>English</span>
           </Nav>
           <Nav to="/tags/">
             <Icon type={IconType.Tag} />
@@ -34,13 +34,10 @@ const Header: React.FC<HeaderProps> = ({ noBorder }) => {
           </Nav>
         </Styled.NavList>
         <Styled.Contacts>
-          <Nav to="/feed.xml">
-            <Icon type={IconType.RSS} style={{ filter: "invert(0.6)" }} />
-          </Nav>
-          <Nav href={`mailto:ej88ej@gmail.com`}>
+          <Nav href={`joshua8565@gmail.com`}>
             <Icon type={IconType.Email} style={{ filter: "invert(0.6)" }} />
           </Nav>
-          <Nav to={`https://github.com/jeonghwan-kim`}>
+          <Nav to={`https://github.com/Joshua-Moon`}>
             <Icon type={IconType.Github} style={{ filter: "invert(0.6)" }} />
           </Nav>
         </Styled.Contacts>

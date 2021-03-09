@@ -10,7 +10,7 @@ const Footer: FC<FooterProps> = (props) => {
   return (
     <Styled.Footer {...props}>
       <Section>
-        <Styled.Copyright>© 김정환 {new Date().getFullYear()}</Styled.Copyright>
+        <Styled.Copyright>© 문호석 {new Date().getFullYear()}</Styled.Copyright>
       </Section>
     </Styled.Footer>
   );

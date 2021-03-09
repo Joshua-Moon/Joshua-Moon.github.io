@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `거북이 개발자의 엉금엉금 스토리`,
-    description: `38세 비전공자가 개발자로 전직하며 남기는 기록들`,
-    author: `문호석`,
+    title: `IT퍼포머`,
+    description: `거북이 개발자의 엉금엉금 스토리 38세 비전공자가 개발자로 전직하며 남기는 기록들`,
+    author: `IT퍼포머`,
     url: "https://joshua-moon.github.io",
     social: {
       email: "joshua8565@gmail.com",
@@ -60,7 +60,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `static/assets/imgs/me.jpg`, // This path is relative to the root of the site.
+        icon: `static/assets/imgs/icons/favicons/favicon.ico`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
