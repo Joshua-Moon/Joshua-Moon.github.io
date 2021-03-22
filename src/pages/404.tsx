@@ -1,8 +1,8 @@
-import React from "react";
-import { PlainLayout } from "../components/layout";
-import Section from "../components/Section";
-import SEO from "../components/seo";
-import { Container } from "../styles/style-variables";
+import React from "react"
+import { PlainLayout } from "../components/layout"
+import Section from "../components/Section"
+import SEO from "../components/seo"
+import { Container } from "../styles/style-variables"
 
 const NotFoundPage = () => (
   <PlainLayout>
@@ -14,6 +14,6 @@ const NotFoundPage = () => (
       </Section>
     </Container>
   </PlainLayout>
-);
+)
 
-export default NotFoundPage;
+export default NotFoundPage

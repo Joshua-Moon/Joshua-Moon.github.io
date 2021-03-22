@@ -43,13 +43,13 @@ _힌트: server.js는 서버 생성, bin.js는 서버 실행_
 코드는 두 부분으로 나눠서 설명합니다.
 
 ```js
-const http = require("http");
+const http = require("http")
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello, World!\n");
-});
+  res.statusCode = 200
+  res.setHeader("Content-Type", "text/plain")
+  res.end("Hello, World!\n")
+})
 ```
 
 http 모듈을 가져와 `createServer()` 함수로 **서버를 생성** 하는 코드입니다.
@@ -61,7 +61,7 @@ http 모듈을 가져와 `createServer()` 함수로 **서버를 생성** 하는 
 따라서 server.js에 있는 서버객체 `server`를 외부에서 사용하도록 "노출"해야 합니다.
 
 ```js
-module.exports = server;
+module.exports = server
 ```
 
 노드에서는 `module.exports`에 노출할 객체를 지정하면 다른 파일에서 이를 사용할 수 있습니다.
@@ -71,9 +71,9 @@ module.exports = server;
 이것도 두 단계로 설명할게요.
 
 ```js
-const server = require("./server");
-const hostname = "127.0.0.1";
-const port = 3000;
+const server = require("./server")
+const hostname = "127.0.0.1"
+const port = 3000
 ```
 
 첫번째 만들었던 server.js 파일을 불러옵니다. 이 파일에서는 서버객체를 모듈로 노출했기 때문에 `require('./server')`로 가져와서 server 상수에 저장할 수 있는 것이죠.
@@ -82,8 +82,8 @@ const port = 3000;
 
 ```js
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+  console.log(`Server running at http://${hostname}:${port}/`)
+})
 ```
 
 마지막으로 서버를 요청 대기상태로 만들었습니다.

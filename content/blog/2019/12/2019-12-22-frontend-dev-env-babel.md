@@ -38,7 +38,7 @@ ECMAScript2015+로 작성한 코드를 모든 브라우져에서 동작하도록
 
 ```js
 // src/app.js:
-const alert = (msg) => window.alert(msg);
+const alert = msg => window.alert(msg)
 ```
 
 먼저 바벨 최신 버전를 설치한다.
@@ -75,7 +75,7 @@ const alert = msg => window.alert(msg);
 바벨 함수를 정의한다면 이런 모습이 될 것이다.
 
 ```js
-const babel = (code) => code;
+const babel = code => code
 ```
 
 바벨은 파싱과 출력만 담당하고 변환 작업은 다른 녀석이 처리하데 이것을 **"플러그인"** 이라고 부른다.
@@ -91,17 +91,17 @@ module.exports = function myplugin() {
   return {
     visitor: {
       Identifier(path) {
-        const name = path.node.name;
+        const name = path.node.name
 
         // 바벨이 만든 AST 노드를 출력한다
-        console.log("Identifier() name:", name);
+        console.log("Identifier() name:", name)
 
         // 변환작업: 코드 문자열을 역순으로 변환한다
-        path.node.name = name.split("").reverse().join("");
+        path.node.name = name.split("").reverse().join("")
       },
     },
-  };
-};
+  }
+}
 ```
 
 플러그인 형식은 visitor 객체를 가진 함수를 반환해야 한다.
@@ -144,15 +144,15 @@ module.exports = function myplugin() {
     visitor: {
       // https://github.com/babel/babel/blob/master/packages/babel-plugin-transform-block-scoping/src/index.js#L26
       VariableDeclaration(path) {
-        console.log("VariableDeclaration() kind:", path.node.kind); // const
+        console.log("VariableDeclaration() kind:", path.node.kind) // const
 
         if (path.node.kind === "const") {
-          path.node.kind = "var";
+          path.node.kind = "var"
         }
       },
     },
-  };
-};
+  }
+}
 ```
 
 이번에는 vistor 객체에 VariableDeclaration() 메소드를 정의했다.
@@ -222,7 +222,7 @@ module.exports = {
     "@babel/plugin-transform-arrow-functions",
     "@babel/plugin-transform-strict-mode",
   ],
-};
+}
 ```
 
 커맨드라인에서 사용한 block-scoping, arrow-functions 플러그인을 설정 파일로 옮겼는데 plugins 배열에 추가하는 방식이다. strict-mode 플러그인을 마지막 줄에 추가했다.
@@ -263,8 +263,8 @@ module.exports = function mypreset() {
       "@babel/plugin-transform-block-scoping",
       "@babel/plugin-transform-strict-mode",
     ],
-  };
-};
+  }
+}
 ```
 
 plugins 배열에 사용한 세 개 플러그인을 담았다.
@@ -275,7 +275,7 @@ plugins 배열에 사용한 세 개 플러그인을 담았다.
 // babel.config.js
 module.exports = {
   presets: ["./mypreset.js"],
-};
+}
 ```
 
 플러그인 세팅 코드를 제거하고 presets에 방금 만든 mypreset.js를 추가했다.
@@ -309,7 +309,7 @@ npm install -D @babel/preset-env
 // babel.config.js:
 module.exports = {
   presets: ["@babel/preset-env"],
-};
+}
 ```
 
 그리고 빌드하면,
@@ -350,7 +350,7 @@ module.exports = {
       },
     ],
   ],
-};
+}
 ```
 
 ```
@@ -378,7 +378,7 @@ module.exports = {
       },
     ],
   ],
-};
+}
 ```
 
 ### 5.2 폴리필
@@ -389,7 +389,7 @@ ECMASCript2015의 Promise 객체를 사용하는 코드다.
 
 ```js
 // app.js:
-new Promise();
+new Promise()
 ```
 
 바벨로 처리하면 어떤 결과가 나올까?
@@ -438,7 +438,7 @@ module.exports = {
       },
     ],
   ],
-};
+}
 ```
 
 `useBuiltIns`는 어떤 방식으로 폴리필을 사용할지 설정하는 옵션이다.
@@ -491,7 +491,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 .js 확장자로 끝나는 파일은 babel-loader가 처리하도록 설정했다.
@@ -501,8 +501,8 @@ module.exports = {
 웹팩은 바벨 로더가 만든 아래 코드를 만나면 core-js를 찾을 것이기 때문이다.
 
 ```js
-require("core-js/modules/es6.promise");
-require("core-js/modules/es6.object.to-string");
+require("core-js/modules/es6.promise")
+require("core-js/modules/es6.object.to-string")
 ```
 
 버전 2로 패키지를 추가하자.

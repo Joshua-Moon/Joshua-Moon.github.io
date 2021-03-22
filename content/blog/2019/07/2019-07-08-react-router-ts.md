@@ -51,7 +51,7 @@ const Root: React.FC = () => (
       <Redirect path="*" to="/" />
     </Switch>
   </BrowserRouter>
-);
+)
 ```
 
 최상단에 **BrowerRouter**를 선언하고 요청에 따라 하위 컴포넌트들 중 하나를 선택하기 위해 **Swich** 컴포넌트로 감쌌다.
@@ -140,7 +140,7 @@ pages/memo/index.tsx 파일을 만들어 MemoPage 컴포넌트 틀을 짠다.
 
 ```tsx
 interface MemoPageState {
-  memos: Memo[];
+  memos: Memo[]
 }
 
 class MemoPage extends React.Component<RouteComponentProps, MemoPageState> {
@@ -150,11 +150,11 @@ class MemoPage extends React.Component<RouteComponentProps, MemoPageState> {
         <Sidebar></Sidebar>
         <Main></Main>
       </Layout>
-    );
+    )
   }
 }
 
-export default MemoPage;
+export default MemoPage
 ```
 
 HomePage 컴포넌트와 동일한 화면 구성으로 레이아웃을 만들었다.
@@ -165,13 +165,13 @@ HomePage 컴포넌트와 동일한 화면 구성으로 레이아웃을 만들었
 
 ```ts
 interface MemoPageState {
-  memos: Memo[];
+  memos: Memo[]
 }
 
 interface Memo {
-  id?: number;
-  content: string;
-  createdAt?: number;
+  id?: number
+  content: string
+  createdAt?: number
 }
 ```
 
@@ -276,10 +276,10 @@ import {
   Route,
   RouteComponentProps,
   withRouter,
-} from "react-router-dom";
+} from "react-router-dom"
 
-const MemoRouter: React.FC<RouteComponentProps> = (props) => {
-  const { match } = props;
+const MemoRouter: React.FC<RouteComponentProps> = props => {
+  const { match } = props
 
   return (
     <Switch>
@@ -291,10 +291,10 @@ const MemoRouter: React.FC<RouteComponentProps> = (props) => {
         component={() => <div>메모가 없습니다</div>}
       />
     </Switch>
-  );
-};
+  )
+}
 
-export default withRouter(MemoRouter);
+export default withRouter(MemoRouter)
 ```
 
 루트 라우터와 비슷하게 Switch, Route 컴포넌트로 라우팅 규칙을 설정했다.
@@ -312,10 +312,10 @@ export interface RouteComponentProps<
   C extends StaticContext = StaticContext,
   S = H.LocationState
 > {
-  history: H.History;
-  location: H.Location<S>;
-  match: match<Params>;
-  staticContext?: C;
+  history: H.History
+  location: H.Location<S>
+  match: match<Params>
+  staticContext?: C
 }
 ```
 

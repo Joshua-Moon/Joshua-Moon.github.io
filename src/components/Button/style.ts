@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Colors, SpaceUnit } from "../../styles/style-variables";
+import styled from "styled-components"
+import { Colors, SpaceUnit } from "../../styles/style-variables"
 
 export enum ButtonType {
   Primary = "Primary",
@@ -9,7 +9,7 @@ export enum ButtonType {
 const color: { [k in ButtonType]: string } = {
   [ButtonType.Primary]: Colors.Primary,
   [ButtonType.Secondary]: Colors.Secondary,
-};
+}
 
 export const Button = styled.button<{ type: ButtonType }>`
   display: inline-block;
@@ -17,16 +17,16 @@ export const Button = styled.button<{ type: ButtonType }>`
   border-radius: 4px;
   background-color: ${Colors.White};
   text-decoration: none;
-  color: ${(props) => color[props.type]};
-  border: solid 1px ${(props) => color[props.type]};
+  color: ${props => color[props.type]};
+  border: solid 1px ${props => color[props.type]};
   transition: all 0.1s ease-in-out;
   &:focus,
   &:hover {
-    background-color: ${(props) => color[props.type]};
+    background-color: ${props => color[props.type]};
     color: ${Colors.White};
     cursor: pointer;
   }
-`;
+`
 
 export const ButtonLink = styled(Button)`
   padding: 0;
@@ -36,4 +36,4 @@ export const ButtonLink = styled(Button)`
     text-decoration: none;
     color: inherit;
   }
-`;
+`

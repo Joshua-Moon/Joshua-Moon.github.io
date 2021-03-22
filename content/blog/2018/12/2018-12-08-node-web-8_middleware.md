@@ -28,18 +28,18 @@ tags: [lecture]
 미들웨어 등록:
 
 ```js
-const middlewares = [];
-const use = (fn) => middlewares.push(fn);
+const middlewares = []
+const use = fn => middlewares.push(fn)
 ```
 
 미들웨어 실행:
 
 ```js
-let next = null;
+let next = null
 const run = () =>
-  middlewares.forEach((mw) => {
-    next = mw(next);
-  });
+  middlewares.forEach(mw => {
+    next = mw(next)
+  })
 ```
 
 익스프레스JS의 미들웨어가 궁금하시다면 여기를 [미리](https://expressjs.com/ko/guide/writing-middleware.html) 보셔도 좋습니다.
@@ -84,13 +84,13 @@ middleware 인스턴스의 테스트 전용 속성인 \_middlewares를 통해 �
 ```js
 describe("add()", () => {
   it("배열에 미들웨어 함수를 추가한다", () => {
-    const fns = [() => {}, () => {}, () => {}];
+    const fns = [() => {}, () => {}, () => {}]
 
-    fns.forEach((fn) => middleware.add(fn));
+    fns.forEach(fn => middleware.add(fn))
 
-    middleware._middlewares.length.should.be.equal(fns.length);
-  });
-});
+    middleware._middlewares.length.should.be.equal(fns.length)
+  })
+})
 ```
 
 두번째 테스트케이스는 **"배열에 미들웨어 함수를 추가한다"**라는 요구사항을 테스트 했습니다. 미리 빈 미들웨어 함수 3개를 만들어 fns 배열에 저장하고 이것을 middleware.add() 메소드로 등록했습니다. 우리가 구현할 모듈은 add() 메소드를 가져야하겠죠?
@@ -138,21 +138,21 @@ it("next를 호출하지 않는 미들웨어가 있으면 함수 체인을 즉�
     mw1() {},
     mwWillStop() {}, // next를 호출하지 않는 미들웨어
     mw2() {},
-  };
-  sinon.stub(stub, "mw1").callsFake((req, res, next) => next());
-  sinon.stub(stub, "mwWillStop").callsFake(() => null);
-  sinon.stub(stub, "mw2").callsFake((req, res, next) => next());
+  }
+  sinon.stub(stub, "mw1").callsFake((req, res, next) => next())
+  sinon.stub(stub, "mwWillStop").callsFake(() => null)
+  sinon.stub(stub, "mw2").callsFake((req, res, next) => next())
 
-  const fns = [stub.mw1, stub.mwWillStop, stub.mw2];
-  fns.forEach((fn) => middleware.add(fn));
+  const fns = [stub.mw1, stub.mwWillStop, stub.mw2]
+  fns.forEach(fn => middleware.add(fn))
 
-  middleware.run();
+  middleware.run()
 
   fns.forEach((fn, idx) => {
-    const shouldInvoked = idx < 2;
-    should(fn.called).be.equal(shouldInvoked);
-  });
-});
+    const shouldInvoked = idx < 2
+    should(fn.called).be.equal(shouldInvoked)
+  })
+})
 ```
 
 이전 테스트와 비슷한데 예외 기능을 테스트합니다. **"미들웨어 함수가 next()를 호출하지 않을 경우 전체 미들웨어를 즉시 중단한다"**라는 요구사항이죠.
@@ -220,14 +220,14 @@ src 폴더에 Middleware.js 파일을 만들고 아래 코드를 입력합니다
 
 ```js
 const Middleware = () => {
-  const _middlewares = [];
+  const _middlewares = []
 
   return {
     _middlewares,
-  };
-};
+  }
+}
 
-module.exports = Middleware;
+module.exports = Middleware
 ```
 
 \_middlewares에 빈 배열을 할당하고 바로 객체로 만들어 리턴 했습니다.
@@ -260,14 +260,14 @@ _힌트: 인자는 미들웨어 함수_
 이것도 아주 간단히 해결했습니다.
 
 ```js
-const add = (fn) => {
-  _middlewares.push(fn);
-};
+const add = fn => {
+  _middlewares.push(fn)
+}
 
 return {
   _middlewares,
   add,
-};
+}
 ```
 
 테스트를 돌려 볼까요?
@@ -317,14 +317,14 @@ const Middleware = () => {
 그리고 이 다음에 만들 \_run(0) 함수를 실행합니다. 여기서 인자값은 0번(배열의 첫번째) 미들웨어를 실행한다는 의도 입니다.
 
 ```js
-const _run = (i) => {
-  if (i < 0 || i >= _middlewares.length) return;
+const _run = i => {
+  if (i < 0 || i >= _middlewares.length) return
 
-  const nextMw = _middlewares[i];
-  const next = () => _run(i + 1);
+  const nextMw = _middlewares[i]
+  const next = () => _run(i + 1)
 
-  nextMw(_req, _res, next);
-};
+  nextMw(_req, _res, next)
+}
 ```
 
 인덱스 값이 배열 범위를 벗어날 경우 바로 함수를 종료하는 방어 코드를 작성합니다.

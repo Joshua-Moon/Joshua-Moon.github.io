@@ -16,11 +16,11 @@ tags: [lecture]
 지금까지 우리가 만든 어플리케이션은 정적파일을 제외한 모든 요청을 index 미들웨어가 처리합니다.
 
 ```js
-app.use(logger());
-app.use(serveStatic());
-app.use(index);
-app.use(error404);
-app.use(error);
+app.use(logger())
+app.use(serveStatic())
+app.use(index)
+app.use(error404)
+app.use(error)
 ```
 
 "GET /foo" 로 요청하더라도 index 미들웨어가 동작해서 index.html 파일을 제공하는 것이죠. 아, 물론 에러가 발생하면 다르지만요.
@@ -28,8 +28,8 @@ app.use(error);
 만약 아래와 같이 코딩할 수 있다면 어떨까요?
 
 ```js
-app.use("/", indexController);
-app.use("/foo", fooController);
+app.use("/", indexController)
+app.use("/foo", fooController)
 ```
 
 특정 주소("/")의 요청이 있을 경우만 설정한 미들웨어(indexController)를 실행하도록 하는 방법입니다. 물론 "/foo" 경로로 요청하면 fooController가 동작는 거지요.
@@ -59,15 +59,15 @@ _힌트: fn.\_path에 path를 저장_
 ```js
 const use = (path, fn) => {
   if (typeof path === "string" && typeof fn === "function") {
-    fn._path = path;
+    fn._path = path
   } else if (typeof path == "function") {
-    fn = path;
+    fn = path
   } else {
-    throw Error("Usage: use(path, fn) or use(fn)");
+    throw Error("Usage: use(path, fn) or use(fn)")
   }
 
-  _middleware.add(fn);
-};
+  _middleware.add(fn)
+}
 ```
 
 path 인자는 선택사항이기 때문에 이 부분을 유연하게 처리해 주어야 하는데 if/else 구문이 그 코드입니다.
@@ -84,12 +84,12 @@ const _run = (i, err) => {
 
   if (nextMw._path) {
     // 경로를 비교한다
-    const pathMatched = _req.url === nextMw._path;
-    return pathMatched ? nextMw(_req, _res, next) : _run(i + 1);
+    const pathMatched = _req.url === nextMw._path
+    return pathMatched ? nextMw(_req, _res, next) : _run(i + 1)
   }
 
-  nextMw(_req, _res, next);
-};
+  nextMw(_req, _res, next)
+}
 ```
 
 use() 메소드에서 저장한 경로정보는 nextMw.\_path를 통해 접근할수 있습니다.
@@ -103,17 +103,17 @@ app.js에 있는 index 미들웨어와 error 미들웨어를 모듈로 분리하
 먼저 routers/index.js 파일에 index 미들웨어를 옮깁니다.
 
 ```js
-const path = require("path");
+const path = require("path")
 // ...
 
 const listPosts = () => (req, res, next) => {
-  const publicPath = path.join(__dirname, "../public");
+  const publicPath = path.join(__dirname, "../public")
   // ...
-};
+}
 
 module.exports = {
   listPosts,
-};
+}
 ```
 
 포스트 목록을 보여준다는 의미에서 listPosts 라는 이름의 함수를 만들어 모듈로 노출하였습니다.
@@ -123,35 +123,35 @@ middlewares/errors.js에 error404, error 미들웨어도 옮기겨 보지요.
 ```js
 const error404 = () => (req, res, next) => {
   // ...
-};
+}
 
 const error = () => (err, req, res, next) => {
   // ...
-};
+}
 
 module.exports = {
   error404,
   error,
-};
+}
 ```
 
 마지막으로 app.js 가 얼마나 단순하게 개선되었는지 확인해 봅시다.
 
 ```js
-const serveStatic = require("./middlewares/serve-static");
-const logger = require("./middlewares/logger");
-const errors = require("./middlewares/errors");
-const index = require("./routes/index");
-const App = require("./src/Application");
-const app = App();
+const serveStatic = require("./middlewares/serve-static")
+const logger = require("./middlewares/logger")
+const errors = require("./middlewares/errors")
+const index = require("./routes/index")
+const App = require("./src/Application")
+const app = App()
 
-app.use(logger());
-app.use(serveStatic());
-app.use("/", index.listPosts());
-app.use(errors.error404());
-app.use(errors.error());
+app.use(logger())
+app.use(serveStatic())
+app.use("/", index.listPosts())
+app.use(errors.error404())
+app.use(errors.error())
 
-module.exports = app;
+module.exports = app
 ```
 
 Application 인스턴스를 만들고 여기에 미들웨어를 추가하는 코드만 들어 있죠.

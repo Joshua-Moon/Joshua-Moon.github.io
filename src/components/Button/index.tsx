@@ -1,13 +1,13 @@
-import React from "react";
-import { Link } from "gatsby";
-import * as Styled from "./style";
+import React from "react"
+import { Link } from "gatsby"
+import * as Styled from "./style"
 
 export interface ButtonProps {
-  type: Styled.ButtonType;
-  link?: boolean;
-  to?: string;
-  className?: string;
-  onClick?: () => void;
+  type: Styled.ButtonType
+  link?: boolean
+  to?: string
+  className?: string
+  onClick?: () => void
 }
 const Button: React.FC<ButtonProps> = ({
   type,
@@ -23,14 +23,14 @@ const Button: React.FC<ButtonProps> = ({
           {children}
         </Link>
       </Styled.ButtonLink>
-    );
+    )
   }
 
   return (
     <Styled.Button type={type} onClick={() => onClick()}>
       {children}
     </Styled.Button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

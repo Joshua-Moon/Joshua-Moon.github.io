@@ -45,19 +45,19 @@ export default {
     return {
       name: "",
       errorBag: { name: [] },
-    };
+    }
   },
   watch: {
     name(val) {
-      this.errorBag.name = validator.validate("name", val);
+      this.errorBag.name = validator.validate("name", val)
     },
   },
   methods: {
     onSubmit() {
-      this.errorBag.name = validator.validate("name", this.name);
+      this.errorBag.name = validator.validate("name", this.name)
     },
   },
-};
+}
 ```
 
 입력 필드와 양방향 연결되어 있는 `name()` 감시자를 만들었다. validator.validate() 메소드로 입력한 값을 검증한다.
@@ -69,19 +69,19 @@ validator 객체는 어떻게 구현할수 있을까?
 ```js
 export default {
   validate(key, val) {
-    const errors = [];
+    const errors = []
 
     if (!val) {
-      errors.push(`${key} field is required`);
+      errors.push(`${key} field is required`)
     } else {
       if (val.length < 3) {
-        errors.push(`${key} filed should have length of 3`);
+        errors.push(`${key} filed should have length of 3`)
       }
     }
 
-    return errors;
+    return errors
   },
-};
+}
 ```
 
 검증을 수행하는 `validate()` 메소드는 필드명 key와 입력값 val 변수를 인자로 받는다.
@@ -127,24 +127,24 @@ export default {
 export default {
   validate: {
     bind(el, binding, vnode) {
-      validator.setup(el.name, binding.expression, vnode.context);
+      validator.setup(el.name, binding.expression, vnode.context)
     },
 
     update(el, binding, vnode) {
-      const key = el.name;
-      const errors = validator.validate(key, el.value);
-      const s = JSON.stringify;
+      const key = el.name
+      const errors = validator.validate(key, el.value)
+      const s = JSON.stringify
 
-      if (s(errors) === s(vnode.context.errorBag[key])) return;
+      if (s(errors) === s(vnode.context.errorBag[key])) return
 
       if (errors.length) {
-        vnode.context.$set(vnode.context.errorBag, key, errors);
+        vnode.context.$set(vnode.context.errorBag, key, errors)
       } else {
-        vnode.context.$delete(vnode.context.errorBag, key);
+        vnode.context.$delete(vnode.context.errorBag, key)
       }
     },
   },
-};
+}
 ```
 
 디렉티브는 몇 개 훅을 제공한다.
@@ -175,38 +175,38 @@ validator.setup() 메소드가 그 역할을 하는데
 const validateFns = {
   required(key, val) {
     if (!val) {
-      return `${key} is required`;
+      return `${key} is required`
     }
   },
   minLen3(key, val) {
     if (!val || val.length < 3) {
-      return `${key} should have more than 3 letters`;
+      return `${key} should have more than 3 letters`
     }
   },
-};
+}
 
 const validator = {
   init() {
-    this.errors = {};
-    this.validates = new Map();
-    return this;
+    this.errors = {}
+    this.validates = new Map()
+    return this
   },
 
   setup(key, expression) {
-    const validates = expression.replace(/'/g, "").split("|");
-    this.validates.set(key, validates);
+    const validates = expression.replace(/'/g, "").split("|")
+    this.validates.set(key, validates)
   },
 
   validate(key, value) {
-    const validates = this.validates.get(key);
+    const validates = this.validates.get(key)
     const errors = validates
-      .map((v) => validateFns[v](key, value))
-      .filter((v) => !!v);
-    return errors;
+      .map(v => validateFns[v](key, value))
+      .filter(v => !!v)
+    return errors
   },
-};
+}
 
-export default validator.init();
+export default validator.init()
 ```
 
 먼저 검증하는 함수를 각각 만들어`validateFn` 객체의 메소드 형태로 만들었다. 입력한 값을 검증한 후 에러 문자열을 반환하는 동작을 한다.
@@ -222,26 +222,26 @@ validates 맵에서 검증자를 가져와 해당하는 검증함수를 validate
 이를 사용하기 위한 컴포넌트 코드를 살펴보자.
 
 ```js
-import directives from "./MyDirectives";
-import validator from "./validator";
+import directives from "./MyDirectives"
+import validator from "./validator"
 
 export default {
   directives,
   data() {
-    return { name: "", errorBag: {} };
+    return { name: "", errorBag: {} }
   },
   methods: {
     onSubmit() {
-      const errors = validator.validate("name", this.name);
+      const errors = validator.validate("name", this.name)
 
       if (errors) {
-        this.$set(this.errorBag, "name", errors);
+        this.$set(this.errorBag, "name", errors)
       } else {
-        this.$delete(this.errorBag, "name");
+        this.$delete(this.errorBag, "name")
       }
     },
   },
-};
+}
 ```
 
 컴포넌트에서 v-directive를 사용하려면 객체 생성인자 `directives`로 방금 만든 디렉티브 코드를 전달해야 한다.
@@ -266,20 +266,20 @@ errorBag의 name 은 초기화 되어 있지 않기 때문에 단순히 `this.er
 **Vue 플러그인**은 이러한 역할을 수행하는데 안성맞춤이다. 이 부분을 플러그인 코드로 옮겨보자.
 
 ```js
-import MyDirectives from "./MyDirectives";
-import validator from "./validator";
+import MyDirectives from "./MyDirectives"
+import validator from "./validator"
 
 export default {
   install(Vue) {
-    Vue.directive("validate", MyDirectives.validate);
+    Vue.directive("validate", MyDirectives.validate)
 
     Vue.mixin({
       data() {
-        return { errorBag: {} };
+        return { errorBag: {} }
       },
-    });
+    })
   },
-};
+}
 ```
 
 컴포넌트에서 디렉티브를 등록 부분을 플러그인으로 옮겼다. 나중에 플러그인만 설정하면 디렉티브까지 자동으로 로딩하게될 것이다.
@@ -325,16 +325,16 @@ $errors와 $validator 계산된 속성을 추가했다.
 플러그인은 루트 컴포넌트 생성시 설정한다.
 
 ```js
-import Vue from "vue";
-import MyPlugin from "./MyPlugin";
-import App from "./App.vue";
+import Vue from "vue"
+import MyPlugin from "./MyPlugin"
+import App from "./App.vue"
 
-Vue.use(MyPlugin);
+Vue.use(MyPlugin)
 
 new Vue({
   el: "#app",
-  render: (h) => h(App),
-});
+  render: h => h(App),
+})
 ```
 
 `Vue.use(MyPlugin)` 하나의 코드로 줄었다. 이것으로
@@ -366,14 +366,14 @@ new Vue({
 <script>
   export default {
     data() {
-      return { name: "" };
+      return { name: "" }
     },
     methods: {
       onSubmit() {
-        this.$validator.validateAll();
+        this.$validator.validateAll()
       },
     },
-  };
+  }
 </script>
 ```
 
@@ -395,10 +395,10 @@ new Vue({
 Vue에서 폼 검증시 가장 많이 사용하는 이 툴은 플러그인 형태로 제공되기 때문에 `Vue.use()`로 설치한다.
 
 ```js
-import Vue from "vue";
-import VeeValidator from "vee-validate";
+import Vue from "vue"
+import VeeValidator from "vee-validate"
 
-Vue.use(VeeValidator);
+Vue.use(VeeValidator)
 ```
 
 그리고 나서 컴포넌트에서는 이렇게 사용할 수 있다.
@@ -422,14 +422,14 @@ Vue.use(VeeValidator);
 <script>
   export default {
     data() {
-      return { name: "" };
+      return { name: "" }
     },
     methods: {
       onSubmit() {
-        this.$validator.validateAll();
+        this.$validator.validateAll()
       },
     },
-  };
+  }
 </script>
 ```
 

@@ -55,9 +55,9 @@ describe('Application', () => {
 
 ```js
 // arrange
-const app = App(); // const App = require('./Application') 으로 가져왔다고 가정
-const spy = sinon.spy();
-app._server.listen = spy;
+const app = App() // const App = require('./Application') 으로 가져왔다고 가정
+const spy = sinon.spy()
+app._server.listen = spy
 ```
 
 유닛 테스트는 보통 세 단계로 나눕니다.
@@ -70,14 +70,14 @@ app._server.listen = spy;
 
 ```js
 // act
-app.listen();
+app.listen()
 ```
 
 실제 테스트 해야할 메소드를 실행합니다.
 
 ```js
 // assert
-should(spy.called).be.equal(true);
+should(spy.called).be.equal(true)
 ```
 
 listen 메소드가 실행되었는지 스파이를 통해 검사하는 코드입니다.
@@ -103,17 +103,17 @@ Application 모듈을 구현해 보세요. Application은 listen 메소드를 �
 자 그럼 같이 풀어 볼까요? 세 단계로 나눠 설명하겠습니다.
 
 ```js
-const http = require("http");
+const http = require("http")
 
 const Application = () => {
-  const listen = () => {};
+  const listen = () => {}
 
   return {
     listen,
-  };
-};
+  }
+}
 
-module.exports = Application;
+module.exports = Application
 ```
 
 먼저 http 모듈을 가져왔습니다.
@@ -124,17 +124,17 @@ module.exports = Application;
 
 ```js
 const _server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World\n");
-});
+  res.statusCode = 200
+  res.setHeader("Content-Type", "text/plain")
+  res.end("Hello World\n")
+})
 
 // ...
 
 return {
   _server,
   listen,
-};
+}
 ```
 
 테스트 코드에 보면 _server 객체를 통해 스파이를 심어두고 있죠.
@@ -143,8 +143,8 @@ http.createServer() 함수로 서버를 만들어 \_server에 저장했고 외�
 
 ```js
 const listen = (port = 3000, hostname = "127.0.0.1", fn) => {
-  _server.listen(port, hostname, fn);
-};
+  _server.listen(port, hostname, fn)
+}
 ```
 
 생성한 \_server 객체를 통해 listen 함수 코드를 채워 넣었습니다.
@@ -170,10 +170,10 @@ server.js를 app.js로 이름을 바꾸겠습니다.
 app.js 코드를 볼까요?
 
 ```js
-const App = require("./src/Application");
-const app = App();
+const App = require("./src/Application")
+const app = App()
 
-module.exports = app;
+module.exports = app
 ```
 
 Application 모듈을 가져와 객체를 만들어 app에 저장했죠. 곧장 모듈로 노출했습니다.
@@ -181,13 +181,13 @@ Application 모듈을 가져와 객체를 만들어 app에 저장했죠. 곧장 
 bin.js도 볼까요?
 
 ```js
-const app = require("./app");
-const hostname = "127.0.0.1";
-const port = 3000;
+const app = require("./app")
+const hostname = "127.0.0.1"
+const port = 3000
 
 app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+  console.log(`Server running at http://${hostname}:${port}/`)
+})
 ```
 
 "server" 대신 "app" 모듈을 가져온 것만 달라졌습니다.

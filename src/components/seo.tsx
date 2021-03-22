@@ -5,19 +5,19 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react";
-import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
+import React from "react"
+import { Helmet } from "react-helmet"
+import { useStaticQuery, graphql } from "gatsby"
 
 interface P {
-  title: string;
-  description?: string;
-  date?: string;
-  url?: string;
-  image?: string;
+  title: string
+  description?: string
+  date?: string
+  url?: string
+  image?: string
 }
 
-const SEO: React.FC<P> = (p) => {
+const SEO: React.FC<P> = p => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -27,27 +27,26 @@ const SEO: React.FC<P> = (p) => {
             description
             author
             url
-            # social {
-            #   twitterUsername
-            # }
+            social {
+              twitterUsername
+            }
           }
         }
       }
     `
-  );
+  )
 
-  const description = p.description || site.siteMetadata.description;
-  const defaultImage = `${site.siteMetadata.url}/assets/imgs/me.jpg`;
+  const description = p.description || site.siteMetadata.description
+  const defaultImage = `${site.siteMetadata.url}/assets/imgs/me.jpg`
   const image = p.image
     ? p.image?.startsWith(site.siteMetadata.url)
       ? p.image
       : `${site.siteMetadata.url}${p.image}`
-    : defaultImage;
-  // const { twitterUsername } = site.siteMetadata.social
-  const url = p.url || site.siteMetadata.url;
+    : defaultImage
+  const { twitterUsername } = site.siteMetadata.social
+  const url = p.url || site.siteMetadata.url
 
   const meta: { property?: string; name?: string; content: string }[] = [
-    // sns링크 공유 시 내 포스트 이쁘게 내보낸다
     {
       property: `og:locale`,
       content: `ko_KR`,
@@ -84,32 +83,32 @@ const SEO: React.FC<P> = (p) => {
       property: `og:image`,
       content: image,
     },
-  ];
+  ]
 
-  // if (twitterUsername) {
-  //   meta.push(
-  //     ...[
-  //       {
-  //         name: `twitter:card`,
-  //         content: `summary`,
-  //       },
-  //       {
-  //         name: `twitter:site`,
-  //         content: twitterUsername,
-  //       },
-  //       {
-  //         name: `twitter:creator`,
-  //         content: twitterUsername,
-  //       },
-  //     ]
-  //   )
-  // }
+  if (twitterUsername) {
+    meta.push(
+      ...[
+        {
+          name: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          name: `twitter:site`,
+          content: twitterUsername,
+        },
+        {
+          name: `twitter:creator`,
+          content: twitterUsername,
+        },
+      ]
+    )
+  }
 
   if (p.date) {
     meta.push({
       property: "article:published_time",
       content: p.date,
-    });
+    })
   }
 
   return (
@@ -136,7 +135,7 @@ const SEO: React.FC<P> = (p) => {
       )}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
     </Helmet>
-  );
-};
+  )
+}
 
-export default SEO;
+export default SEO

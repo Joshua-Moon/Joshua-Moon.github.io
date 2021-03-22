@@ -24,9 +24,9 @@ exports.createSeriesNode = ({ actions, createNodeId, createContentDigest }) => {
       id: "series-20160611",
       title: "앵귤러로 Todo앱 만들기",
     },
-  ];
+  ]
 
-  series.forEach((s) => {
+  series.forEach(s => {
     actions.createNode({
       id: createNodeId(`series-${s.title}`),
       title: s.title,
@@ -34,9 +34,9 @@ exports.createSeriesNode = ({ actions, createNodeId, createContentDigest }) => {
         type: "series",
         contentDigest: createContentDigest(s),
       },
-    });
-  });
-};
+    })
+  })
+}
 
 exports.createVideoNode = ({ actions, createNodeId, createContentDigest }) => {
   const videos = [
@@ -87,9 +87,9 @@ exports.createVideoNode = ({ actions, createNodeId, createContentDigest }) => {
       thumb: "/assets/imgs/youtube-20200819-gatsby.png",
       title: "[Gatsby.js] 개츠비 훑어보기",
     },
-  ];
+  ]
 
-  videos.forEach((v) => {
+  videos.forEach(v => {
     actions.createNode({
       id: createNodeId(`series-${v.title}`),
       title: v.title,
@@ -99,6 +99,6 @@ exports.createVideoNode = ({ actions, createNodeId, createContentDigest }) => {
         type: "video",
         contentDigest: createContentDigest(v),
       },
-    });
-  });
-};
+    })
+  })
+}

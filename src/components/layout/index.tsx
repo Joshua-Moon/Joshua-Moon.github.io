@@ -1,10 +1,10 @@
-import React, { FC, ReactNode } from "react";
-import GlobalStyle from "../../styles/GlobalStyle";
-import { Container } from "../../styles/style-variables";
-import Footer from "../Footer";
-import Header, { HeaderProps } from "../Header";
-import Section from "../Section";
-import * as Styled from "./style";
+import React, { FC, ReactNode } from "react"
+import GlobalStyle from "../../styles/GlobalStyle"
+import { Container } from "../../styles/style-variables"
+import Footer from "../Footer"
+import Header, { HeaderProps } from "../Header"
+import Section from "../Section"
+import * as Styled from "./style"
 
 export interface LayoutProps extends HeaderProps {}
 
@@ -15,10 +15,10 @@ const Layout: FC<LayoutProps> = ({ noBorder, children }) => {
       <Header noBorder={noBorder} />
       {children}
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
 
 export const PlainLayout: FC<LayoutProps> = ({ children }) => {
   return (
@@ -26,8 +26,8 @@ export const PlainLayout: FC<LayoutProps> = ({ children }) => {
       <Styled.Main>{children}</Styled.Main>
       <Footer bordered />
     </Layout>
-  );
-};
+  )
+}
 
 export interface HomeLayoutProps {}
 
@@ -37,11 +37,11 @@ export const HomeLayout: FC<HomeLayoutProps> = ({ children }) => {
       <Styled.Main>{children}</Styled.Main>
       <Footer bordered />
     </Layout>
-  );
-};
+  )
+}
 
 interface TwoColumnLayoutProps {
-  aside: ReactNode;
+  aside: ReactNode
 }
 
 export const TwoColumnLayout: FC<TwoColumnLayoutProps> = ({
@@ -60,5 +60,5 @@ export const TwoColumnLayout: FC<TwoColumnLayoutProps> = ({
         </div>
       </Container>
     </Layout>
-  );
-};
+  )
+}

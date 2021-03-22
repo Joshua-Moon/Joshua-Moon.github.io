@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -6,23 +6,23 @@ import {
   PocketShareButton,
   TwitterIcon,
   TwitterShareButton,
-} from "react-share";
-import { MarkdownRemark } from "../../models/markdown-remark";
-import { SiteMetadata } from "../../models/site";
-import * as Styled from "./style";
+} from "react-share"
+import { MarkdownRemark } from "../../models/markdown-remark"
+import { SiteMetadata } from "../../models/site"
+import * as Styled from "./style"
 
 interface P {
-  markdownRemark: MarkdownRemark;
-  siteMetadata: SiteMetadata;
+  markdownRemark: MarkdownRemark
+  siteMetadata: SiteMetadata
 }
 
 const PostShare: React.FC<P> = ({ markdownRemark, siteMetadata }) => {
   const iconProps = {
     round: true,
     size: 8 * 6,
-  };
+  }
 
-  const url = siteMetadata.url + markdownRemark.fields.slug;
+  const url = siteMetadata.url + markdownRemark.fields.slug
 
   return (
     <Styled.ShareList>
@@ -51,7 +51,7 @@ const PostShare: React.FC<P> = ({ markdownRemark, siteMetadata }) => {
         </PocketShareButton>
       </Styled.ShareItem>
     </Styled.ShareList>
-  );
-};
+  )
+}
 
-export default PostShare;
+export default PostShare

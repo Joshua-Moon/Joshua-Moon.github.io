@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { lighten } from "polished";
-import { Colors, SpaceUnit, Widths } from "../../styles/style-variables";
+import styled from "styled-components"
+import { lighten } from "polished"
+import { Colors, SpaceUnit, Widths } from "../../styles/style-variables"
 
 export const CategoryList = styled.ul`
   list-style: none;
   padding-left: 0;
   margin: 0;
-`;
+`
 
 export const CategoryListItem = styled.li`
   a,
@@ -56,10 +56,10 @@ export const CategoryListItem = styled.li`
       cursor: pointer;
     }
   }
-`;
+`
 
 export const Wrapper = styled.div`
   @media (min-width: ${Widths.Tablet}) {
     padding-left: ${SpaceUnit(4)};
   }
-`;
+`

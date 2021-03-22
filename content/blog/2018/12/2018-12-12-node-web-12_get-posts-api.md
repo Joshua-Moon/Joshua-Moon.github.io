@@ -33,18 +33,18 @@ $ git checkout -f route/get-posts-spec
 프론트엔드 코드를 살펴보면 정확한 원인을 알 수 있을것 같군요.
 
 ```js
-const loadTimeline = (el) => {
-  el.innerHTML = "Loading...";
+const loadTimeline = el => {
+  el.innerHTML = "Loading..."
 
   api
     .getPosts()
-    .then((data) => {
+    .then(data => {
       // ...
     })
-    .catch((err) => {
+    .catch(err => {
       // ...
-    });
-};
+    })
+}
 ```
 
 loadTimeline은 페이지가 로드될때 실행되는 함수입니다.
@@ -82,7 +82,7 @@ const posts = [
   { title: "post 3", body: "this is post 3" },
   { title: "post 2", body: "this is post 2" },
   { title: "post 1", body: "this is post 1" },
-];
+]
 ```
 
 ## 🐤풀이
@@ -97,7 +97,7 @@ const posts = [
   { title: "post 3", body: "this is post 3" },
   { title: "post 2", body: "this is post 2" },
   { title: "post 1", body: "this is post 1" },
-];
+]
 ```
 
 데이터를 저장할 posts 배열을 만들었습니다.
@@ -105,13 +105,13 @@ const posts = [
 
 ```js
 const index = () => (req, res, next) => {
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(posts));
-};
+  res.setHeader("Content-Type", "application/json")
+  res.end(JSON.stringify(posts))
+}
 
 module.exports = {
   index,
-};
+}
 ```
 
 "/posts" 요청에 대한 컨트롤러 함수를 만들 것이기 때문에 미들웨어 함수로 인터페이스를 맞추었습니다.
@@ -127,11 +127,11 @@ API는 JSON 형식을 사용하기 때문에 Content-Type 헤더를 "application
 
 ```js
 // ...
-const apiPost = require("./routes/api/post");
+const apiPost = require("./routes/api/post")
 
-app.use("/", index.listPosts());
-app.use("/api/posts", apiPost.index()); // 라우트 컨트롤러를 추가합니다
-app.use(errors.error404());
+app.use("/", index.listPosts())
+app.use("/api/posts", apiPost.index()) // 라우트 컨트롤러를 추가합니다
+app.use(errors.error404())
 ```
 
 "/" 라우트를 추가한 방법과 동일하게 "/api/posts" 라우트도 그 아래 추가합니다.

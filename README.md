@@ -1,7 +1,3 @@
-# Joshua-Moon.github.io
-
-거북이개발자의 엉금엉금 스토리
-
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">

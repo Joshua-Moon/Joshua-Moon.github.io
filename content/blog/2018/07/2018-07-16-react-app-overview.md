@@ -62,15 +62,15 @@ ReactDom.render(
 ```js
 // src/components/App.js
 
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 class App extends Component {
   render() {
-    return <h1>App</h1>;
+    return <h1>App</h1>
   }
 }
 
-export default App;
+export default App
 ```
 
 리액트 라이브러리에서 Component 클래스를 가져와 상속하는 방식으로 App 컴포넌트를 만들수 있다. 화면을 그려주는 render() 메소드를 구현해 컴포넌트를 어떻게 보여줄지 JSX 로 기술했다.
@@ -90,8 +90,8 @@ create-react-app은 복잡한 웹팩 설정을 감춰주기 때문에 프로젝�
 ```js
 // config-overrides.js
 
-const rewireLess = require("react-app-rewire-less");
-module.exports = (config, env) => rewireLess(config, env);
+const rewireLess = require("react-app-rewire-less")
+module.exports = (config, env) => rewireLess(config, env)
 ```
 
 ## React-router
@@ -125,11 +125,11 @@ src
 ```js
 // src/components/App.js
 
-import React, { Component } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import Topics from "./Topics";
+import React, { Component } from "react"
+import { BrowserRouter, Route, Link } from "react-router-dom"
+import Home from "./Home"
+import About from "./About"
+import Topics from "./Topics"
 
 class App extends Component {
   render() {
@@ -153,7 +153,7 @@ class App extends Component {
           <Route path="/topics" component={Topics} />
         </div>
       </BrowserRouter>
-    );
+    )
   }
 }
 ```
@@ -180,9 +180,9 @@ Lint 컴포는트는 라우트 링크를 만드는 역할을 하는데 to 속성
 ```js
 // src/components/Topics.js
 
-import React from "react";
-import { Route, Link } from "react-router-dom";
-import Topic from "./Topic";
+import React from "react"
+import { Route, Link } from "react-router-dom"
+import Topic from "./Topic"
 
 const Topics = ({ match }) => (
   <div>
@@ -206,9 +206,9 @@ const Topics = ({ match }) => (
       render={() => <h3>Please select a topic.</h3>}
     />
   </div>
-);
+)
 
-export default Topics;
+export default Topics
 ```
 
 리액트 라우터에 의해 라우터 전달인자를 받은 Topics 컴포넌트는 match.url를 통해 자신이 렌더링 될때의 경로 값을 알 수 있다. 여기서는 "/topics" 문자열이 변수를 통해 전달될 것이다. 이 값을 가지고 한 번 더 라우팅을 선언할 수 있는데 코드 하단의 `Route` 컴포넌트를 사용한 부분이다.
@@ -230,11 +230,11 @@ Topic 컴포넌트는 다음과 같이 topicId 값을 출력하는 단순한 동
 ```js
 // src/components/Topic.js
 
-import React from "react";
+import React from "react"
 
-const Topic = ({ match }) => <h3>{match.params.topicId}</h3>;
+const Topic = ({ match }) => <h3>{match.params.topicId}</h3>
 
-export default Topic;
+export default Topic
 ```
 
 세번째 메뉴인 Topics 링크를 클릭하면 아래와 같이 중첩 라우팅이 동작하는 것을 확인할 수 있다.
@@ -263,12 +263,12 @@ npm i redux react-redux
 ```js
 // src/index.js
 
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import App from "./components/App";
-import dashboardApp from "./store";
+import { createStore } from "redux"
+import { Provider } from "react-redux"
+import App from "./components/App"
+import dashboardApp from "./store"
 
-const store = createStore(dashboardApp); // 스토어 생성
+const store = createStore(dashboardApp) // 스토어 생성
 
 ReactDom.render(
   <Provider store={store}>
@@ -277,7 +277,7 @@ ReactDom.render(
     <App />
   </Provider>,
   document.querySelector("#root")
-);
+)
 ```
 
 createStore함수에 전달한 dashboardApp 인자는 어떻게 구성된 객체일까? 먼저 스토어를 위한 폴더 구조를 만들자.
@@ -299,11 +299,11 @@ store 폴더에 적당한 기준으로 파일을 만들어 관련 코드를 넣�
 // src/store/user.js
 
 // 액션 타입
-export const FETCH_USER = "user/FETCH_USER";
+export const FETCH_USER = "user/FETCH_USER"
 // ...
 
 // 액션 생성자
-export const fetchUser = () => ({ type: FETCH_USER });
+export const fetchUser = () => ({ type: FETCH_USER })
 // ...
 
 // 초기 상태
@@ -311,16 +311,16 @@ const initialSatate = {
   users: [],
   isEditing: false,
   editingUser: {},
-};
+}
 
 // 리듀서
 export default (state = initialSatate, action) => {
   switch (action.type) {
     case FETCH_USER: // ...
     default:
-      return state;
+      return state
   }
-};
+}
 ```
 
 스토어에서 사용하는 유저 관련 "액션"과 "액션 생성자 함수" 그리고 "리듀서"를 정의했다.
@@ -330,12 +330,12 @@ export default (state = initialSatate, action) => {
 ```js
 // src/store/index.js
 
-import { combineReducers } from "redux";
-import user from "./user";
+import { combineReducers } from "redux"
+import user from "./user"
 
 export default combineReducers({
   user,
-});
+})
 ```
 
 리액트에서 좀 특이한건 모든 컴포넌트가 스토어에 직접 접근하지는 않는 것이다. 그렇게 할 수도 있겠지만) 리덕스를 만든 Dan Abramov는 역할에 따라 컴포넌트를 분리하고 상태가 있는 컴포넌트(컨테이너)가 스토어와 커뮤니케이션 하도록하라고 가이드한다. (참고: [Presentational and Container Component](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0))
@@ -362,30 +362,30 @@ src
 ```js
 // src/components/UserList.js
 
-import React, { Component } from "react";
-import User from "./User";
+import React, { Component } from "react"
+import User from "./User"
 
 class UserList extends Component {
-  onEdit = (user) => {
-    this.props.onEdit(user);
-  };
-  onDelete = (user) => {
-    this.props.onDelete(user);
-  };
+  onEdit = user => {
+    this.props.onEdit(user)
+  }
+  onDelete = user => {
+    this.props.onDelete(user)
+  }
   render() {
-    const userList = this.props.users.map((user) => (
+    const userList = this.props.users.map(user => (
       <User
         data={user}
         key={user.id}
         onEdit={this.onEdit}
         onDelete={this.onDelete}
       />
-    ));
-    return <div>{userList}</div>;
+    ))
+    return <div>{userList}</div>
   }
 }
 
-export default UserList;
+export default UserList
 ```
 
 UserList는 마크업과 스타일을 정의하는 등 화면에 출력되는 코드로만 만들어진 컴포넌트다.
@@ -396,7 +396,7 @@ UserList는 마크업과 스타일을 정의하는 등 화면에 출력되는 �
 onEdit과 onDelete 함수 구현을 보면 자체 로직은 없고 이 컴포넌트 외부에서 주입한 함수를 실행하는 코드 뿐이다.
 
 ```js
-onEdit = (user) => this.props.onEdit(user);
+onEdit = user => this.props.onEdit(user)
 ```
 
 실제 수정과 삭제 처리는 다른 녀석의 역할이라는건데 바로 유저 스토어가 될 것이다.
@@ -408,28 +408,28 @@ VisibleUserList란 컨테이너 컴포넌트를 만들어 보겠다.
 ```js
 // src/containers/VisibleUserList.js
 
-import { connect } from "react-redux";
-import UserList from "../components/UserList";
-import { setEditUser, deleteUser } from "../store/user";
+import { connect } from "react-redux"
+import UserList from "../components/UserList"
+import { setEditUser, deleteUser } from "../store/user"
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     users: state.user.users,
-  };
-};
+  }
+}
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onEdit: (user) => {
-      dispatch(setEditUser(true, user));
+    onEdit: user => {
+      dispatch(setEditUser(true, user))
     },
-    onDelete: (user) => {
-      dispatch(deleteUser(user));
+    onDelete: user => {
+      dispatch(deleteUser(user))
     },
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserList);
+export default connect(mapStateToProps, mapDispatchToProps)(UserList)
 ```
 
 리액트에서 리덕스를 편하게 사용하도록 돕는 react-redux 라이브러리는 connect라는 함수를 제공하는데 이것이 컨테이너 컴포넌트를 생성하는 기능을 한다.
@@ -456,10 +456,10 @@ mapDispatchToProps는 onEdit 함수에 setEditUser 리듀서를 동작하는 함
 ```js
 // src/index.js
 
-import { createStore, applyMiddleware } from "redux";
-import storeLogger from "./middlewares/storeLogger";
+import { createStore, applyMiddleware } from "redux"
+import storeLogger from "./middlewares/storeLogger"
 
-const store = createStore(dashboardApp, applyMiddleware(storeLogger));
+const store = createStore(dashboardApp, applyMiddleware(storeLogger))
 ```
 
 redux의 applyMiddleware 함수는 미들웨어를 만들어 주는 함수인데 그 실행 결과값을 createStore 함수의 인자로 넘겨준다.
@@ -481,15 +481,15 @@ src
 sotreLogger.js를 구현해 보자.
 
 ```js
-const logger = (store) => (next) => (action) => {
-  console.group(action.type);
-  console.info("dispatch", action);
-  next(action);
-  console.log("next state", store.getState());
-  console.groupEnd(action.type);
-};
+const logger = store => next => action => {
+  console.group(action.type)
+  console.info("dispatch", action)
+  next(action)
+  console.log("next state", store.getState())
+  console.groupEnd(action.type)
+}
 
-export default logger;
+export default logger
 ```
 
 미들웨어는 함수 형태로 정의할 수 있다. 반환값은 next를 인자로 받는 함수이고 이는 action을 인자로 받는 함수를 다시 반환하다. 중요한 것은 이 마지막 함수에서 next를 호출해야 다음 미들웨어나 스토어 동작이 계속 된다는 점이다.
@@ -521,19 +521,19 @@ redux-thunk는 리덕스 미들웨어이기 때문에 사용하려면 스토어�
 ```js
 // src/index.js
 
-import thunk from "redux-thunk";
+import thunk from "redux-thunk"
 
-const store = createStore(dashboardApp, applyMiddleware(thunk, storeLogger));
+const store = createStore(dashboardApp, applyMiddleware(thunk, storeLogger))
 ```
 
 서버와 HTTP 통신으로 유저 목록을 받아오는 fetchUserApi 함수를 미리 만들어 뒀다. 이 함수가 반환하는 프라미스가 resolve 되어 API 호출을 완료하면, 유저 데이터 수신을 알리는 user/RECEIVE_USER 액션을 디스패치 하는 코드다.
 
 ```js
-export const fetchUserAsync = () => (dispatch) => {
-  fetchUserApi().then((users) => {
-    dispatch(receiveUser(users)); // "user/RECEIVE_USER" 액션을 디스패치한다
-  });
-};
+export const fetchUserAsync = () => dispatch => {
+  fetchUserApi().then(users => {
+    dispatch(receiveUser(users)) // "user/RECEIVE_USER" 액션을 디스패치한다
+  })
+}
 ```
 
 이렇게 비동기 로직을 작성할 수 있는 이유는 fetchUserAsync 함수가 다른 액션 크리에이터와 달리 dispatch 를 인자로 받는 함수를 반환하는 **"리덕스 성크"**이기 때문이다.
@@ -543,15 +543,15 @@ export const fetchUserAsync = () => (dispatch) => {
 ```js
 // src/containers/VisibleUserList.js
 
-import { fetchUserAsync } from "../store/user";
+import { fetchUserAsync } from "../store/user"
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     fetch: () => {
-      dispatch(fetchUserAsync());
+      dispatch(fetchUserAsync())
     },
-  };
-};
+  }
+}
 ```
 
 일반 액션 생성자처럼 실행후 dispatch 함수 인자로 사용한다.
@@ -568,14 +568,14 @@ const mapDispatchToProps = (dispatch) => {
 ```js
 // src/index.js
 
-import createSagaMiddleware from "redux-saga";
-import rootSaga from "./sagas";
+import createSagaMiddleware from "redux-saga"
+import rootSaga from "./sagas"
 
-const sagaMw = createSagaMiddleware();
+const sagaMw = createSagaMiddleware()
 
-const store = createStore(dashboardApp, applyMiddleware(sagaMw));
+const store = createStore(dashboardApp, applyMiddleware(sagaMw))
 
-sagaMw.run(rootSaga);
+sagaMw.run(rootSaga)
 ```
 
 createSagaMiddleware 함수로 사가 미들웨어를 생성한다. 이전과 마찬가지로 redux의 applyMiddleware 함수로 사가 미들웨어를 스토어에 추가한다.
@@ -601,22 +601,22 @@ src
 ```js
 // src/sagas/index.js
 
-import { takeEvery, call, put } from "redux-saga/effects";
-import { FETCH_USER, RECEIVE_USER, REQEUST_USER } from "../store/user";
-import { fetchUserApi } from "../api";
+import { takeEvery, call, put } from "redux-saga/effects"
+import { FETCH_USER, RECEIVE_USER, REQEUST_USER } from "../store/user"
+import { fetchUserApi } from "../api"
 
 export function* takeFetchUser() {
-  yield takeEvery(FETCH_USER, fetchUserAsync);
+  yield takeEvery(FETCH_USER, fetchUserAsync)
 }
 
 function* fetchUserAsync(action) {
-  yield put({ type: REQEUST_USER });
-  const users = yield call(fetchUserApi);
-  yield put({ type: RECEIVE_USER, users });
+  yield put({ type: REQEUST_USER })
+  const users = yield call(fetchUserApi)
+  yield put({ type: RECEIVE_USER, users })
 }
 
 export default function* rootSaga() {
-  yield [takeFetchUser()];
+  yield [takeFetchUser()]
 }
 ```
 

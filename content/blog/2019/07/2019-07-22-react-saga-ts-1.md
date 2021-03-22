@@ -32,36 +32,36 @@ $ npm i redux-saga @types/redux-saga
 먼저 기존의 스토어 생성 코드를 보자.
 
 ```ts
-import { createStore } from "redux";
-import rootReducer from "../reducers";
+import { createStore } from "redux"
+import rootReducer from "../reducers"
 
 const configureStore = () => {
-  const store = createStore(rootReducer);
-  return store;
-};
+  const store = createStore(rootReducer)
+  return store
+}
 
-export default configureStore;
+export default configureStore
 ```
 
 루트 리듀셔를 가져와 스토어를 생성한뒤 리턴하는 `configureStore()` 함수다.
 아래 코드와 비교해서 보자.
 
 ```ts
-import { createStore, applyMiddleware } from "redux";
-import rootReducer from "../reducers";
-import createSagaMiddleware from "redux-saga";
-import rootSaga from "../sagas";
+import { createStore, applyMiddleware } from "redux"
+import rootReducer from "../reducers"
+import createSagaMiddleware from "redux-saga"
+import rootSaga from "../sagas"
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 
 const configureStore = () => {
-  const store = createStore(rootReducer, appliyMiddleware(sagaMiddleware));
+  const store = createStore(rootReducer, appliyMiddleware(sagaMiddleware))
 
-  sagaMiddleware.run(rootSaga);
-  return store;
-};
+  sagaMiddleware.run(rootSaga)
+  return store
+}
 
-export default configureStore;
+export default configureStore
 ```
 
 리덕스 사가에서 제공하는 `createSagaMiddleware()` 함수는 사가 미들웨어를 생성한다.
@@ -73,10 +73,10 @@ export default configureStore;
 
 ```ts
 function* rootSaga() {
-  yield console.log("hello world");
+  yield console.log("hello world")
 }
 
-export default rootSaga;
+export default rootSaga
 ```
 
 제너레이터로 `rootSaga()` 함수를 만들었다.
@@ -112,9 +112,9 @@ export default rootSaga;
 actions/types.ts 파일에 있는 `FETCH_MEMO_LIST` 액션을 다음과 같이 세 개 액션으로 재정의 한다.
 
 ```ts
-export const FETCH_MEMO_LIST_REQUEST = "FETCH_MEMO_LIST_REQUEST";
-export const FETCH_MEMO_LIST_SUCCESS = "FETCH_MEMO_LIST_SUCCESS";
-export const FETCH_MEMO_LIST_FAILURE = "FETCH_MEMO_LIST_FAILURE";
+export const FETCH_MEMO_LIST_REQUEST = "FETCH_MEMO_LIST_REQUEST"
+export const FETCH_MEMO_LIST_SUCCESS = "FETCH_MEMO_LIST_SUCCESS"
+export const FETCH_MEMO_LIST_FAILURE = "FETCH_MEMO_LIST_FAILURE"
 ```
 
 메모 목록 조회 요청을 위한 액션 생성자를 만든다.
@@ -122,12 +122,12 @@ actions/index.ts에 아래 코드를 작성한다.
 
 ```ts
 export interface FetchMemoListAction {
-  type: typeof types.FETCH_MEMO_LIST_REQUEST;
+  type: typeof types.FETCH_MEMO_LIST_REQUEST
 }
 
 export const fetchMemoList = (): FetchMemoListAction => ({
   type: types.FETCH_MEMO_LIST_REQUEST,
-});
+})
 ```
 
 컴포넌트에서 이 액션 생성자로 메모 목록 패치 요청 스토어로 디스패치하면 이를 리덕스 사가에서 잡아낼 수 있다.
@@ -154,8 +154,8 @@ API 호출 뒤 결과를 받아 리덕스에 데이터 추가하는 순서로 �
 ```ts
 function* fetchMemoList$() {
   try {
-    const memos = yield call(api.fetchMemoList);
-    yield put({ type: FETCH_MEMO_LIST_SUCCESS, payload: memos });
+    const memos = yield call(api.fetchMemoList)
+    yield put({ type: FETCH_MEMO_LIST_SUCCESS, payload: memos })
   } catch (err) {
     // 실패 로직: 나중에 작성할 것임
   }
@@ -210,25 +210,25 @@ Api 요청 중임을 식별할 용도로 `apiCalling` 상태를 스토어에 추
 
 ```ts
 export interface AppState {
-  apiCalling: boolean;
+  apiCalling: boolean
 }
 
 const initialState: AppState = {
   apiCalling: false,
-};
+}
 ```
 
 `*_REQUEST` 요청이 오면 `apiCalling`을 `true`로 변경해서 api 통신 중임을 스토어에 기록해 둘 수 있다.
 Api 통신이 끝나면 `apiCalling`을 `false`로 변경해야하는데 이것은 `CLEAR_API_CALL_STATUS` 액션 타입을 별도로 사용하겠다. actions/types.ts
 
 ```ts
-export const CLEAR_API_CALL_STATUS = "CLEAR_API_CALL_STATUS";
+export const CLEAR_API_CALL_STATUS = "CLEAR_API_CALL_STATUS"
 ```
 
 다시 recuers/app.ts로 돌아와 앱 리듀서 함수 본체를 다음과 같이 만든다.
 
 ```ts
-type AppActionTypes = ClearApiCallStatusAction;
+type AppActionTypes = ClearApiCallStatusAction
 
 const appReducer = (
   state: AppState = initialState,
@@ -240,18 +240,18 @@ const appReducer = (
       return {
         ...state,
         apiCalling: true,
-      };
+      }
 
     // API 호출 상태 해제시: apiCalling=false 설정
     case types.CLEAR_API_CALL_STATUS:
       return {
         ...state,
         apiCalling: false,
-      };
+      }
   }
-};
+}
 
-export default appReducer;
+export default appReducer
 ```
 
 `FETCH_MEMO_LIST_REQUEST` 액션이 들어오면 `apiCalling` 상태를 설정한다.
@@ -265,13 +265,13 @@ export default appReducer;
 ```ts
 function* fetchMemoList$() {
   try {
-    const memos = yield call(api.fetchMemoList);
-    yield put({ type: FETCH_MEMO_LIST_SUCCESS, payload: memos });
+    const memos = yield call(api.fetchMemoList)
+    yield put({ type: FETCH_MEMO_LIST_SUCCESS, payload: memos })
   } catch (err) {
     // 실패 로직: 나중에 작성할 것임
   } finally {
     // API 호출 종료를 설정한다
-    yield put({ type: CLEAR_API_CALL_STATUS });
+    yield put({ type: CLEAR_API_CALL_STATUS })
   }
 }
 ```
@@ -284,19 +284,19 @@ function* fetchMemoList$() {
 
 ```tsx
 interface Props {
-  apiCalling: boolean;
-  memos: Memo[];
-  fetchMemoList(): FetchMemoListAction;
+  apiCalling: boolean
+  memos: Memo[]
+  fetchMemoList(): FetchMemoListAction
 }
 
 class MemoListContainer extends React.Component<Props> {
   componentDidMount() {
-    const { fetchMemoList } = this.props;
-    fetchMemoList();
+    const { fetchMemoList } = this.props
+    fetchMemoList()
   }
 
   render() {
-    return <MemoListPage {...this.props} />;
+    return <MemoListPage {...this.props} />
   }
 }
 ```
@@ -311,7 +311,7 @@ class MemoListContainer extends React.Component<Props> {
 const mapStateToProps = (state: RootState) => ({
   memos: state.memo.memos,
   apiCalling: state.app.apiCalling,
-});
+})
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -319,9 +319,9 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
       fetchMemoList,
     },
     dispatch
-  );
+  )
 
-export default connect(mapStateToProps, mapDispatchToProps)(MemoListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MemoListContainer)
 ```
 
 변경된 `apiCalling` 상태는 `connect()` 함수에 전달한 `mapStateToProps()` 함수에 의해 컴포넌트에 연결될 것이다.

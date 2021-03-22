@@ -50,21 +50,21 @@ fs (file system) 모듈을 처음 써 보는데요, 쉽게 해결하셨나요?
 이 파일을 수정해 보겠습니다.
 
 ```js
-const path = require("path");
-const fs = require("fs");
+const path = require("path")
+const fs = require("fs")
 
 const Application = () => {
   const server = http.createServer((req, res) => {
     // ...
 
-    const filePath = path.join(__dirname, "../public/index.html");
+    const filePath = path.join(__dirname, "../public/index.html")
     fs.readFile(filePath, (err, data) => {
-      if (err) throw err;
+      if (err) throw err
 
-      res.end(data);
-    });
-  });
-};
+      res.end(data)
+    })
+  })
+}
 ```
 
 path 모듈의 join을 이용해서 현재경로(\_\_dirname)와 파일이 위치한 상대 경로(../public/index.html)을 계산합니다.
@@ -84,8 +84,8 @@ HTML 마크업이 그대로 출력되었습니다. 우리가 원하는건 웹페
 이 문제를 해결하려면 HTTP 헤더값 중 하나를 변경해야 합니다.
 
 ```js
-res.statusCode = 200;
-res.setHeader("Content-Type", "text/html");
+res.statusCode = 200
+res.setHeader("Content-Type", "text/html")
 ```
 
 파일 내용을 응답하기 전에 Content-Type 헤더를 text/plain 에서 text/html로 설정합니다.
@@ -125,15 +125,15 @@ const mimeType = {
   ".jpg": "image/jpeg",
   ".eot": "aplication/vnd.ms-fontobject",
   ".ttf": "aplication/font-sfnt",
-};
+}
 ```
 
 먼저 mineType 딕셔너리를 만들어 확장자 키에 마임타임 값을 사용했습니다.
 요청 주소를 파싱해서 확장자에 따라 content-type 헤더 값을 동적으로 설정하려고 합니다.
 
 ```js
-const ext = path.parse(req.url).ext;
-const publicPath = path.join(__dirname, "../public");
+const ext = path.parse(req.url).ext
+const publicPath = path.join(__dirname, "../public")
 ```
 
 req.url을 통해 요청 주소에 접근할 수 있습니다. 이걸 path.parse() 함수의 인자로 넘기면 주소를 파싱하는데 그 결과 ext 키에 확장자 정보가 담겨 있습니다. 이것을 ext 상수에 저장했구요.

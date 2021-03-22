@@ -20,12 +20,12 @@ summary: 리액트 어플리케이션을 노드 익스프레스로 통합하고 
 기존 싱글페이지어플리케이션은 리액트가 라우팅을 담당했지만, 이제는 익스프레스와 함께 라우팅을 수행해야 한다.
 
 ```js
-const express = require("express");
-const app = express();
-const clientApp = path.join(__dirname, "../client/build");
+const express = require("express")
+const app = express()
+const clientApp = path.join(__dirname, "../client/build")
 
-api.use("/api/*", apiRouters()); // api 라우팅처리 후
-app.use("*", express.static(clientApp)); // 모든 요청을 프론트엔드 정적 파일이 처리
+api.use("/api/*", apiRouters()) // api 라우팅처리 후
+app.use("*", express.static(clientApp)) // 모든 요청을 프론트엔드 정적 파일이 처리
 ```
 
 /api 경로로 시작되는 백엔드 api 요청은 익스프레스 로직이 처리한다. (apiRouters())
@@ -60,9 +60,9 @@ npm run dev는 동시에 클라이언트 개발서버도 띄우는 `npm run dev:
 `bin/start-client.js`:
 
 ```js
-const args = ["start"];
-const opts = { stdio: "inherit", cwd: "client", shell: true };
-require("child_process").spawn("npm", args, opts);
+const args = ["start"]
+const opts = { stdio: "inherit", cwd: "client", shell: true }
+require("child_process").spawn("npm", args, opts)
 ```
 
 client 폴더에서 npm start를 실행하는 것은 create-react-app 으로 만든 프로젝트에서 개발 서버를 띄우는 명령인 셈이다.

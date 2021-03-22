@@ -1,13 +1,13 @@
-import { Link } from "gatsby";
-import React from "react";
-import { Container } from "../../styles/style-variables";
-import Icon from "../Icon";
-import { IconType } from "../Icon/style";
-import Nav from "./nav";
-import * as Styled from "./style";
+import { Link } from "gatsby"
+import React from "react"
+import { Container } from "../../styles/style-variables"
+import Icon from "../Icon"
+import { IconType } from "../Icon/style"
+import Nav from "./nav"
+import * as Styled from "./style"
 
 export interface HeaderProps {
-  noBorder?: boolean;
+  noBorder?: boolean
 }
 
 const Header: React.FC<HeaderProps> = ({ noBorder }) => {
@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ noBorder }) => {
         </Styled.Contacts>
       </Container>
     </Styled.Header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

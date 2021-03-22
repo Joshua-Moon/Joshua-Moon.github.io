@@ -38,9 +38,9 @@ summary: AWS 빈스톡 상태를 슬랙으로 모니터링 하는 방법을 정�
 그럼 먼저 람다 함수 스캐폴딩부터 만들어 보자.
 
 ```js
-exports.handler = (event) => {
-  console.log(event);
-};
+exports.handler = event => {
+  console.log(event)
+}
 ```
 
 핸들러 함수를 모듈로 노출하는 것이 람다 함수의 시작이다. 빈스톡이 SNS을 통해 어떤 메세지를 보내는지부터 확인하려고 로그를 찍었다.
@@ -103,26 +103,26 @@ SNS가 보내는 메세지 형식과 슬랙으로 보낼 정보를 정했으니 
 슬랙 웹훅 주소(`SLACK_WEBHOOOK_PATH`)와 채널명(`SLACK_CHANNEL`)을 환경 변수로 뺐다. 슬랙 메세지에서 사용할 아이콘, 사용자 이름도 환경변수로 만들었다. 빈스톡에 문제가 발생할때 보내는 메세지에는 특정 단어가 포함되는데 그것도 환경 변수로 빼서 나중에 쉽게 추가할 수 있도록 변경의 여지를 뒀다.
 
 ```js
-const webhookPath = process.env.SLACK_WEBHOOK_PATH;
-const channel = process.env.SLACK_CHANNEL;
-const icon_emoji = process.env.ICON_EMOJI || ":robot_face:";
-const username = process.env.USERNAME || "AWS";
+const webhookPath = process.env.SLACK_WEBHOOK_PATH
+const channel = process.env.SLACK_CHANNEL
+const icon_emoji = process.env.ICON_EMOJI || ":robot_face:"
+const username = process.env.USERNAME || "AWS"
 const errorKeywords =
-  process.env.ERROR_KEYWORDS || "Unsuccessful command, to Degraded, Failed";
+  process.env.ERROR_KEYWORDS || "Unsuccessful command, to Degraded, Failed"
 ```
 
 혹시 몰라서 필수 환경 변수 체크하는 함수도 만들었다. 람다 개발환경이 그렇게 편하지는 않았기 때문이다.
 
 ```js
-const validateEnvVars = (_) => {
-  const tag = "[ENVIRONMENT VARIABLE ERROR]";
-  if (!webhookPath) throw Error(`${tag} SLACK_WEBHOOK_PATH is required`);
-  if (!channel) throw Error(`${tag} SLACK_CHANNEL is required`);
-};
+const validateEnvVars = _ => {
+  const tag = "[ENVIRONMENT VARIABLE ERROR]"
+  if (!webhookPath) throw Error(`${tag} SLACK_WEBHOOK_PATH is required`)
+  if (!channel) throw Error(`${tag} SLACK_CHANNEL is required`)
+}
 
-exports.handler = (event) => {
-  validateEnvVars();
-};
+exports.handler = event => {
+  validateEnvVars()
+}
 ```
 
 ## 슬랙 메세지 생성
@@ -135,7 +135,7 @@ const postData = JSON.stringify({
   icon_emoji,
   username,
   attachments: buildAttachments(event),
-});
+})
 ```
 
 channel, icon_emoji, username은 모두 환경 변수를 그대로 사용했다. attachments를 만드는 `buildAttachements()` 함수에 SNS로 부터 받은 `event`를 전달해 실행한다.
@@ -143,21 +143,21 @@ channel, icon_emoji, username은 모두 환경 변수를 그대로 사용했다.
 attachment 를 만드는 로직으로 넘어가자.
 
 ```js
-const buildAttachments = (event) => {
-  const msgMap = parseSnsMsg(event.Records[0].Sns);
-  if (!msgMap) return "";
+const buildAttachments = event => {
+  const msgMap = parseSnsMsg(event.Records[0].Sns)
+  if (!msgMap) return ""
 
-  const { Message, Environment } = msgMap;
+  const { Message, Environment } = msgMap
 
-  const color = isErrorMessage(Message) ? "danger" : "good";
+  const color = isErrorMessage(Message) ? "danger" : "good"
   return [
     {
       author_name: Environment,
       text: highlightMessage(Message),
       color,
     },
-  ];
-};
+  ]
+}
 ```
 
 이벤트를 받아서 Sns 메세지를 파싱한 후 키/밸류의 맵으로 만든뒤 `msgMap` 변수에 저장했다. (구현 전이지만) 이 맵에는 우리가 최종적으로 원하는 `Message`와 `Environment` 정보가 있을 것이다.
@@ -167,11 +167,11 @@ const buildAttachments = (event) => {
 text를 만들때 첫 문장만 `highlightMessage()` 함수로 강조했다.
 
 ```js
-const highlightMessage = (msg) => {
-  const sentences = msg.split(".");
-  sentences[0] = `*${sentences[0]}*`;
-  return sentences.join(".");
-};
+const highlightMessage = msg => {
+  const sentences = msg.split(".")
+  sentences[0] = `*${sentences[0]}*`
+  return sentences.join(".")
+}
 ```
 
 ## SNS 메세지 파싱
@@ -181,26 +181,26 @@ SNS 메세지를 파싱하는 `parseSnsMsg()` 함수를 더 살펴보자.
 ```js
 const parseSnsMsg = ({ Message }) => {
   try {
-    const isPlainText = !Message.includes("\n");
-    if (isPlainText) return Message;
+    const isPlainText = !Message.includes("\n")
+    if (isPlainText) return Message
 
-    const parts = Message.split("\n");
-    const data = {};
-    parts.forEach((part) => {
-      part = part.trim();
-      if (!part) return;
-      if (!part.includes(":")) return;
-      let [key, value] = part.split(":");
-      key = key.trim();
-      value = value.trim();
-      if (!key || !value) return;
-      data[key] = value;
-    });
-    return data;
+    const parts = Message.split("\n")
+    const data = {}
+    parts.forEach(part => {
+      part = part.trim()
+      if (!part) return
+      if (!part.includes(":")) return
+      let [key, value] = part.split(":")
+      key = key.trim()
+      value = value.trim()
+      if (!key || !value) return
+      data[key] = value
+    })
+    return data
   } catch (e) {
-    return null;
+    return null
   }
-};
+}
 ```
 
 개행문자가 있는지 체크하고 없으면 일반 문장이므로 그대로 반환한다. 개행문자를 기준으로 문자열을 잘라 (`parts`) 하나씩 체크하면서 키/밸류 형태의 객체(`data`)를 만들어 낸다. 마지막엔 이것을 반환하는 알고리즘이다.
@@ -210,7 +210,7 @@ const parseSnsMsg = ({ Message }) => {
 슬랙 웹 훅은 https 프로토콜을 사용하기 때문에 노드의 `https` 모듈을 이용해 호출한다.
 
 ```js
-const https = require("https");
+const https = require("https")
 
 const options = {
   port: 443,
@@ -221,14 +221,14 @@ const options = {
     "Content-Type": "application/json",
     "Content-Length": postData.length,
   },
-};
+}
 
-const req = https.request(options, (res) => {
-  res.on("data", (d) => process.stdout.write(d));
-});
-req.on("error", (e) => console.error(e));
-req.write(postData);
-req.end();
+const req = https.request(options, res => {
+  res.on("data", d => process.stdout.write(d))
+})
+req.on("error", e => console.error(e))
+req.write(postData)
+req.end()
 ```
 
 ## 환경 변수 설정

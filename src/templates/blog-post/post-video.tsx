@@ -1,10 +1,10 @@
-import React from "react";
-import { Video } from "../../models/site";
-import { trackCustomEvent } from "gatsby-plugin-google-analytics";
-import * as Styled from "./style";
+import React from "react"
+import { Video } from "../../models/site"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+import * as Styled from "./style"
 
 interface P {
-  video: Video;
+  video: Video
 }
 
 const PostVideo: React.FC<P> = ({ video }) => {
@@ -13,12 +13,12 @@ const PostVideo: React.FC<P> = ({ video }) => {
       <a
         id="post-video"
         href={video.url}
-        onClick={(e) => {
+        onClick={e => {
           trackCustomEvent({
             category: "포스트/관련영상",
             action: "click",
             label: video.title,
-          });
+          })
         }}
       >
         <img src={video.thumb} />
@@ -32,7 +32,7 @@ const PostVideo: React.FC<P> = ({ video }) => {
         </div>
       </a>
     </Styled.PostVideo>
-  );
-};
+  )
+}
 
-export default PostVideo;
+export default PostVideo

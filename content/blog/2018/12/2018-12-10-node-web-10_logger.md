@@ -31,12 +31,12 @@ middlewares/logger.js 파일을 만들어 아래 코드를 입력합니다.
 
 ```js
 const logger = () => (req, res, next) => {
-  const log = `${req.method} ${req.url}`;
-  console.log(log);
-  next();
-};
+  const log = `${req.method} ${req.url}`
+  console.log(log)
+  next()
+}
 
-module.exports = logger;
+module.exports = logger
 ```
 
 logger도 요청에서 응답 사이에 실행되는 미들웨어 함수이므로 (req, res, next) 인터페이스를 맞추었습니다.
@@ -48,10 +48,10 @@ logger도 요청에서 응답 사이에 실행되는 미들웨어 함수이므�
 
 ```js
 // ...
-const logger = require("./middlewares/logger");
+const logger = require("./middlewares/logger")
 
-app.use(logger()); // 로그 미들웨어 추가
-app.use(serveStatic());
+app.use(logger()) // 로그 미들웨어 추가
+app.use(serveStatic())
 // ...
 ```
 
@@ -87,7 +87,7 @@ const colors = {
   red: "\x1b[31m",
   yellow: "\x1b[33m",
   reset: "\x1b[0m",
-};
+}
 ```
 
 사용할 컬러 값을 맵으로 만듭니다.
@@ -98,7 +98,7 @@ const methodColorMap = {
   post: colors.cyan,
   put: colors.yellow,
   delete: colors.red,
-};
+}
 ```
 
 메소드 이름에 따라 사용할 색상을 맵핑하여 methodColorMap을 만듭니다.
@@ -106,13 +106,13 @@ const methodColorMap = {
 ```js
 const logger = () => (req, res, next) => {
   const coloredMethod = (method = "") => {
-    return `${methodColorMap[method.toLowerCase()]}${method}${colors.reset}`;
-  };
+    return `${methodColorMap[method.toLowerCase()]}${method}${colors.reset}`
+  }
 
-  const log = `${coloredMethod(req.method)} ${req.url}`;
-  console.log(log);
-  next();
-};
+  const log = `${coloredMethod(req.method)} ${req.url}`
+  console.log(log)
+  next()
+}
 ```
 
 색상 코드와 메소드 명을 조합한 문자열을 반환하는 coloredMethod() 함수를 정의했습니다.

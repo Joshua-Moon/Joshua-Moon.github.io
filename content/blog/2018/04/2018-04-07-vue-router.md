@@ -22,9 +22,9 @@ Vue.js 공식 문서의 [Scaling Up 섹션](https://kr.vuejs.org/v2/guide/routin
 라우팅 별로 세 개의 컴포넌트를 만든다.
 
 ```js
-const Home = { template: "<p>home page</p>" };
-const About = { template: "<p>about page</p>" };
-const NotFound = { template: "<p>Page not found</p>" };
+const Home = { template: "<p>home page</p>" }
+const About = { template: "<p>about page</p>" }
+const NotFound = { template: "<p>Page not found</p>" }
 ```
 
 경로에 따라 위 세개 컴포넌트를 바꿔가면서 렌더링 해주려고 한다. 그럼 경로와 컴포넌트 딕셔너리가 필요하겠다.
@@ -33,7 +33,7 @@ const NotFound = { template: "<p>Page not found</p>" };
 const routes = {
   "/": Home,
   "/about": About,
-};
+}
 ```
 
 루트('/') 경로와 어바웃('/about') 경로에 대한 각각의 컴포넌트 딕셔너리를 만들었다.
@@ -49,9 +49,9 @@ new Vue({
   /* 생략 */
 
   render(h) {
-    return h(this.ViewComponent);
+    return h(this.ViewComponent)
   },
-});
+})
 ```
 
 render() 함수는 `ViewComponent`라는 계산된 속성을 인자로 전달해서 `h()` 함수를 호출한다.
@@ -62,12 +62,12 @@ new Vue({
 
   computed: {
     ViewComponent() {
-      return routes[window.location.pathname] || NotFound;
+      return routes[window.location.pathname] || NotFound
     },
   },
 
   /* 생략 */
-});
+})
 ```
 
 VueComponent는 현재 경로로 routes 디셔너리에서 컴포넌트를 찾아 반환한다. 정의되지 않은 경로일 경우 NotFound 컴포넌트를 반환한다.
@@ -95,17 +95,17 @@ vue-cli의 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) �
 ```js
 // main.js
 
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
+import Vue from "vue"
+import App from "./App.vue"
+import router from "./router"
 
 new Vue({
   el: "#app",
-  render: (h) => h(App),
+  render: h => h(App),
 
   // 라우터 객체를 넘겨준다
   router,
-});
+})
 ```
 
 그럼 실제 router/index.js 파일에서 라우터 객체를 생성해 보자.
@@ -115,11 +115,11 @@ new Vue({
 ```js
 // router/index.js
 
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from "vue"
+import VueRouter from "vue-router"
 
 // 뷰 어플리케이션에 라우터 플러그인을 추가한다.
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 ```
 
 라우팅에 따라 렌더링할 컴포넌트 설정 객체를 정의한다. template 속성만 정의했다.
@@ -128,8 +128,8 @@ Vue.use(VueRouter);
 // router/index.js
 
 /* 생략 */
-const Home = { template: "<div>Home</div>" };
-const NotFound = { template: "<div>Not Found</div>" };
+const Home = { template: "<div>Home</div>" }
+const NotFound = { template: "<div>Not Found</div>" }
 ```
 
 마지막으로 `VueRouter` 클래스 함수로 라우터 객체를 생성한다.
@@ -144,9 +144,9 @@ const router = new VueRouter({
     { path: "/", component: Home },
     { path: "*", component: NotFound },
   ],
-});
+})
 
-export default router;
+export default router
 ```
 
 `mode` 속성 기본값은 "해쉬뱅 모드"다. 브라우져 history 객체의 [pushState() API](https://developer.mozilla.org/ko/docs/Web/API/History_API)를
@@ -266,7 +266,7 @@ export default new VueRouter({
 
     // 생략
   ],
-});
+})
 ```
 
 부모 라우트에서는 자녀 라우트들을 렌더링하기 위한 뷰가 필요한데 /posts 라우트의 컴포넌트에 정의한다.
@@ -478,12 +478,12 @@ SPA 개발에서는 로그인 후 서버에서 발급받은 액세스 토큰(acc
 // router/index.js
 
 const requireAuth = (to, from, next) => {
-  if (Auth.loggedIn()) return next();
+  if (Auth.loggedIn()) return next()
   next({
     path: "/login",
     query: { redirect: to.fullPath },
-  });
-};
+  })
+}
 ```
 
 beforeEnter() 훅에 사용할 함수다.<br />
