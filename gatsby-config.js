@@ -1,13 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `IT퍼포머`,
-<<<<<<< HEAD
-    description: `거북이 개발자의 엉금엉금 스토리 38세 비전공자가 개발자로 전직하며 남기는 기록들`,
-    author: `IT퍼포머`,
-=======
     description: `38세 비전공자가 개발자로 전직하며 남기는 기록들`,
     author: `문호석`,
->>>>>>> efb06ffbcd7e9d596ebb6fd1a14f403ef2b870d8
     url: "https://joshua-moon.github.io",
     social: {
       email: "joshua8565@gmail.com",
@@ -130,7 +125,7 @@ module.exports = {
               }
             }
           `,
-            title: "김정환 블로그 RSS Feed",
+            title: "IT퍼포머 RSS Feed",
           },
         ],
       },

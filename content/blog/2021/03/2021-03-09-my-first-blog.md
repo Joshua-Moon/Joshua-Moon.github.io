@@ -2,6 +2,9 @@
 title: 나에겐 기념적인 첫 포스트
 layout: post
 category: think
+permalink: 21/03/09/my-first-blog.html
+featured_image: /assets/imgs/2021/03/09/it-performer.png
+featuredImage: 2021-03-09-my-first-blog.png
 ---
 
 38세.. 30대 후반의 늦은 나이에 개발자로 전직을 했고,  
