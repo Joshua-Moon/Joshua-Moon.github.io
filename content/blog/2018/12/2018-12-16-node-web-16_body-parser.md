@@ -30,16 +30,16 @@ req.body 값을 로그로 출력하는것 까지만 코딩했습니다.
 위 알고리즘을 기술한 것이 아래 샘플 코드입니다.
 
 ```js
-let body = [];
+let body = []
 request
-  .on("data", (chunk) => {
-    body.push(chunk);
+  .on("data", chunk => {
+    body.push(chunk)
   })
   .on("end", () => {
-    body = Buffer.concat(body).toString();
+    body = Buffer.concat(body).toString()
     // 이 시점에 body는 전체 요청 데이터를 문자열 형태로 가지고 있다
     // (at this point, `body` has the entire request body stored in it as a string)
-  });
+  })
 ```
 
 API 컨트롤러 함수에서 요청 바디에 쉽게 접근하려면 좋겠는데 매 요청마다 위 코딩을 하는건 미련한 방법처럼 보입니다.
@@ -82,10 +82,10 @@ module.exports = bodyParser;
 미들웨어를 우리 어플리케이션에 추가해 보지요. app.js를 수정합니다.
 
 ```js
-const bodyParser = require("./middlewares/body-parser");
+const bodyParser = require("./middlewares/body-parser")
 
-app.use(logger());
-app.use(bodyParser()); // body-parser를 추가
+app.use(logger())
+app.use(bodyParser()) // body-parser를 추가
 ```
 
 서버를 재구동하고 폼을 다시 전송해 볼까요?
@@ -104,18 +104,18 @@ body-parser를 더 개발해 보죠.
 
 ```js
 req.on("end", () => {
-  body = Buffer.concat(body).toString();
+  body = Buffer.concat(body).toString()
 
   body = body.split("&").reduce((body, pair) => {
-    if (!pair) return body;
-    const frg = pair.split("=");
-    body[frg[0]] = frg[1];
-    return body;
-  }, {});
+    if (!pair) return body
+    const frg = pair.split("=")
+    body[frg[0]] = frg[1]
+    return body
+  }, {})
 
-  req.body = body;
-  next();
-});
+  req.body = body
+  next()
+})
 ```
 
 특정 문자를 기준으로 파싱하는 부분은 쿼리스트링 파싱과 같은 로직입니다.

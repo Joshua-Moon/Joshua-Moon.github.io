@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { lighten } from "polished";
+import styled from "styled-components"
+import { lighten } from "polished"
 import {
   Border,
   Colors,
@@ -7,8 +7,8 @@ import {
   Fonts,
   SpaceUnit,
   Widths,
-} from "../../styles/style-variables";
-import Video2Img from "./images/icon-video-2.png";
+} from "../../styles/style-variables"
+import Video2Img from "./images/icon-video-2.png"
 
 export const Main = styled.main`
   display: flex;
@@ -20,7 +20,7 @@ export const Main = styled.main`
   @media (max-width: ${Widths.Mobile}) {
     margin-top: ${SpaceUnit(2)};
   }
-`;
+`
 
 export const Aside = styled.aside`
   order: 1;
@@ -34,34 +34,34 @@ export const Aside = styled.aside`
   @media (max-width: calc(${Widths.Desktop} - 1px)) {
     display: none;
   }
-`;
+`
 
 export const Article = styled.article`
   order: 0;
   flex: 1 0 0%;
   min-width: 0%;
-`;
+`
 
 export const PostHeader = styled.header`
   margin-bottom: ${SpaceUnit(7)};
-`;
+`
 
 export const PostTitle = styled.h1`
   margin-top: 0;
   margin-bottom: ${SpaceUnit()};
   color: ${Colors.Black};
   font-size: 42px;
-`;
+`
 
 export const PostTime = styled.time`
   color: ${Colors.Gray};
-`;
+`
 
 export const PostContent = styled.div`
   font-size: 18px;
   line-height: 1.5em;
   font-family: ${Fonts.Article};
-  word-break: break-all;
+  word-break: break-word;
   h1 {
     font-size: 200%;
     margin-top: 20px;
@@ -117,16 +117,16 @@ export const PostContent = styled.div`
       white-space: pre;
     }
   }
-`;
+`
 
 export const PostMeta = styled.div`
   margin-top: ${SpaceUnit(4)};
-`;
+`
 
 export const ShareList = styled.ul`
   list-style: none;
   padding-left: 0;
-`;
+`
 
 export const ShareItem = styled.li`
   display: inline-block;
@@ -134,12 +134,12 @@ export const ShareItem = styled.li`
   &:last-child {
     margin-right: 0;
   }
-`;
+`
 
 export const TagList = styled.ul`
   list-style: none;
   padding-left: 0;
-`;
+`
 
 export const TagItem = styled.li`
   display: inline-block;
@@ -147,7 +147,7 @@ export const TagItem = styled.li`
   &:last-child {
     margin-right: 0;
   }
-`;
+`
 
 export const Toc = styled.div`
   border-left: ${Border(2)};
@@ -174,7 +174,7 @@ export const Toc = styled.div`
       }
     }
   }
-`;
+`
 
 export const PostVideo = styled.div`
   a {
@@ -226,12 +226,12 @@ export const PostVideo = styled.div`
       }
     }
   }
-`;
+`
 
 export const SeriesNav = styled.div`
   padding: ${SpaceUnit(3)} ${SpaceUnit(2)};
   border-left: ${Border(2)};
-`;
+`
 export const SeriesNavTitle = styled.div`
   font-weight: bold;
   margin-bottom: ${SpaceUnit()};
@@ -248,18 +248,18 @@ export const SeriesNavTitle = styled.div`
       font-weight: bold;
     }
   }
-`;
+`
 export const SeriesNavControls = styled.div`
   display: flex;
-`;
+`
 export const SeriesNavPrev = styled.span`
   display: inline-block;
   flex: 1 0 50%;
   text-align: left;
-`;
+`
 export const SeriesNavNext = styled(SeriesNavPrev)`
   text-align: right;
-`;
+`
 export const SeriesNavigator = styled.div`
   padding: ${SpaceUnit(3)} ${SpaceUnit(2)} ${SpaceUnit(2)};
   border-top: ${Border(2)};
@@ -303,12 +303,12 @@ export const SeriesNavigator = styled.div`
       }
     }
   }
-`;
+`
 
 export const SiblingNav = styled.div`
   display: flex;
   justify-content: space-between;
-`;
+`
 export const SiblingNavItem = styled.div`
   max-width: 33.3333%;
   @media (max-width: ${Widths.Tablet}) {
@@ -327,4 +327,4 @@ export const SiblingNavItem = styled.div`
       margin-bottom: ${SpaceUnit()};
     }
   }
-`;
+`

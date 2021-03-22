@@ -40,14 +40,14 @@ summary: 바닐라JS와 제이쿼리
 제이쿼리로 위의 돔을 선택하려면 CSS 스타일의 선택자를 사용할 수 있다.
 
 ```js
-$("#app");
+$("#app")
 ```
 
 그럼 자바스크립트는?
 
 ```js
-document.getElementById("app");
-document.querySelector("#app");
+document.getElementById("app")
+document.querySelector("#app")
 ```
 
 `getelementById()` 함수는 아이디로 돔을 찾는 DOM API다. 가장 많이 쓰이고 많이 알고 있는 듯.
@@ -62,7 +62,7 @@ document.querySelector("#app");
 제이쿼리부터...
 
 ```js
-$(".container");
+$(".container")
 ```
 
 똑같이 CSS 스타일 선택자를 사용한다.
@@ -70,9 +70,9 @@ $(".container");
 그럼 자바스크립트는?
 
 ```js
-document.getElementsByClassName("container");
-document.querySelector(".container");
-document.querySelectorAll(".container");
+document.getElementsByClassName("container")
+document.querySelector(".container")
+document.querySelectorAll(".container")
 ```
 
 `getElementsByClassName()`은 클래스 명으로 돔을 찾는 API다. 함수명에 "Elements"라는 복수형에서 알 수 있듯이 여러 개 돔을 유사 배열 형태로 반환한다.
@@ -82,10 +82,10 @@ CSS 스타일 선택자를 이용해서 찾으려면 `querySelector()` 함수를
 잘 사용하진 않지만 태그명으로도 돔을 검색해 보자.
 
 ```js
-$("div");
-document.getElementsByTagName("div");
-document.querySelector("div");
-document.querySelectorAll("div");
+$("div")
+document.getElementsByTagName("div")
+document.querySelector("div")
+document.querySelectorAll("div")
 ```
 
 뭔가 패턴이 보이는가? 난 `querySelector()`와 `querySelectorAll()` 만 사용해도 충분하다고 본다. CSS 스타일의 선택자를 사용할수 있다는 점은 매우 편리하고 (제이쿼리가 그렇게 사용하니깐) 무엇보다 **"일관성"**이 있기 때문이다. [IE8부터 지원](https://developer.mozilla.org/ko/docs/Web/API/Document/querySelector)하고 있으니 안심하고 사용해도 된다.
@@ -109,13 +109,13 @@ PHP나 Node.js의 서버는 데이터를 이용해서 HTML을 만든다. 예를 
 이 값을 얻으려면 제이쿼리는 `data()` 함수를 사용한다.
 
 ```js
-$("div").data("product-id");
+$("div").data("product-id")
 ```
 
 그럼, 자바스크립트는?
 
 ```js
-document.querySelector("div").dataset.productId; // 'G123'
+document.querySelector("div").dataset.productId // 'G123'
 ```
 
 `querySelector()` 함수로 얻은 HTMLElement에는 `dataset`이라는 객체가 있고, 이걸 통해서 data 속성 값에 접근할 수 있다. HTML 코드에서는 케밥 케이스로 표기하고 JS 코드에서는 카멜 케이스라는 것이 다르다.
@@ -123,13 +123,13 @@ document.querySelector("div").dataset.productId; // 'G123'
 당연히 data 속성 값을 변경할 수도 있다.
 
 ```js
-document.querySelector("div").dataset.productId = "G456";
+document.querySelector("div").dataset.productId = "G456"
 ```
 
 하지만 `dataset`은 IE 11 미만에서는 지원하지 않는다. data 속성 값을 다루기 위해서는 일반 속성에 접근하기 위한 함수 `getAttribute()`와 `setAttribute()` 함수를 사용해야 한다.
 
 ```js
-document.querySelector("div").getAttribute("data-product-id"); // 'G123'
+document.querySelector("div").getAttribute("data-product-id") // 'G123'
 ```
 
 ## 이벤트
@@ -147,7 +147,7 @@ $.ready(() => {)
 ```js
 document.addEventListener("DOMContentLoaded", () => {
   // start ...
-});
+})
 ```
 
 HTML을 파싱한뒤 DOM 객체를 생성이 완료되면 'DOMContentLoaded' 이벤트가 발생한다. 우리는 이 이벤트에 리스너를 추가하는 방식으로 똑같이 구현할 수 있다.
@@ -155,17 +155,17 @@ HTML을 파싱한뒤 DOM 객체를 생성이 완료되면 'DOMContentLoaded' 이
 클릭이벤트도 비슷하다. 제이쿼리부터 보자.
 
 ```js
-$("a").on("click", (evt) => {
+$("a").on("click", evt => {
   // 이벤트 처리 ...
-});
+})
 ```
 
 그럼 자바스크립트는?
 
 ```js
-document.querySelector("a").addEventListener("click", (evt) => {
+document.querySelector("a").addEventListener("click", evt => {
   // 이벤트 처리 ...
-});
+})
 ```
 
 뭐, 간단하다.
@@ -173,13 +173,13 @@ document.querySelector("a").addEventListener("click", (evt) => {
 한편 이벤트를 방출(emit)하는 것은 어떨까? 제이쿼리부터...
 
 ```js
-$("a").click();
+$("a").click()
 ```
 
 그럼 자바스크립트는?
 
 ```js
-document.querySelector("a").click();
+document.querySelector("a").click()
 ```
 
 똑같은 `click()` 함수를 사용한다.
@@ -187,7 +187,7 @@ document.querySelector("a").click();
 한편 커스텀 이벤트는 어떻게 사용할까? 제이쿼리는 이렇게 한다.
 
 ```js
-$("a").trigger("@click");
+$("a").trigger("@click")
 ```
 
 `trigger()` 함수를 이용하면 새로 정의한 '@click' 이벤트를 방출하게 된다.
@@ -195,31 +195,31 @@ $("a").trigger("@click");
 그럼 자바스크립트는?
 
 ```js
-const evt = new CustomEvent("@click");
-document.dispatchEvent(evt);
+const evt = new CustomEvent("@click")
+document.dispatchEvent(evt)
 ```
 
 뭐 그렇게 어렵진 않다. `CustomEvent` 클래스로 이벤트 객체를 만들고 `document.dispatchEvent()` 함수로 이벤트를 방출한다. 이벤트와 더불어 데이터도 넘겨줄 수 있다.
 
 ```js
-const evt = new CustomEvent("@click", { detail: "some data" });
-document.dispatchEvent(evt);
+const evt = new CustomEvent("@click", { detail: "some data" })
+document.dispatchEvent(evt)
 ```
 
 `CustomEvent` 생성시 두번째 인자로 `detail` 키를 갖는 객채만 넘겨주면 수신하는 측에서는 이 값을 사용할 수 있다. 문자열 뿐만 아니라 객체도 가능하다.
 
 ```js
-document.querySelector("a").addEventListener("@click", (evt) => {
-  evt.detail; // 'some data'
-});
+document.querySelector("a").addEventListener("@click", evt => {
+  evt.detail // 'some data'
+})
 ```
 
 하지만 IE11 이하 버전에서는 `CustomEvent`를 지원하지 않기 때문에 이벤트 생성하는 방법을 달리 해야한다.
 
 ```js
-const evt = document.createEvent("CustomEvent");
-evt.initCustomeEvent("@click", true, false, "some data");
-document.dispatchEvent(evt);
+const evt = document.createEvent("CustomEvent")
+evt.initCustomeEvent("@click", true, false, "some data")
+document.dispatchEvent(evt)
 ```
 
 `document.createEvent()` 함수로 생성한 이벤트 객체의 `initCustomeEvent()` 함수로 이벤트 명과 전달할 데이터를 설정한다. 매개변수는 순서대로 이벤트명, 버블(bubble)?, 취송가능여부(cancelable)?, 전달할 데이터(detail)를 의미한다.
@@ -229,7 +229,7 @@ document.dispatchEvent(evt);
 돔 엘리먼트에 CSS 클래스를 추가하려면 어떻게 할까?
 
 ```js
-$("#foo").addClass("active");
+$("#foo").addClass("active")
 ```
 
 `addClass()` 로 'active' 클래스를 추가했다.
@@ -237,7 +237,7 @@ $("#foo").addClass("active");
 그럼 자바스크립트는?
 
 ```js
-document.querySelector("#foo").classList.add("active");
+document.querySelector("#foo").classList.add("active")
 ```
 
 HTMLElement는 `classList`라는 DOMTokenList를 반환한다. 이것은 클래스를 추가하는 `add()` 함수 뿐만 아니라, `remove()`, `toggle()`, `contains()` 같은 유용한 메소드를 제공한다.
@@ -245,7 +245,7 @@ HTMLElement는 `classList`라는 DOMTokenList를 반환한다. 이것은 클래�
 하지만 여전히 [IE에서는 메소드 별로 지원 버전이 다르다](https://developer.mozilla.org/ko/docs/Web/API/Element/classList). 때문에 폴리필을 추가하거나 다른 방법을 사용해야 한다.
 
 ```js
-document.querySelector("#foo").className += " active";
+document.querySelector("#foo").className += " active"
 ```
 
 HTMLElement의 `className`은 클래스 이름이 저장된 변수다. 이 문자열을 조작하면 클래스명을 추가/제거할 수 있다.
@@ -255,9 +255,9 @@ HTMLElement의 `className`은 클래스 이름이 저장된 변수다. 이 문�
 제이쿼리의 `text()` 함수로 제어하는 문자열은 HTMLElement의 `innerHTML`로 가능하다.
 
 ```js
-$("#foo").text("Hello Chris");
+$("#foo").text("Hello Chris")
 
-document.querySelector("#foo").innerHTML = "Hello Chris";
+document.querySelector("#foo").innerHTML = "Hello Chris"
 ```
 
 ## 비동기 요청
@@ -265,21 +265,21 @@ document.querySelector("#foo").innerHTML = "Hello Chris";
 제이쿼리의 `ajax()` 함수를 이용하면 서버 측에 비동기 요청을 보낼수 있다.
 
 ```js
-$.ajax("/resource").then(success, fail);
+$.ajax("/resource").then(success, fail)
 ```
 
 그럼 자바스크립트는?
 
 ```js
-const req = new XMLHttpRequest();
-req.open("GET", "/resource", true);
+const req = new XMLHttpRequest()
+req.open("GET", "/resource", true)
 req.onreadystatechange = () => {
   if (req.readyState === 4) {
-    if (req.status === 200) success();
-    else faile();
+    if (req.status === 200) success()
+    else faile()
   }
-};
-req.send(null);
+}
+req.send(null)
 ```
 
 `XMLHttpRequest` 객체를 직접 사용하면 가능하다. GET, POST 뿐만 아니라 파일 업로드까지!
@@ -294,14 +294,14 @@ req.send(null);
 
 ```js
 $("li").each(() => {
-  $(this); // li element
-});
+  $(this) // li element
+})
 ```
 
 그럼 자바스크립트는?
 
 ```js
-Array.from(document.querySelectorAll("li")).forEach((li) => {});
+Array.from(document.querySelectorAll("li")).forEach(li => {})
 ```
 
 `querySelectorAll()` 함수는 유사배열을 반환한다. Array의 프로토타입 함수를 사용하려면 `Array.form()` 함수를 이용해서 유사배열을 배열로 변환해야한다. 이후에 `Array.protototype.foreEach()` 함수를 이용해 li 엘리먼트를 순회할 수 있다.
@@ -311,13 +311,13 @@ Array.from(document.querySelectorAll("li")).forEach((li) => {});
 객체 메소드도 살펴보자. 두 객체를 합칠때(merge) 제이쿼리는 `extend()` 함수를 사용한다.
 
 ```js
-const obj3 = $.extend(obj1, obj2);
+const obj3 = $.extend(obj1, obj2)
 ```
 
 그럼 자바스크립트는?
 
 ```js
-const obj3 = Object.assign({}, obj1, obj2);
+const obj3 = Object.assign({}, obj1, obj2)
 ```
 
 `Object.assign()` 함수를 이용해서 합친 새로운 객체를 만들어 낼수 있다.

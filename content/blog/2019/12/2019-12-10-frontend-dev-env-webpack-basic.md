@@ -19,14 +19,14 @@ math.js:
 
 ```js
 function sum(a, b) {
-  return a + b;
+  return a + b
 } // 전역 공간에 sum이 노출
 ```
 
 app.js:
 
 ```js
-sum(1, 2); // 3
+sum(1, 2) // 3
 ```
 
 위 코드는 모두 하나의 HTML 파일 안에서 로딩해야만 실행된다.
@@ -43,14 +43,14 @@ math.js가 로딩되면 app.js는 이름 공간에서 'sum'을 찾은 뒤 이 �
 math.js:
 
 ```js
-var math = math || {}; // math 네임스페이스
+var math = math || {} // math 네임스페이스
 
-(function () {
+;(function () {
   function sum(a, b) {
-    return a + b;
+    return a + b
   }
-  math.sum = sum; // 네이스페이스에 추가
-})();
+  math.sum = sum // 네이스페이스에 추가
+})()
 ```
 
 같은 코드를 즉시실행함수로 감쌌기 때문에 다른 파일에서 이 안으로 접근할 수가 없다.
@@ -76,8 +76,8 @@ exports function sum(a, b) { return a + b; }
 app.js:
 
 ```js
-const math = require("./math.js");
-math.sum(1, 2); // 3
+const math = require("./math.js")
+math.sum(1, 2) // 3
 ```
 
 **[AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)**(Asynchronous Module Definition)는 비동기로 로딩되는 환경에서 모듈을 사용하는 것이 목표다.
@@ -93,15 +93,15 @@ math.js:
 
 ```js
 export function sum(a, b) {
-  return a + b;
+  return a + b
 }
 ```
 
 app.js:
 
 ```js
-import * as math from "./math.js";
-math.sum(1, 2); // 3
+import * as math from "./math.js"
+math.sum(1, 2) // 3
 ```
 
 `export` 구문으로 모듈을 만들고 `import` 구문으로 가져올 수 있다.
@@ -188,7 +188,7 @@ $ node_modules/.bin/webpack --help
 webpack.config.js:
 
 ```js
-const path = require("path");
+const path = require("path")
 
 module.exports = {
   mode: "development",
@@ -199,7 +199,7 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve("./dist"),
   },
-};
+}
 ```
 
 터미널에서 사용한 옵션인 mode, entry, ouput을 설정한다.
@@ -243,9 +243,9 @@ myloader.js:
 
 ```js
 module.exports = function myloader(content) {
-  console.log("myloader가 동작함");
-  return content;
-};
+  console.log("myloader가 동작함")
+  return content
+}
 ```
 
 함수로 만들수 있는데 로더가 읽은 파일의 내용이 함수 인자 content로 전달된다.
@@ -287,9 +287,9 @@ myloader.js:
 
 ```js
 module.exports = function myloader(content) {
-  console.log("myloader가 동작함");
-  return content.replace("console.log(", "alert("); // console.log( -> alert( 로 치환
-};
+  console.log("myloader가 동작함")
+  return content.replace("console.log(", "alert(") // console.log( -> alert( 로 치환
+}
 ```
 
 빌드후 확인하면 다음과 같이 console.log() 함수가 alert() 함수로 변경되었다.
@@ -307,7 +307,7 @@ module.exports = function myloader(content) {
 app.js:
 
 ```js
-import "./style.css";
+import "./style.css"
 ```
 
 style.css:
@@ -341,7 +341,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 웹팩은 엔트리 포인트부터 시작해서 모듈을 검색하다가 CSS 파일을 찾으면 css-loader로 처리할 것이다.
@@ -379,7 +379,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 배열로 설정하면 뒤에서부터 앞으로 순서대로 로더가 동작한다.
@@ -418,7 +418,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 웹팩이 .png 파일을 발견하면 file-loader를 실행할 것이다.
@@ -448,7 +448,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 `publicPath` 옵션은 file-loader가 처리하는 파일을 모듈로 사용할 때 경로 앞에 추가되는 문자열이다.
@@ -530,13 +530,13 @@ myplugin.js:
 ```js
 class MyPlugin {
   apply(compiler) {
-    compiler.hooks.done.tap("My Plugin", (stats) => {
-      console.log("MyPlugin: done");
-    });
+    compiler.hooks.done.tap("My Plugin", stats => {
+      console.log("MyPlugin: done")
+    })
   }
 }
 
-module.exports = MyPlugin;
+module.exports = MyPlugin
 ```
 
 로더와 다르게 플러그인은 클래스로 제작한다.
@@ -548,11 +548,11 @@ apply 함수를 구현하면 되는데 이 코드에서는 인자로 받은 comp
 webpack.config.js:
 
 ```js
-const MyPlugin = require("./myplugin");
+const MyPlugin = require("./myplugin")
 
 module.exports = {
   plugins: [new MyPlugin()],
-};
+}
 ```
 
 웹팩 설정 객체의 `plugins` 배열에 설정한다.
@@ -576,16 +576,16 @@ myplugin.js:
 ```js
 class MyPlugin {
   apply(compiler) {
-    compiler.hooks.done.tap("My Plugin", (stats) => {
-      console.log("MyPlugin: done");
-    });
+    compiler.hooks.done.tap("My Plugin", stats => {
+      console.log("MyPlugin: done")
+    })
 
     // compiler.plugin() 함수로 후처리한다
     compiler.plugin("emit", (compilation, callback) => {
-      const source = compilation.assets["main.js"].source();
-      console.log(source);
-      callback();
-    });
+      const source = compilation.assets["main.js"].source()
+      console.log(source)
+      callback()
+    })
   }
 }
 ```
@@ -658,15 +658,15 @@ module.exports = {
 ```js
 new webpack.BannerPlugin({
   banner: () => `빌드 날짜: ${new Date().toLocaleString()}`,
-});
+})
 ```
 
 배너 정보가 많다면 별로 파일로 분리하자.
 
 ```js
-const banner = require("./banner.js");
+const banner = require("./banner.js")
 
-new webpack.BannerPlugin(banner);
+new webpack.BannerPlugin(banner)
 ```
 
 빌드 날짜 외에서 커밋 해쉬와 빌드한 유저 정보까지 추가해 보자.
@@ -674,17 +674,17 @@ new webpack.BannerPlugin(banner);
 banner.js:
 
 ```js
-const childProcess = require("child_process");
+const childProcess = require("child_process")
 
 module.exports = function banner() {
-  const commit = childProcess.execSync("git rev-parse --short HEAD");
-  const user = childProcess.execSync("git config user.name");
-  const date = new Date().toLocaleString();
+  const commit = childProcess.execSync("git rev-parse --short HEAD")
+  const user = childProcess.execSync("git config user.name")
+  const date = new Date().toLocaleString()
 
   return (
     `commitVersion: ${commit}` + `Build Date: ${date}\n` + `Author: ${user}`
-  );
-};
+  )
+}
 ```
 
 빌드한뒤 플러그인이 처리한 결과는 다음과 같다.
@@ -703,11 +703,11 @@ module.exports = function banner() {
 webpack.config.js
 
 ```js
-const webpack = require("webpack");
+const webpack = require("webpack")
 
 export default {
   plugins: [new webpack.DefinePlugin({})],
-};
+}
 ```
 
 빈 객체를 전달해도 기본적으로 넣어주는 값이 있다.
@@ -717,7 +717,7 @@ export default {
 app.js
 
 ```js
-console.log(process.env.NODE_ENV); // "development"
+console.log(process.env.NODE_ENV) // "development"
 ```
 
 이 외에도 웹팩 컴파일 시간에 결정되는 값을 전역 상수 문자열로 어플리케이션에 주입할 수 있다.
@@ -725,7 +725,7 @@ console.log(process.env.NODE_ENV); // "development"
 ```js
 new webpack.DefinePlugin({
   TWO: "1+1",
-});
+})
 ```
 
 TWO라는 전역 변수에 `1+1` 이란 코드 조각을 넣었다.
@@ -734,7 +734,7 @@ TWO라는 전역 변수에 `1+1` 이란 코드 조각을 넣었다.
 app.js
 
 ```js
-console.log(TWO); // 2
+console.log(TWO) // 2
 ```
 
 코드가 아닌 값을 입력하려면 문자열화 한 뒤 넘긴다.
@@ -745,16 +745,16 @@ new webpack.DefinePlugin({
   PRODUCTION: JSON.stringify(false),
   MAX_COUNT: JSON.stringify(999),
   "api.domain": JSON.stringify("http://dev.api.domain.com"),
-});
+})
 ```
 
 app.js:
 
 ```js
-console.log(VERSION); // 'v.1.2.3'
-console.log(PRODUCTION); // true
-console.log(MAX_COUNT); // 999
-console.log(api.domain); // 'http://dev.api.domain.com'
+console.log(VERSION) // 'v.1.2.3'
+console.log(PRODUCTION) // true
+console.log(MAX_COUNT) // 999
+console.log(api.domain) // 'http://dev.api.domain.com'
 ```
 
 빌드 타임에 결정된 값을 어플리이션에 전달할 때는 이 플러그인을 사용하자.
@@ -847,7 +847,7 @@ webpack.config.js:
 ```js
 new HtmlWebpackPlugin({
   hash: true, // 정적 파일을 불러올때 쿼리문자열에 웹팩 해쉬값을 추가한다
-});
+})
 ```
 
 `hash: true` 옵션을 추가하면 빌드할 시 생성하는 해쉬값을 정적파일 로딩 주소의 쿼리 문자열로 붙여서 HTML을 생성한다.
@@ -876,11 +876,11 @@ $ npm install -D clean-webpack-plugin
 webpack.config.js:
 
 ```js
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
   plugins: [new CleanWebpackPlugin()],
-};
+}
 ```
 
 빌드 결과 foo.js가 깨끗히 사라졌다.
@@ -906,7 +906,7 @@ $ npm install -D mini-css-extract-plugin
 webpack.config.js:
 
 ```js
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   plugins: [
@@ -914,7 +914,7 @@ module.exports = {
       ? [new MiniCssExtractPlugin({ filename: `[name].css` })]
       : []),
   ],
-};
+}
 ```
 
 프로덕션 환경일 경우만 이 플러그인을 추가했다.
@@ -938,7 +938,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 플러그인에서 제공하는 MiniCssExtractPlugin.loader 로더를 추가한다.

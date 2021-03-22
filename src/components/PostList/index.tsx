@@ -1,15 +1,15 @@
-import { Link } from "gatsby";
-import React, { FC, ReactNode } from "react";
-import * as Styled from "./style";
+import { Link } from "gatsby"
+import React, { FC, ReactNode } from "react"
+import * as Styled from "./style"
 
 export interface PostItemType {
-  title: ReactNode;
-  slug: string;
-  meta?: ReactNode;
-  excerpt?: string;
+  title: ReactNode
+  slug: string
+  meta?: ReactNode
+  excerpt?: string
 }
 export interface P {
-  posts: PostItemType[];
+  posts: PostItemType[]
 }
 
 const PostList: FC<P> = ({ posts }) => {
@@ -32,10 +32,10 @@ const PostList: FC<P> = ({ posts }) => {
               )}
             </Link>
           </Styled.PostItem>
-        );
+        )
       })}
     </Styled.PostList>
-  );
-};
+  )
+}
 
-export default PostList;
+export default PostList

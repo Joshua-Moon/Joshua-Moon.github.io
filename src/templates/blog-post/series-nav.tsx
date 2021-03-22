@@ -1,28 +1,28 @@
-import { Link } from "gatsby";
-import React from "react";
-import { Series } from "../../models/site";
-import { MarkdownRemark } from "../../models/markdown-remark";
-import Button from "../../components/Button";
-import { ButtonType } from "../../components/button/style";
-import * as Styled from "./style";
+import { Link } from "gatsby"
+import React from "react"
+import { Series } from "../../models/site"
+import { MarkdownRemark } from "../../models/markdown-remark"
+import Button from "../../components/Button"
+import { ButtonType } from "../../components/button/style"
+import * as Styled from "./style"
 
 interface P {
-  series: Series;
-  posts: MarkdownRemark[];
-  nodeId: string;
-  lite?: boolean;
-  className?: string;
+  series: Series
+  posts: MarkdownRemark[]
+  nodeId: string
+  lite?: boolean
+  className?: string
 }
 
 const SeriesNav: React.FC<P> = ({ series, posts, nodeId, lite, className }) => {
-  const curIdx = posts.findIndex((item) => {
-    return item.id === nodeId;
-  });
+  const curIdx = posts.findIndex(item => {
+    return item.id === nodeId
+  })
 
-  const prev = curIdx === 0 ? null : posts[curIdx - 1];
-  const next = curIdx === posts.length ? null : posts[curIdx + 1];
+  const prev = curIdx === 0 ? null : posts[curIdx - 1]
+  const next = curIdx === posts.length ? null : posts[curIdx + 1]
 
-  return lite ? renderLite() : renderDefault();
+  return lite ? renderLite() : renderDefault()
 
   function renderLite() {
     return (
@@ -50,7 +50,7 @@ const SeriesNav: React.FC<P> = ({ series, posts, nodeId, lite, className }) => {
           )}
         </Styled.SeriesNavControls>
       </Styled.SeriesNav>
-    );
+    )
   }
 
   function renderDefault() {
@@ -59,8 +59,8 @@ const SeriesNav: React.FC<P> = ({ series, posts, nodeId, lite, className }) => {
         <h3 className="series-title">{series.title}</h3>
         <div className="post-list">
           <ul>
-            {posts.map((post) => {
-              const active = post.id === nodeId;
+            {posts.map(post => {
+              const active = post.id === nodeId
               return (
                 <li className={active ? "active" : ""} key={post.fields.slug}>
                   {active ? (
@@ -69,13 +69,13 @@ const SeriesNav: React.FC<P> = ({ series, posts, nodeId, lite, className }) => {
                     <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
                   )}
                 </li>
-              );
+              )
             })}
           </ul>
         </div>
       </Styled.SeriesNavigator>
-    );
+    )
   }
-};
+}
 
-export default SeriesNav;
+export default SeriesNav

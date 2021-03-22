@@ -27,9 +27,9 @@ tags: [react, TypeScript]
 먼저 세 가지 액션을 정의한다. actions/types.ts
 
 ```ts
-export const ADD_MEMO_REQUEST = "ADD_MEMO_REQUEST";
-export const ADD_MEMO_SUCCESS = "ADD_MEMO_SUCCESS";
-export const ADD_MEMO_FAILURE = "ADD_MEMO_FAILURE";
+export const ADD_MEMO_REQUEST = "ADD_MEMO_REQUEST"
+export const ADD_MEMO_SUCCESS = "ADD_MEMO_SUCCESS"
+export const ADD_MEMO_FAILURE = "ADD_MEMO_FAILURE"
 ```
 
 컴포넌트에서 `ADD_MEMO_REQUEST` 액션을 디스패치 할 수 있도록 액션 생성자 함수를 만든다.
@@ -37,14 +37,14 @@ actions/index.ts
 
 ```ts
 export interface AddMemoAction {
-  type: typeof types.ADD_MEMO_REQUEST;
-  payload: Memo;
+  type: typeof types.ADD_MEMO_REQUEST
+  payload: Memo
 }
-ㅍ;
+ㅍ
 export const addMemo = (memo: Memo): AddMemoAction => ({
   type: types.ADD_MEMO_REQUEST,
   payload: memo,
-});
+})
 ```
 
 액션이 디스패치되면 이 액션 타입을 사가에서 감시하고 있다가 비동기 로직이 동작하게끔 만들수 있다.
@@ -69,15 +69,15 @@ function addMemo$(action: AddMemoAction) {
 
 ```ts
 function* addMemo$(action: AddMemoAction) {
-  const { payload } = action;
-  if (!payload) return;
+  const { payload } = action
+  if (!payload) return
 
   try {
     // 메모 추가 api 호출
-    const memo = yield call(api.addMemo, payload);
+    const memo = yield call(api.addMemo, payload)
 
     // 스토어 상태에 메모 저장
-    yield put({ type: ADD_MEMO_SUCCESS, payload: memo });
+    yield put({ type: ADD_MEMO_SUCCESS, payload: memo })
 
     // 얼럿창으로 유저에게 피드백
     yield put({
@@ -86,18 +86,18 @@ function* addMemo$(action: AddMemoAction) {
         type: "alert",
         text: "메모가 생성되었습니다. 메뉴 수정 화면으로 이동합니다.",
       },
-    });
+    })
 
     // 얼럿을 닫을 때까지 대기
-    yield take(CONFIRM_DIALOG);
+    yield take(CONFIRM_DIALOG)
 
     // 생성된 메모 조회 화면으로 이동
-    yield put(push(`/memo/${memo.id}`));
+    yield put(push(`/memo/${memo.id}`))
   } catch (err) {
     // 에러 처리
   } finally {
     // API 통신 종료
-    yield put({ type: CLEAR_API_CALL_STATUS });
+    yield put({ type: CLEAR_API_CALL_STATUS })
   }
 }
 ```
@@ -126,13 +126,13 @@ containers/AddMemo.tsx
 
 ```tsx
 interface Props {
-  apiCalling: boolean;
-  addMemo(memos: Memo): AddMemoAction;
+  apiCalling: boolean
+  addMemo(memos: Memo): AddMemoAction
 }
 
 class AddMemoContainer extends React.Component<Props> {
   render() {
-    return <AddMemoPage {...this.props} />;
+    return <AddMemoPage {...this.props} />
   }
 }
 ```
@@ -143,7 +143,7 @@ Api 호출 상태를 나타내는 `apiCalling` 과 `ADD_MEMO_REQUEST` 액션을 
 ```ts
 const mapStateToProps = (state: RootState) => ({
   apiCalling: state.app.apiCalling,
-});
+})
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return bindActionCreators(
@@ -151,10 +151,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       addMemo,
     },
     dispatch
-  );
-};
+  )
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddMemoContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AddMemoContainer)
 ```
 
 `connect()` 함수로 스태이트의 `apiCalling` 값을 주입하고 `addMemo()` 액션 생성자 함수를 디스패치 하도록 연결했다.
@@ -240,8 +240,8 @@ models/index.ts
 
 ```ts
 export interface Toast {
-  id: number;
-  text: string;
+  id: number
+  text: string
 }
 ```
 
@@ -253,14 +253,14 @@ export interface Toast {
 
 ```ts
 export interface AppState {
-  apiCalling: boolean;
-  toasts: Toast[]; // 토스트 배열을 상태로 추가한다
+  apiCalling: boolean
+  toasts: Toast[] // 토스트 배열을 상태로 추가한다
 }
 
 const initialState: AppState = {
   apiCalling: false,
   toasts: [], // 초기 값은 빈 배열이다
-};
+}
 ```
 
 토스트 상태를 관리한 세 가지 액션 타입을 정의한다.
@@ -302,16 +302,16 @@ const appReducer = (
 sagas/index.ts
 
 ```ts
-import { takeEvery } from "redux-saga/effects";
+import { takeEvery } from "redux-saga/effects"
 
 export default function* rootSaga() {
   // 모든 SHOW_TOAST 액션을 감시한다
-  yield takeEvery(SHOW_TOAST, showToast$);
+  yield takeEvery(SHOW_TOAST, showToast$)
 }
 
 export interface ShowToastAction {
-  type: typeof types.SHOW_TOAST;
-  payload: string;
+  type: typeof types.SHOW_TOAST
+  payload: string
 }
 
 function* showToast$(action: ShowToastAction) {
@@ -329,22 +329,22 @@ function* showToast$(action: ShowToastAction) {
 
 ```ts
 // 토스트 아이드로 사용한다
-let _id: number = 0;
+let _id: number = 0
 
 function* showToast$(action: ShowToastAction) {
-  const nextId: number = _id + 1;
-  _id = nextId;
+  const nextId: number = _id + 1
+  _id = nextId
 
-  const text: string = action.payload;
+  const text: string = action.payload
 
   // 토스트를 상태에 추가한다
-  yield put({ type: ADD_TOAST, payload: { id: nextId, text } });
+  yield put({ type: ADD_TOAST, payload: { id: nextId, text } })
 
   // 3초 대기한다
-  yield delay(3000);
+  yield delay(3000)
 
   // 토스트를 상태에서 제거한다
-  yield put({ type: REMOVE_TOAST, payload: nextId });
+  yield put({ type: REMOVE_TOAST, payload: nextId })
 }
 ```
 
@@ -362,12 +362,12 @@ function* showToast$(action: ShowToastAction) {
 
 ```ts
 export default function* rootSaga() {
-  yield takeEvery(SHOW_TOAST, showToast$);
+  yield takeEvery(SHOW_TOAST, showToast$)
 
   // 모든 실패 액션을 처리한다
   yield takeEvery((action: any) => {
-    return action.type.endsWith("_FAILURE");
-  }, handleFailure$);
+    return action.type.endsWith("_FAILURE")
+  }, handleFailure$)
 }
 ```
 
@@ -376,10 +376,10 @@ export default function* rootSaga() {
 
 ```ts
 function* handleFailure$(action: { payload: any }) {
-  const { payload } = action;
+  const { payload } = action
 
   if (isString(payload)) {
-    yield put({ type: SHOW_TOAST, payload });
+    yield put({ type: SHOW_TOAST, payload })
   }
 }
 ```
@@ -397,7 +397,7 @@ function* addMemo$(action: AddMemoAction) {
     yield put({
       type: ADD_MEMO_FAILURE,
       payload: "메모 추가에 실패했습니다.",
-    });
+    })
   }
 }
 ```
@@ -423,12 +423,12 @@ containers/ToastList.tsx
 
 ```tsx
 interface Props {
-  toasts: Toast[];
+  toasts: Toast[]
 }
 
 class ToastListContainer extends React.Component<Props> {
   render() {
-    return <ToastList {...this.props} />;
+    return <ToastList {...this.props} />
   }
 }
 
@@ -438,7 +438,7 @@ export default connect(
     toasts: state.app.toasts,
   }),
   {}
-)(ToastListContainer);
+)(ToastListContainer)
 ```
 
 스토어의 `toast` 상태를 컴포넌트와 연결하고 나머지는 토스트 목록 컴포넌트에 위임한다.
@@ -448,16 +448,16 @@ components/ToastList.tsx
 
 ```tsx
 interface Props {
-  toasts: Toast[];
+  toasts: Toast[]
 }
 
-const ToastList: React.FC<Props> = (props) => {
-  <div>
+const ToastList: React.FC<Props> = props => {
+  ;<div>
     {props.toasts.map((toast, idx) => {
-      return <ToastItem toast={toast} key={idx} />;
+      return <ToastItem toast={toast} key={idx} />
     })}
-  </div>;
-};
+  </div>
+}
 ```
 
 속성으로 받은 토스트 배열을 화면에 그려주는 역할이다.
@@ -492,8 +492,8 @@ export default function* rootSaga() {
     // 어플리케이션 사가
     yield takeEvery(SHOW_TOAST, showToast$),
     yield takeEvery((action: any) => {
-      return action.type.endsWith("_FAILURE");
-    }, handleFailure$);
+      return action.type.endsWith("_FAILURE")
+    }, handleFailure$)
 }
 ```
 
@@ -512,13 +512,13 @@ export default function* memoSaga() {
 모두 `yield` 할 것이 아니라 `all()` 이펙트로 동시에 처리하자.
 
 ```ts
-import { all } from "redux-saga/effects";
+import { all } from "redux-saga/effects"
 
 export default function* memoSaga() {
   yield all([
     takeLatest(FETCH_MEMO_LIST_REQUEST, fetchMemoList$),
     takeLatest(ADD_MEMO_REQUEST, addMemo$),
-  ]);
+  ])
 }
 ```
 
@@ -529,9 +529,9 @@ export default function* appSaga() {
   yield all([
     takeEvery(SHOW_TOAST, showToast$),
     takeEvery((action: any) => {
-      return action.type.endsWith("_FAILURE");
+      return action.type.endsWith("_FAILURE")
     }, handleFailure$),
-  ]);
+  ])
 }
 ```
 
@@ -539,12 +539,12 @@ export default function* appSaga() {
 sagas/index.ts
 
 ```ts
-import { all, fork } from "redux-saga/effects";
-import memoSaga from "./memo";
-import appSaga from "./app";
+import { all, fork } from "redux-saga/effects"
+import memoSaga from "./memo"
+import appSaga from "./app"
 
 export default function* rootSaga() {
-  yield all([memoSaga(), appSaga()]);
+  yield all([memoSaga(), appSaga()])
 }
 ```
 
@@ -552,7 +552,7 @@ export default function* rootSaga() {
 
 ```ts
 export default function* rootSaga() {
-  yield all([fork(memoSaga), fork(appSaga)]);
+  yield all([fork(memoSaga), fork(appSaga)])
 }
 ```
 

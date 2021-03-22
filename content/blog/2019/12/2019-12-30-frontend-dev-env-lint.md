@@ -24,14 +24,14 @@ videoId: "59f0bdf2-e898-50db-8800-52a3fa758f04"
 console.log() 함수를 실행하고 다음 줄에서 즉시 실행함수를 실행하려는 코드다.
 
 ```js
-console.log()(function () {})();
+console.log()(function () {})()
 ```
 
 하지만 이 코드를 브라우져에서 실행해 보면 TypeError가 발생한다.
 브라우져는 코드에 세미콜론를 자동으로 넣는 과정(ASI)을 수행하는데, 위와 같은 경우는 우리의 의도대로 해석하지 못하고 아래 코드로 해석한다([Rules of Automatic Semicolon Insertion](http://www.ecma-international.org/ecma-262/7.0/index.html#sec-rules-of-automatic-semicolon-insertion)을 참고).
 
 ```js
-console.log()(function () {})();
+console.log()(function () {})()
 ```
 
 console.log()가 반환하는 값이 함수가 아닌데 함수 호출을 시도했기 때문에 타입에러가 발생할 것이다.
@@ -72,7 +72,7 @@ npm i -D eslint
 
 ```js
 // .eslintrc.js
-module.exports = {};
+module.exports = {}
 ```
 
 빈 객체로 아무런 설정 없이 모듈만 만들었다.
@@ -98,7 +98,7 @@ module.exports = {
   rules: {
     "no-unexpected-multiline": "error",
   },
-};
+}
 ```
 
 규칙에 설정하는 값은 세 가지다. "off"나 0은 끔, "warn"이나 1은 경고, "error"나 2는 오류.
@@ -130,7 +130,7 @@ npx eslint app.js
 
 ```js
 // app.js
-console.log(); // 세미콜론 연속 두 개 붙임
+console.log() // 세미콜론 연속 두 개 붙임
 ```
 
 린트 설정에 no-extra-semi 규칙을 추가하고,
@@ -141,7 +141,7 @@ module.exports = {
   rules: {
     "no-extra-semi": "error",
   },
-};
+}
 ```
 
 코드를 검사하면 오류를 출력한다.
@@ -180,7 +180,7 @@ module.exports = {
   extends: [
     "eslint:recommended", // 미리 설정된 규칙 세트을 사용한다
   ],
-};
+}
 ```
 
 만약 이 설정 외에 규칙이 더 필요하다면 rules 속성에 추가해서 확장할 수 있다.
@@ -233,7 +233,7 @@ npm i -D prettier
 
 ```js
 // app.js
-console.log("hello world");
+console.log("hello world")
 ```
 
 Prettier로 검사해 보자.
@@ -248,7 +248,7 @@ npx prettier app.js --write
 
 ```js
 // app.js
-console.log("Hello world");
+console.log("Hello world")
 ```
 
 작은 따옴표를 큰 따옴표로 변경했다. 문장 뒤에 세미콜론도 추가했다.
@@ -262,7 +262,7 @@ console.log("Hello world");
 // app.js
 console.log(
   "----------------매 우 긴 문 장 입 니 다 80자가 넘 는 코 드 입 니 다.----------------"
-);
+)
 ```
 
 ESLint는 [max-len](https://eslint.org/docs/rules/max-len) 규칙을 이용해 위 코드를 검사하고 결과만 알려 줄 뿐 수정하는 것은 개발자의 몫이다.
@@ -272,7 +272,7 @@ ESLint는 [max-len](https://eslint.org/docs/rules/max-len) 규칙을 이용해 �
 // app.js
 console.log(
   "----------------매 우 긴 문 장 입 니 다 80자가 넘 는 코 드 입 니 다.----------------"
-);
+)
 ```
 
 아래 코드는 어떻게 변환할까?
@@ -283,7 +283,7 @@ foo(
   omgSoManyParameters(),
   IShouldRefactorThis(),
   isThereSeriouslyAnotherOne()
-);
+)
 ```
 
 프리티어는 코드를 문맥을 어느 정도 파악하고 상황에 따라 최적의 모습으로 스타일을 수정한다.
@@ -294,7 +294,7 @@ foo(
   omgSoManyParameters(),
   IShouldRefactorThis(),
   isThereSeriouslyAnotherOne()
-);
+)
 ```
 
 더 멋진 예제도 있는데 프리티어를 만든 [James Long의 글](https://jlongster.com/A-Prettier-Formatter)을 참고하자.
@@ -330,8 +330,8 @@ npm i -D eslint-config-prettier
 따라서 어느 한쪽에서는 규칙을 꺼야하는데 eslint-config-prettier를 extends 하면 중복되는 ESLint 규칙을 비활성화 한다.
 
 ```js
-var foo = ""; // 사용하지 않은 변수. ESLint가 검사
-console.log(); // 중복 세미콜론 사용. 프리티어가 자동 수정
+var foo = "" // 사용하지 않은 변수. ESLint가 검사
+console.log() // 중복 세미콜론 사용. 프리티어가 자동 수정
 ```
 
 ESLint는 중복된 포매팅 규칙을 프리티어에게 맞기고 나머지 코드 품질에 관한 검사만 한다.
@@ -348,8 +348,8 @@ npx prettier app.js --write && npx eslint app.js --fix
 프리터에서 의해 코드가 아래과 같이 포매팅 되었고
 
 ```js
-var foo = "";
-console.log();
+var foo = ""
+console.log()
 ```
 
 ESlint에 의해 코드 품질과 관련된 오류(no-unused-vars)를 리포팅한다.

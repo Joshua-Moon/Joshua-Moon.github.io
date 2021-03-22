@@ -79,14 +79,14 @@ server.spec.js란 이름의 파일을 하나 만들겠습니다.
 파일에 아래 코드를 입력해 보세요.
 
 ```js
-const should = require("should");
-const server = require("./server");
+const should = require("should")
+const server = require("./server")
 
 describe("server test suite", () => {
   it('should return "hello world"', () => {
-    server().should.be.equal("Hello world");
-  });
-});
+    server().should.be.equal("Hello world")
+  })
+})
 ```
 
 서버 모듈을 가져와서 실행한 값이 "Hello world" 문자열을 리턴하는지 검증하는 코드입니다.
@@ -136,9 +136,9 @@ Error: Cannot find module './server'
 이제 server.js 파일을 아래와 같이 작성해 봅니다.
 
 ```js
-const server = () => "Hello world";
+const server = () => "Hello world"
 
-module.exports = server;
+module.exports = server
 ```
 
 간단하게 "Hello world" 문자열을 반환하는 함수만 만들어 (`server()`) 노출해 주었습니다.

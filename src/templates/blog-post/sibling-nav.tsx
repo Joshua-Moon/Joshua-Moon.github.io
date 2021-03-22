@@ -1,23 +1,23 @@
-import { Link } from "gatsby";
-import React, { CSSProperties } from "react";
-import { MarkdownRemark } from "../../models/markdown-remark";
-import * as Styled from "./style";
+import { Link } from "gatsby"
+import React, { CSSProperties } from "react"
+import { MarkdownRemark } from "../../models/markdown-remark"
+import * as Styled from "./style"
 
 interface SiblingNavItemProps {
-  label: string;
-  align: "left" | "right";
-  icon: string;
-  text: string;
-  url: string;
+  label: string
+  align: "left" | "right"
+  icon: string
+  text: string
+  url: string
 }
 
-const SiblingNavItem: React.FC<SiblingNavItemProps> = (p) => {
+const SiblingNavItem: React.FC<SiblingNavItemProps> = p => {
   const labelStyle: CSSProperties = {
     textAlign: p.align,
-  };
+  }
   p.align === "left"
     ? (labelStyle.marginLeft = 16)
-    : (labelStyle.marginRight = 16);
+    : (labelStyle.marginRight = 16)
 
   return (
     <Styled.SiblingNavItem>
@@ -32,15 +32,15 @@ const SiblingNavItem: React.FC<SiblingNavItemProps> = (p) => {
         </div>
       </Link>
     </Styled.SiblingNavItem>
-  );
-};
-
-interface P {
-  previous?: MarkdownRemark;
-  next?: MarkdownRemark;
+  )
 }
 
-const SiblingNav: React.FC<P> = (p) => {
+interface P {
+  previous?: MarkdownRemark
+  next?: MarkdownRemark
+}
+
+const SiblingNav: React.FC<P> = p => {
   return (
     <Styled.SiblingNav>
       {p.previous && (
@@ -62,6 +62,6 @@ const SiblingNav: React.FC<P> = (p) => {
         />
       )}
     </Styled.SiblingNav>
-  );
-};
-export default SiblingNav;
+  )
+}
+export default SiblingNav

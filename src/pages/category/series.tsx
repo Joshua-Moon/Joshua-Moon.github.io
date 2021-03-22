@@ -1,14 +1,14 @@
-import { graphql } from "gatsby";
-import React from "react";
-import { CateogryPosts } from "../../components/Category";
+import { graphql } from "gatsby"
+import React from "react"
+import { CateogryPosts } from "../../components/Category"
 
-export default (p) => (
+export default p => (
   <CateogryPosts
     title="연재물"
     activeCategory={"series"}
-    posts={p.data.allMarkdownRemark.edges.map((edge) => edge.node)}
+    posts={p.data.allMarkdownRemark.edges.map(edge => edge.node)}
   />
-);
+)
 
 export const pageQuery = graphql`
   {
@@ -31,4 +31,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

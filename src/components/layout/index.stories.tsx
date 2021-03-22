@@ -1,12 +1,12 @@
-import React from "react";
-import { HomeLayout, TwoColumnLayout } from ".";
+import React from "react"
+import { HomeLayout, TwoColumnLayout } from "."
 
 export default {
   title: "Layout/PlainLayout",
   component: HomeLayout,
-};
+}
 
-export const Home = () => <HomeLayout>home</HomeLayout>;
+export const Home = () => <HomeLayout>home</HomeLayout>
 
 export const TwoColumn = () => (
   <TwoColumnLayout
@@ -21,4 +21,4 @@ export const TwoColumn = () => (
   >
     body
   </TwoColumnLayout>
-);
+)

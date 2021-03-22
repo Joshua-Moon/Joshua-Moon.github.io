@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import * as Styled from "./style";
+import React, { ReactNode } from "react"
+import * as Styled from "./style"
 
 const Section: React.FC<{ title?: ReactNode }> = ({ title, children }) => {
   return (
@@ -7,7 +7,7 @@ const Section: React.FC<{ title?: ReactNode }> = ({ title, children }) => {
       {title && <Styled.SectionTitle>{title}</Styled.SectionTitle>}
       {children}
     </Styled.Section>
-  );
-};
+  )
+}
 
-export default Section;
+export default Section

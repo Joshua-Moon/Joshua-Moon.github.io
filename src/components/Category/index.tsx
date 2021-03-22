@@ -1,17 +1,17 @@
-import { Link } from "gatsby";
-import React, { FC } from "react";
-import { MarkdownRemark } from "../../models/markdown-remark";
-import { Icon, IconType } from "../icon/style";
-import { TwoColumnLayout } from "../layout";
-import PostList from "../PostList";
-import Section from "../Section";
-import SEO from "../seo";
-import * as Styled from "./style";
+import { Link } from "gatsby"
+import React, { FC } from "react"
+import { MarkdownRemark } from "../../models/markdown-remark"
+import { Icon, IconType } from "../icon/style"
+import { TwoColumnLayout } from "../layout"
+import PostList from "../PostList"
+import Section from "../Section"
+import SEO from "../seo"
+import * as Styled from "./style"
 
 interface CateogryPostsProps {
-  title: string;
-  posts: MarkdownRemark[];
-  activeCategory?: string;
+  title: string
+  posts: MarkdownRemark[]
+  activeCategory?: string
 }
 
 export const CateogryPosts: FC<CateogryPostsProps> = ({
@@ -54,7 +54,7 @@ export const CateogryPosts: FC<CateogryPostsProps> = ({
         </Link>{" "}
       </Styled.CategoryListItem>
     </Styled.CategoryList>
-  );
+  )
 
   return (
     <TwoColumnLayout aside={aside}>
@@ -69,7 +69,7 @@ export const CateogryPosts: FC<CateogryPostsProps> = ({
           }
         >
           <PostList
-            posts={posts.map((p) => ({
+            posts={posts.map(p => ({
               slug: p.fields.slug,
               title: p.frontmatter.title,
               meta: <time dateTime={p.fields.date}>{p.fields.dateStr}</time>,
@@ -79,5 +79,5 @@ export const CateogryPosts: FC<CateogryPostsProps> = ({
         </Section>
       </Styled.Wrapper>
     </TwoColumnLayout>
-  );
-};
+  )
+}

@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from "styled-components"
 import {
   Border,
   Colors,
   Container,
   SpaceUnit,
   Widths,
-} from "../../styles/style-variables";
+} from "../../styles/style-variables"
 
 export const Header = styled.header<{ bordered: boolean }>`
   height: ${SpaceUnit(7)};
-  border-bottom: ${(props) => (props.bordered ? Border() : `none`)};
+  border-bottom: ${props => (props.bordered ? Border() : `none`)};
   padding: 0 ${SpaceUnit()};
   a {
     color: ${Colors.Black};
@@ -19,14 +19,14 @@ export const Header = styled.header<{ bordered: boolean }>`
     display: flex;
     align-items: center;
   }
-`;
+`
 
 export const SiteTitle = styled.h1`
   margin: 0;
   font-size: 24px;
   font-weight: lighter;
   overflow: hidden;
-`;
+`
 
 export const SiteLogo = styled.div`
   a {
@@ -37,7 +37,7 @@ export const SiteLogo = styled.div`
     font-weight: bold;
     text-decoration: none;
   }
-`;
+`
 
 export const NavList = styled.nav`
   flex: 1;
@@ -45,7 +45,7 @@ export const NavList = styled.nav`
   align-items: center;
   justify-self: center;
   margin-left: ${SpaceUnit(2)};
-`;
+`
 
 export const Nav = styled.div`
   height: 100%;
@@ -78,11 +78,11 @@ export const Nav = styled.div`
       height: ${SpaceUnit(4)} !important;
     }
   }
-`;
+`
 
 export const Contacts = styled.div`
   display: flex;
   @media (max-width: calc(${Widths.Tablet})) {
     display: none;
   }
-`;
+`

@@ -45,8 +45,8 @@ submit 이벤트가 발생하면 createPost() 함수가 동작하는데 내부�
 
 ```js
 if (nextMw._path) {
-  const pathMatched = _req.path === nextMw._path;
-  return pathMatched ? nextMw(_req, _res, next) : _run(i + 1);
+  const pathMatched = _req.path === nextMw._path
+  return pathMatched ? nextMw(_req, _res, next) : _run(i + 1)
 }
 ```
 
@@ -72,10 +72,10 @@ _힌트: 경로 정보를 \_path에 저장한 것처럼 \_method란 이름으로
 
 ```js
 const get = (path, fn) => {
-  if (!path || !fn) throw Error("path and fn is required");
-  fn._method = "get";
-  use(path, fn);
-};
+  if (!path || !fn) throw Error("path and fn is required")
+  fn._method = "get"
+  use(path, fn)
+}
 ```
 
 use() 메소드처럼 경로와 컨트롤러 함수를 인자로 취합니다.
@@ -86,16 +86,16 @@ use() 메소드처럼 경로와 컨트롤러 함수를 인자로 취합니다.
 
 ```js
 const post = (path, fn) => {
-  if (!path || !fn) throw Error("path and fn is required");
-  fn._method = "post";
-  use(path, fn);
-};
+  if (!path || !fn) throw Error("path and fn is required")
+  fn._method = "post"
+  use(path, fn)
+}
 
 return {
   // ...
   get,
   post,
-};
+}
 ```
 
 post()도 메소드 이름만 다르지 로직은 완전히 동일합니다.
@@ -107,9 +107,9 @@ src/Middleware.js 파일로 이동합니다.
 if (nextMw._path) {
   const pathMatched =
     _req.path === nextMw._path &&
-    _req.method.toLowerCase() === (nextMw._method || "get");
+    _req.method.toLowerCase() === (nextMw._method || "get")
 
-  return pathMatched ? nextMw(_req, _res, next) : _run(i + 1);
+  return pathMatched ? nextMw(_req, _res, next) : _run(i + 1)
 }
 ```
 
@@ -126,13 +126,13 @@ if (nextMw._path) {
 
 ```js
 const create = () => (req, res, next) => {
-  debug(`create() ${req.body}`);
-};
+  debug(`create() ${req.body}`)
+}
 
 module.exports = {
   index,
   create,
-};
+}
 ```
 
 생성을 의미하는 create란 이름으로 함수를 만들었습니다. 실제 로직은 없고 로그만 기록하고 있구요.
@@ -141,9 +141,9 @@ module.exports = {
 app.js에서 이 컨트롤러 함수를 등록하겠습니다.
 
 ```js
-app.get("/api/posts", apiPost.index()); // use() 였던 것을 get() 으로 명확히 등록
-app.post("/api/posts", apiPost.create()); // post()로 등록
-app.use(errors.error404());
+app.get("/api/posts", apiPost.index()) // use() 였던 것을 get() 으로 명확히 등록
+app.post("/api/posts", apiPost.create()) // post()로 등록
+app.use(errors.error404())
 // ...
 ```
 

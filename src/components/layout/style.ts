@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Border, Widths } from "../../styles/style-variables";
+import styled from "styled-components"
+import { Border, Widths } from "../../styles/style-variables"
 
 export const AsideLeft = styled.aside`
   align-self: flex-start;
@@ -12,6 +12,6 @@ export const AsideLeft = styled.aside`
   @media (max-width: calc(${Widths.Tablet} - 1px)) {
     display: none;
   }
-`;
+`
 
-export const Main = styled.main``;
+export const Main = styled.main``

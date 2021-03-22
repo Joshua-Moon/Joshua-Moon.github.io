@@ -1,5 +1,5 @@
-const path = require(`path`);
-const qs = require("querystring");
+const path = require(`path`)
+const qs = require("querystring")
 
 exports.crateBlogPost = async ({ graphql, actions }) => {
   const result = await graphql(`
@@ -23,14 +23,14 @@ exports.crateBlogPost = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
+  `)
 
   if (result.errors) {
-    throw result.errors;
+    throw result.errors
   }
 
   // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges.map((e) => e.node);
+  const posts = result.data.allMarkdownRemark.edges.map(e => e.node)
 
   posts.forEach((p, i) => {
     actions.createPage({
@@ -44,6 +44,6 @@ exports.crateBlogPost = async ({ graphql, actions }) => {
         previous: i === posts.length - 1 ? null : posts[i + 1],
         next: i === 0 ? null : posts[i - 1],
       },
-    });
-  });
-};
+    })
+  })
+}

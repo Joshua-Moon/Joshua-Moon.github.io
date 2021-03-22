@@ -1,41 +1,41 @@
-import { graphql } from "gatsby";
-import React, { FC } from "react";
-import { PlainLayout } from "../../components/layout";
-import Section from "../../components/Section";
-import SEO from "../../components/seo";
-import { MarkdownRemark } from "../../models/markdown-remark";
-import { Series, Site, Video } from "../../models/site";
-import { Container } from "../../styles/style-variables";
-import PostComment from "./post-comment";
-import PostShare from "./post-share";
-import PostTag from "./post-tag";
-import PostToc from "./post-toc";
-import PostVideo from "./post-video";
-import PostHeader from "./PostHeader";
-import SeriesNav from "./series-nav";
-import SiblingNav from "./sibling-nav";
-import * as Styled from "./style";
+import { graphql } from "gatsby"
+import React, { FC } from "react"
+import { PlainLayout } from "../../components/layout"
+import Section from "../../components/Section"
+import SEO from "../../components/seo"
+import { MarkdownRemark } from "../../models/markdown-remark"
+import { Series, Site, Video } from "../../models/site"
+import { Container } from "../../styles/style-variables"
+import PostComment from "./post-comment"
+import PostShare from "./post-share"
+import PostTag from "./post-tag"
+import PostToc from "./post-toc"
+import PostVideo from "./post-video"
+import PostHeader from "./PostHeader"
+import SeriesNav from "./series-nav"
+import SiblingNav from "./sibling-nav"
+import * as Styled from "./style"
 
 interface P {
   data: {
-    site: Site;
-    markdownRemark: MarkdownRemark;
+    site: Site
+    markdownRemark: MarkdownRemark
     allMarkdownRemark: {
-      nodes: MarkdownRemark[];
-    };
-    series: Series;
-    video: Video;
-  };
+      nodes: MarkdownRemark[]
+    }
+    series: Series
+    video: Video
+  }
   pageContext: {
-    previous: MarkdownRemark;
-    next: MarkdownRemark;
-  };
+    previous: MarkdownRemark
+    next: MarkdownRemark
+  }
 }
 
 const BlogPostTemplate: FC<P> = ({ data, pageContext }) => {
-  const { site, markdownRemark, series, video } = data;
-  const { previous, next } = pageContext;
-  const hasAside = markdownRemark.tableOfContents || series || video;
+  const { site, markdownRemark, series, video } = data
+  const { previous, next } = pageContext
+  const hasAside = markdownRemark.tableOfContents || series || video
   return (
     <PlainLayout>
       <SEO
@@ -109,10 +109,10 @@ const BlogPostTemplate: FC<P> = ({ data, pageContext }) => {
         </div>
       </Container>
     </PlainLayout>
-  );
-};
+  )
+}
 
-export default BlogPostTemplate;
+export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $seriesId: String, $videoId: String) {
@@ -174,4 +174,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

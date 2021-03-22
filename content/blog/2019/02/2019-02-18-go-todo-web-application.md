@@ -153,28 +153,28 @@ helpers.js 파일을 열고 아래 코드를 추가한다.
 
 ```js
 window.$http = function (path, method, data, callback) {
-  var req = new XMLHttpRequest();
+  var req = new XMLHttpRequest()
 
-  req.open(method, path, true);
+  req.open(method, path, true)
 
   req.onreadystatechange = () => {
     if (req.readyState === 4) {
       if (req.status === 200) {
         try {
-          req.data = JSON.parse(req.responseText);
-          callback(null, req);
+          req.data = JSON.parse(req.responseText)
+          callback(null, req)
         } catch (err) {
-          console.log(err);
-          callback(Error("$http response parse error"));
+          console.log(err)
+          callback(Error("$http response parse error"))
         }
       } else {
-        callback(Error("$http request error"));
+        callback(Error("$http request error"))
       }
     }
-  };
+  }
 
-  req.send(JSON.stringify(data));
-};
+  req.send(JSON.stringify(data))
+}
 ```
 
 요청 경로(path), 메소드(method), 바디 데이터(data)를 인자로 받는다.
@@ -186,12 +186,12 @@ Ajax 요청이 비동기로 마친 뒤 응답 데이터를 콜백(callback)의 �
 Store.prototype.findAll = function (callback) {
   $http("/api/todos", "get", null, function (err, res) {
     if (err) {
-      throw err;
+      throw err
     }
 
-    callback.call(this, res.data);
-  });
-};
+    callback.call(this, res.data)
+  })
+}
 ```
 
 \$http 헬퍼 함수로 "GET /api/todos" 요청을 보내고 응답을 기존 콜백 함수로 전달했다.
@@ -254,27 +254,27 @@ Store.prototype.save = function (updateData, callback, id) {
   if (id) {
     $http("/api/todos", "put", { ...updateData, id }, function (err, res) {
       if (err) {
-        throw err;
+        throw err
       }
 
-      callback.call(this, [res.data]);
-    });
+      callback.call(this, [res.data])
+    })
   }
 
   // 추가
   else {
     // Generate an ID
-    updateData.id = new Date().getTime();
+    updateData.id = new Date().getTime()
 
     $http("/api/todos", "post", updateData, function (err, res) {
       if (err) {
-        throw err;
+        throw err
       }
 
-      callback.call(this, [res.data]);
-    });
+      callback.call(this, [res.data])
+    })
   }
-};
+}
 ```
 
 save 메소드는 id 인자에 따라 데이터를 추가하거나 업데이트하도록 오버로딩하였다.

@@ -1,13 +1,13 @@
-import { graphql, Link, PageProps } from "gatsby";
-import React, { FC } from "react";
-import Icon from "../components/icon";
-import { IconType } from "../components/Icon/style";
-import { HomeLayout } from "../components/layout";
-import PostList, { PostItemType } from "../components/PostList";
-import Section from "../components/Section";
-import SEO from "../components/seo";
-import { MarkdownRemark } from "../models/markdown-remark";
-import { Container } from "../styles/style-variables";
+import { graphql, Link, PageProps } from "gatsby"
+import React, { FC } from "react"
+import Icon from "../components/icon"
+import { IconType } from "../components/Icon/style"
+import { HomeLayout } from "../components/layout"
+import PostList, { PostItemType } from "../components/PostList"
+import Section from "../components/Section"
+import SEO from "../components/seo"
+import { MarkdownRemark } from "../models/markdown-remark"
+import { Container } from "../styles/style-variables"
 
 const videos: PostItemType[] = [
   {
@@ -56,9 +56,9 @@ const videos: PostItemType[] = [
       "https://www.youtube.com/watch?v=EklH54kysps&list=PLs_XsVQJKaBk_JN5RctLmmVrGwEzpzqaj",
     meta: "2016년 07월 / 유투브",
   },
-];
+]
 
-type P = PageProps<{ allMarkdownRemark: { nodes: MarkdownRemark[] } }>;
+type P = PageProps<{ allMarkdownRemark: { nodes: MarkdownRemark[] } }>
 
 const BlogIndex: FC<P> = ({ data }: P) => {
   return (
@@ -67,7 +67,7 @@ const BlogIndex: FC<P> = ({ data }: P) => {
       <Container small>
         <Section>
           <PostList
-            posts={data.allMarkdownRemark.nodes.map((node) => ({
+            posts={data.allMarkdownRemark.nodes.map(node => ({
               slug: node.fields.slug,
               title: node.frontmatter.title,
               meta: (
@@ -90,10 +90,10 @@ const BlogIndex: FC<P> = ({ data }: P) => {
         </Section>
       </Container>
     </HomeLayout>
-  );
-};
+  )
+}
 
-export default BlogIndex;
+export default BlogIndex
 
 export const pageQuery = graphql`
   query {
@@ -111,4 +111,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

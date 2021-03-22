@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Colors, Fonts, SpaceUnit } from "../../styles/style-variables";
+import styled from "styled-components"
+import { Colors, Fonts, SpaceUnit } from "../../styles/style-variables"
 
-export const TagItem = styled.div``;
+export const TagItem = styled.div``
 
 export const TagName = styled.h2`
   a {
@@ -9,12 +9,12 @@ export const TagName = styled.h2`
     color: ${Colors.Primary};
     font-family: ${Fonts.Fixed};
   }
-`;
+`
 
 export const TagPostList = styled.ul`
   padding-left: 20px;
   list-style: none;
-`;
+`
 
 export const TagPostItem = styled.li`
   margin-bottom: ${SpaceUnit()};
@@ -26,4 +26,4 @@ export const TagPostItem = styled.li`
       text-decoration: underline;
     }
   }
-`;
+`

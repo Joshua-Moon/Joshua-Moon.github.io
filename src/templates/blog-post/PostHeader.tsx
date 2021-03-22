@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import * as Styled from "./style";
+import React, { FC } from "react"
+import * as Styled from "./style"
 
 interface PostHeaderProps {
-  title: string;
-  datetime: string;
+  title: string
+  datetime: string
 }
 
 const PostHeader: FC<PostHeaderProps> = ({ title, datetime }) => {
@@ -12,7 +12,7 @@ const PostHeader: FC<PostHeaderProps> = ({ title, datetime }) => {
       <Styled.PostTitle itemProp="name headline">{title}</Styled.PostTitle>
       <Styled.PostTime itemProp="datePublished">{datetime}</Styled.PostTime>
     </Styled.PostHeader>
-  );
-};
+  )
+}
 
-export default PostHeader;
+export default PostHeader

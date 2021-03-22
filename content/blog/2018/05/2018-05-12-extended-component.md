@@ -51,17 +51,17 @@ OOP를 충분히 지원할 수 없는 자바스크립트에서 장황한 클래�
 
 const postsView = {
   init(el) {
-    if (!el) throw Error("el");
-    this.el = el;
-    this.data = [];
-    return this;
+    if (!el) throw Error("el")
+    this.el = el
+    this.data = []
+    return this
   },
   setData(data) {
-    this.data = data;
-    return this;
+    this.data = data
+    return this
   },
   render() {
-    this.el.innerHTML = this.html();
+    this.el.innerHTML = this.html()
   },
   html() {
     return (
@@ -69,17 +69,17 @@ const postsView = {
         html += `
         <h2>${post.title}</h2>
         <article>${this.text(post.text)}</article>
-       `;
-        return html;
+       `
+        return html
       }, "<div>") + "</div>"
-    );
+    )
   },
   text(post) {
-    return post.substring(0, 100) + "...";
+    return post.substring(0, 100) + "..."
   },
-};
+}
 
-export default postsView;
+export default postsView
 ```
 
 postsView는 포스트 목록을 출력하는 역할을 하는 모듈이다.
@@ -105,17 +105,17 @@ api.fetch().then(data => {
 
 ```js
 // pc/postsView.js
-import postsViewMobile from "../mobile/postsView.js";
+import postsViewMobile from "../mobile/postsView.js"
 
-const postsView = Object.create(postsViewMobile);
+const postsView = Object.create(postsViewMobile)
 
 // 오버라이딩: 포스트 문자열을 반환하는 text() 함수로
 // 모바일은 100문자를 반환했지만 PC 버번은 300문자를 반환한다.
 postsView.text = function (post) {
-  return post.substring(0, 300) + "...";
-};
+  return post.substring(0, 300) + "..."
+}
 
-export default postsView;
+export default postsView
 ```
 
 `Object.create()` 함수는 프로토타입 객체를 이용해 기존 객체를 복제하는 ES6 함수다.
@@ -147,7 +147,7 @@ Vue.js에서는 믹스인과 컴포넌트 생성 옵션을 이용해 컴포넌�
 
 ```js
 // vue-mobile/PostComponent.js
-import api from "../api.js";
+import api from "../api.js"
 
 export default {
   template: `<div>
@@ -162,30 +162,30 @@ export default {
     return {
       posts: [],
       fetching: false,
-    };
+    }
   },
 
   created() {
-    this.fetch();
+    this.fetch()
   },
 
   filters: {
     excerpt(val) {
-      console.log("mobile:filter:exceprt");
-      return val.substring(0, 100) + "...";
+      console.log("mobile:filter:exceprt")
+      return val.substring(0, 100) + "..."
     },
   },
 
   methods: {
     fetch() {
-      this.fetching = true;
-      api.fetch().then((data) => {
-        this.fetching = false;
-        this.posts = data;
-      });
+      this.fetching = true
+      api.fetch().then(data => {
+        this.fetching = false
+        this.posts = data
+      })
     },
   },
-};
+}
 ```
 
 이전에 만든 버전과 거의 유사하다.
@@ -226,11 +226,11 @@ PostsList 컴포넌트는 아래와 같이 사용할 수 있다.
 
 ```js
 // vue-pc/PostsComponent.js
-import PostsComponent from "../vue-mobile/PostsComponent.js";
+import PostsComponent from "../vue-mobile/PostsComponent.js"
 
 export default {
   extends: PostsComponent,
-};
+}
 ```
 
 모바일 버전의 PostsComponent 를 확장한 PC 버전의 컴포넌트를 만들었다.

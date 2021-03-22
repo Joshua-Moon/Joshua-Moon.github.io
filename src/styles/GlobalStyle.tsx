@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
-import { Colors, Fonts, SpaceUnit, Widths } from "./style-variables";
-import { styleNormalize } from "./style-nomalize";
+import { createGlobalStyle } from "styled-components"
+import { Colors, Fonts, SpaceUnit, Widths } from "./style-variables"
+import { styleNormalize } from "./style-nomalize"
 
 const GlobalStyle = createGlobalStyle`
   ${styleNormalize}
@@ -57,5 +57,5 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
-`;
-export default GlobalStyle;
+`
+export default GlobalStyle

@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from "styled-components"
 
 export const styleNormalize = css`
   html {
@@ -147,4 +147,4 @@ export const styleNormalize = css`
   [hidden] {
     display: none;
   }
-`;
+`

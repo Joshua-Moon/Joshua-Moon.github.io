@@ -48,7 +48,7 @@ yarn dev
 
 ```js
 {
-  greeting: String;
+  greeting: String
 }
 ```
 
@@ -166,13 +166,13 @@ vue init simple-webpack client
 ```js
 // router/index.js
 
-import Vue from "vue";
-import Router from "vue-router";
-import Home from "../components/Home.vue";
-import Login from "../components/Login.vue";
-import Me from "../components/Me.vue";
+import Vue from "vue"
+import Router from "vue-router"
+import Home from "../components/Home.vue"
+import Login from "../components/Login.vue"
+import Me from "../components/Me.vue"
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
   mode: "history",
@@ -194,7 +194,7 @@ export default new Router({
       beforeEnter: requireAuth,
     },
   ],
-});
+})
 ```
 
 [Vuex](https://vuex.vuejs.org/kr/)로 스토어를 만든 뒤
@@ -202,13 +202,13 @@ export default new Router({
 ```js
 // store/index.js
 
-import Vue from "vue";
-import Vuex from "vuex";
-import axios from "axios";
+import Vue from "vue"
+import Vuex from "vuex"
+import axios from "axios"
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
-const resourceHost = "http://localhost:3000";
+const resourceHost = "http://localhost:3000"
 
 export default new Veux.Store({
   state: {
@@ -217,23 +217,23 @@ export default new Veux.Store({
   getters: {},
   mutations: {
     LOGIN(state, { accessToken }) {
-      state.accessToken = accessToken;
+      state.accessToken = accessToken
     },
     LOGOUT(state) {
-      state.accessToken = null;
+      state.accessToken = null
     },
   },
   actions: {
     LOGIN({ commit }, { email, password }) {
       return axios
         .post(`${resourceHost}/login`, { email, password })
-        .then(({ data }) => commit("LOGIN", data));
+        .then(({ data }) => commit("LOGIN", data))
     },
     LOGOUT({ commit }) {
-      commit("LOGOUT");
+      commit("LOGOUT")
     },
   },
-});
+})
 ```
 
 Vue에 추가한다.
@@ -241,16 +241,16 @@ Vue에 추가한다.
 ```js
 // main.js
 
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import App from "./App.vue"
+import router from "./router"
+import store from "./store"
 
 new Vue({
   el: "#app",
-  render: (h) => h(App),
+  render: h => h(App),
   store,
   router,
-});
+})
 ```
 
 ## Home 화면
@@ -268,20 +268,20 @@ new Vue({
 </template>
 
 <script>
-  import axios from "axios";
+  import axios from "axios"
 
   export default {
     data() {
       return {
         greeting: "",
-      };
+      }
     },
     created() {
       axios
         .get("http://localhost:3000/home")
-        .then((result) => (this.greeting = result.data.greeting));
+        .then(result => (this.greeting = result.data.greeting))
     },
-  };
+  }
 </script>
 ```
 
@@ -354,7 +354,7 @@ beforeEnter 인터셉터는 `from`, `to`, `next` 세 개 인자를 받는 함수
         email: "",
         password: "",
         msg: "",
-      };
+      }
     },
     methods: {
       onSubmit(email, password) {
@@ -362,22 +362,22 @@ beforeEnter 인터셉터는 `from`, `to`, `next` 세 개 인자를 받는 함수
         this.$store
           .dispatch("LOGIN", { email, password })
           .then(() => this.redirect())
-          .catch(({ message }) => (this.msg = message));
+          .catch(({ message }) => (this.msg = message))
       },
       redirect() {
-        const { search } = window.location;
-        const tokens = search.replace(/^\?/, "").split("&");
+        const { search } = window.location
+        const tokens = search.replace(/^\?/, "").split("&")
         const { returnPath } = tokens.reduce((qs, tkn) => {
-          const pair = tkn.split("=");
-          qs[pair[0]] = decodeURIComponent(pair[1]);
-          return qs;
-        }, {});
+          const pair = tkn.split("=")
+          qs[pair[0]] = decodeURIComponent(pair[1])
+          return qs
+        }, {})
 
         // 리다이렉트 처리
-        this.$router.push(returnPath);
+        this.$router.push(returnPath)
       },
     },
-  };
+  }
 </script>
 ```
 
@@ -445,14 +445,14 @@ GET /me API를 요청해서 응답 데이터로 Me 화면을 만들어 보자.
 </template>
 
 <script>
-  import axios from "axios";
+  import axios from "axios"
 
   export default {
     data() {
       return {
         user: null,
         accessLog: [],
-      };
+      }
     },
     created() {
       axios
@@ -461,9 +461,9 @@ GET /me API를 요청해서 응답 데이터로 Me 화면을 만들어 보자.
           ({ data }) => (
             (this.user = data.user), (this.accessLog = data.accessLog)
           )
-        );
+        )
     },
-  };
+  }
 </script>
 ```
 
@@ -538,11 +538,11 @@ mutations: {
 // store/index.js
 
 const enhanceAccessToeken = () => {
-  const { accessToken } = localStorage;
-  if (!accessToken) return;
-  axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-};
-enhanceAccessToeken();
+  const { accessToken } = localStorage
+  if (!accessToken) return
+  axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
+}
+enhanceAccessToeken()
 ```
 
 다시 한 번 로그인한 뒤 마이페이지에 진입하자. <br />
@@ -569,21 +569,21 @@ enhanceAccessToeken();
 </template>
 
 <script>
-  import store from "../store";
+  import store from "../store"
 
   export default {
     computed: {
       isAuthenticated() {
-        return store.getters.isAuthenticated;
+        return store.getters.isAuthenticated
       },
     },
     methods: {
       onClickLogout() {
         // LOGOUT 변이 실행 후 리다이렉트
-        store.dispatch("LOGOUT").then(() => this.$router.push("/"));
+        store.dispatch("LOGOUT").then(() => this.$router.push("/"))
       },
     },
-  };
+  }
 </script>
 ```
 

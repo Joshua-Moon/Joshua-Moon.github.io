@@ -29,15 +29,15 @@ src/Application.spec.js 파일을 봅니다.
 ```js
 describe("use()", () => {
   it("Middleware 모듈 인스턴스의 add() 메소드를 실행한다", () => {
-    const spy = sinon.spy();
-    app._middleware.add = spy;
-    const mw1 = () => null;
+    const spy = sinon.spy()
+    app._middleware.add = spy
+    const mw1 = () => null
 
-    app.use(mw1);
+    app.use(mw1)
 
-    should(spy.called).be.equal(true);
-  });
-});
+    should(spy.called).be.equal(true)
+  })
+})
 ```
 
 use() 메소드는 "Middleware의 add() 메소드를 실행한다"는 테스트 케이스 입니다.
@@ -58,10 +58,10 @@ Middleware 모듈을 가져옵니다. 그리고 Application 클로져 변수에 
 
 ```js
 const _server = http.createServer((req, res) => {
-  _middleware.run(req, res);
-});
+  _middleware.run(req, res)
+})
 
-const use = (fn) => _middleware.add(fn);
+const use = fn => _middleware.add(fn)
 ```
 
 함수타입 fn를 인자로 받는 use() 메소드 입니다. 클로져 변수 \_middleware의 add 함수를 실행해서 인자로 받은 함수를 미들웨어 배열에 추가합니다.
@@ -74,7 +74,7 @@ return {
   _server,
   use, // use 노출
   listen,
-};
+}
 ```
 
 마지막으로 클로져 변수와 use 메소드를 노출해서 외부에서 사용하도록 처리합니다.
@@ -128,10 +128,10 @@ module.exports = serveStatic;
 app.js는 어떻게 달라 질까요?
 
 ```js
-const app = App();
-const serveStatic = require("./middlewares/serve-static");
+const app = App()
+const serveStatic = require("./middlewares/serve-static")
 
-app.use(serveStatic());
+app.use(serveStatic())
 ```
 
 use() 메소드로 미들웨어 함수를 간단히 등록했습니다. 익스프레스의 그것과 매우 비슷하네요.
@@ -147,43 +147,43 @@ app.js에서 바로 코딩할게요.
 
 ```js
 // ...
-const app = App();
-const path = require("path");
-const fs = require("fs");
+const app = App()
+const path = require("path")
+const fs = require("fs")
 
 const index = (req, res, next) => {
-  const publicPath = path.join(__dirname, "./public");
+  const publicPath = path.join(__dirname, "./public")
 
   fs.readFile(`${publicPath}/index.html`, (err, data) => {
-    if (err) throw err;
+    if (err) throw err
 
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "text/html");
-    res.end(data);
-  });
-};
+    res.statusCode = 200
+    res.setHeader("Content-Type", "text/html")
+    res.end(data)
+  })
+}
 
-app.use(serveStatic());
-app.use(index);
+app.use(serveStatic())
+app.use(index)
 ```
 
 에러 처리 미들웨어도 추가하겠습니다.
 
 ```js
 const error404 = (req, res, next) => {
-  res.statusCode = 404;
-  res.end("Not Found");
-};
+  res.statusCode = 404
+  res.end("Not Found")
+}
 
 const error = (err, req, res, next) => {
-  res.statusCode = 500;
-  res.end();
-};
+  res.statusCode = 500
+  res.end()
+}
 
-app.use(serveStatic());
-app.use(index);
-app.use(error404);
-app.use(error);
+app.use(serveStatic())
+app.use(index)
+app.use(error404)
+app.use(error)
 ```
 
 ## 정리

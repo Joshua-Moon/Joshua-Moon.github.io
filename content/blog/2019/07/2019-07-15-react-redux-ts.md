@@ -44,12 +44,12 @@ export cont FETCH_MEMO_LIST = 'FETCH_MEMO_LIST'
 `actions/index.ts` 파일에 아래 내용을 추가한다.
 
 ```ts
-import * as types from "./types";
-import { Memo } from "../models";
+import * as types from "./types"
+import { Memo } from "../models"
 
 export interface FetchMemoListAction {
-  type: typeof types.FETCH_MEMO_LIST;
-  payload: Memo[];
+  type: typeof types.FETCH_MEMO_LIST
+  payload: Memo[]
 }
 ```
 
@@ -64,7 +64,7 @@ export interface FetchMemoListAction {
 export const fetchMemoList = (memos: Memo[]): FetchMemoListAction => ({
   type: types.FETCH_MEMO_LIST,
   payload: memos,
-});
+})
 ```
 
 인터페이스로 정의한 타입을 리턴 타입으로 사용했기 때문에 이 액션 생성자는 타입과 패이로드로 구성된 데이터 묶음을 반환한다는 것을 보장할 수 있다.
@@ -72,13 +72,13 @@ export const fetchMemoList = (memos: Memo[]): FetchMemoListAction => ({
 지금은 액션 생성자가 하나지만 이후 여러 생성자들이 반환하는 액션 타입을 묶어 하나의 타입으로 정의할 수 있다.
 
 ```ts
-export type MemoActionTypes = FetchMemoListAction;
+export type MemoActionTypes = FetchMemoListAction
 ```
 
 가령 메모 추가 액션 타입 `AddMemoAction`이 있다면 [유니온 연산자](https://www.typescriptlang.org/docs/handbook/advanced-types.html#union-types)를 이용해 메모 액션 타입을 정의할 수 있다.
 
 ```ts
-export type MemoActionTypes = FetchMemoListAction | AddMemoAction;
+export type MemoActionTypes = FetchMemoListAction | AddMemoAction
 ```
 
 ## 리듀서
@@ -88,9 +88,9 @@ export type MemoActionTypes = FetchMemoListAction | AddMemoAction;
 메모 데이터만 관리하는 메모 리듀서를 만들기 위해 `reducers/memo.ts` 파일을 만든다.
 
 ```ts
-import { Memo } from "../models";
-import * as types from "../actions/types";
-import { MemoActionTypes } from "../actions";
+import { Memo } from "../models"
+import * as types from "../actions/types"
+import { MemoActionTypes } from "../actions"
 ```
 
 리듀서는 수신하는 액션의 타입을 알아야 데이터 묶음을 열어 볼 수 있다.
@@ -100,7 +100,7 @@ import { MemoActionTypes } from "../actions";
 
 ```ts
 export interface MemoState {
-  memos: Memo[];
+  memos: Memo[]
 }
 ```
 
@@ -111,7 +111,7 @@ export interface MemoState {
 ```ts
 const initialState: MemoState = {
   memos: [],
-};
+}
 ```
 
 액션 반환 타입과 스토어 초기값이 준비되었다.
@@ -129,13 +129,13 @@ const memoReducer = (
         memos: action.payload.map((memo: Memo) => ({
           ...memo,
         })),
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default memoReducer;
+export default memoReducer
 ```
 
 스테이트와 액션을 받는 리듀서 인자에 `state` 초기값을 기본값으로 설정하고 메모 액션 타입으로 `action` 인자를 받도록 했다.
@@ -150,11 +150,11 @@ export default memoReducer;
 `reducers/index.ts` 파일을 만든다.
 
 ```ts
-import { combineReducers } from "redux";
-import memo, { MemoState } from "./memo";
+import { combineReducers } from "redux"
+import memo, { MemoState } from "./memo"
 
 export interface RootState {
-  memo: MemoState;
+  memo: MemoState
 }
 ```
 
@@ -169,9 +169,9 @@ export interface RootState {
 ```ts
 const rootReducer = combineReducers({
   memo,
-});
+})
 
-export default rootReducer;
+export default rootReducer
 ```
 
 ## 스토어
@@ -196,10 +196,10 @@ export default rootReducer;
 `store/configureStore.ts` 파일을 만든다.
 
 ```ts
-import { createStore, applyMiddleware } from "redux";
-import { createLogger } from "redux-logger";
-import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "../reducers";
+import { createStore, applyMiddleware } from "redux"
+import { createLogger } from "redux-logger"
+import { composeWithDevTools } from "redux-devtools-extension"
+import rootReducer from "../reducers"
 
 const configureStore = () =>
   //  스토어를 생성한다
@@ -209,9 +209,9 @@ const configureStore = () =>
 
     // 미들웨어 형태의 리덕스 개발 도구를 추가한다
     composeWithDevTools(applyMiddleware(createLogger()))
-  );
+  )
 
-export default configureStore;
+export default configureStore
 ```
 
 루트 리듀서를 가져와 스토어 생성 함수인 `createStore()`에 전달하여 스토어를 만들었다.
@@ -223,10 +223,10 @@ export default configureStore;
 어플리케이션 엔트리 포인트 `index.tsx`에서 스토어를 만든다.
 
 ```ts
-import configureStore from "./store/configureStore";
+import configureStore from "./store/configureStore"
 
 // 스토어를 생성한다
-const store = configureStore();
+const store = configureStore()
 ```
 
 준비한 `congifureStore()` 함수로 스토어를 생성한다.
@@ -240,7 +240,7 @@ ReactDOM.render(
     <Root />
   </Provider>,
   document.getElementById("app")
-);
+)
 ```
 
 라우터로 구성된 `<Root />` 컴포넌트를 `<Provider />` 컴포넌트로 감싸고 `store` 속성에 스토어를 연결했다.
@@ -262,12 +262,12 @@ react-redux 패키지에서 제공하는 [`connect()`](https://react-redux.js.or
 메모 리스트의 동작을 담당하는 `<MemoListContainer />`를 `containers/MemoList.tsx` 파일에 만들어 보자.
 
 ```ts
-import { Memo } from "../models";
-import { FetchMemoListAction } from "../actions";
+import { Memo } from "../models"
+import { FetchMemoListAction } from "../actions"
 
 interface Props {
-  memos: Memo[];
-  fetchMemoList(memos: Memo[]): FetchMemoListAction;
+  memos: Memo[]
+  fetchMemoList(memos: Memo[]): FetchMemoListAction
 }
 
 class MemoListContainer extends React.Component<Props> {}
@@ -282,9 +282,9 @@ class MemoListContainer extends React.Component<Props> {}
 이 타입으로 만든 메모 리스트 컨테이너는 커넥트 함수가 반환하는 함수의 인자로 전달해서 컨테이너를 만든다.
 
 ```ts
-import { connect } from "react-redux";
+import { connect } from "react-redux"
 
-export default connect(mapStateToProps, mapDispatchToProps)(MemoListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MemoListContainer)
 ```
 
 커넥트 함수는 스테이트를 컴포넌트의 속성으로 연결하는 `mapStateToProps()` 함수와, 액션 생성자 디스패처를 속성으로 연결하는 `mapDispatchToProps()` 함수를 인자로 받는다.
@@ -294,7 +294,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MemoListContainer);
 ```ts
 const mapStateToProps = (state: RootState) => ({
   memos: state.memo.memos,
-});
+})
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -302,7 +302,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
       fetchMemoList,
     },
     dispatch
-  );
+  )
 ```
 
 `mapStateToProps()` 함수는 커넥트 함수로부터 스태이트 전달 받는다.
@@ -339,8 +339,8 @@ class MemoListContainer extends React.Component<Props> {
   // componentWillMount() { /* 생략 */ }
 
   render() {
-    const { memos } = this.props;
-    return <MemoListPage memos={memos} />;
+    const { memos } = this.props
+    return <MemoListPage memos={memos} />
   }
 }
 ```

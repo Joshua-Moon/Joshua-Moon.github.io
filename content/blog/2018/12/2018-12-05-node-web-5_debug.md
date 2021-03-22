@@ -22,8 +22,8 @@ Debug가 갖고 있는 장점은 아래 두 가지입니다.
 사용 방법은 아래처럼 간단합니다.
 
 ```js
-const debug = require("debug")("my_tag");
-debug("my_log"); // "my_tag my_log"
+const debug = require("debug")("my_tag")
+debug("my_log") // "my_tag my_log"
 ```
 
 이것을 직접 만들어 보겠습니다.
@@ -115,11 +115,11 @@ sinon 라이브러리를 이용해서 console.log 메소드에 스파이를 심�
 utils/debug.js 파일을 새로 만들어 같이 확인해 보겠습니다.
 
 ```js
-const debug = (tag) => {
-  if (!tag) throw Error("tag should be required");
-};
+const debug = tag => {
+  if (!tag) throw Error("tag should be required")
+}
 
-module.exports = debug;
+module.exports = debug
 ```
 
 먼저 debug를 tag 인자를 받는 함수로 정의 했습니다.
@@ -184,8 +184,8 @@ const colors = [
   { name: "red", value: "\x1b[31m" },
   { name: "green", value: "\x1b[32m" },
   { name: "magenta", value: "\x1b[35m" },
-];
-const resetColor = "\x1b[0m";
+]
+const resetColor = "\x1b[0m"
 ```
 
 힌트에서 언급한 것 처럼 색상 코드를 딕셔너리로 만들었습니다.
@@ -201,11 +201,11 @@ const debug = tag => {
 마지막 color 상수에는 name, value를 가지는 컬러 객체가 랜덤으로 저장 되겠지요.
 
 ```js
-return (msg) => {
-  const logString = `${color.value}[${tag}]${resetColor} ${msg}`;
-  console.log(logString);
-  return logString;
-};
+return msg => {
+  const logString = `${color.value}[${tag}]${resetColor} ${msg}`
+  console.log(logString)
+  return logString
+}
 ```
 
 반환된 함수에서 이 랜덤 색상 객체를 사용합니다.
@@ -217,10 +217,10 @@ logString을 만들때 태그 문자열만 색상을 지정했습니다.
 
 ```js
 // app.js
-const debug = require("../utils/debug")("app");
+const debug = require("../utils/debug")("app")
 // ...
 
-debug("app is initiated");
+debug("app is initiated")
 ```
 
 ```js
@@ -234,13 +234,13 @@ app.listen(port, hostname, () => {
 
 ```js
 // src/Application.js
-const debug = require("../utils/debug")("Application");
+const debug = require("../utils/debug")("Application")
 // ...
 
 const listen = (port = 3000, hostname = "127.0.0.1", fn) => {
-  _server.listen(port, hostname, fn);
-  debug("server is listening");
-};
+  _server.listen(port, hostname, fn)
+  debug("server is listening")
+}
 ```
 
 서버를 실행하면 다음과 같이 예쁜 모양의 로그가 색상 별로 나오는 걸 확인할수 있습니다.
