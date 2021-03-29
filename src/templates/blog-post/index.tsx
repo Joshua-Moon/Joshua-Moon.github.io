@@ -115,7 +115,8 @@ const BlogPostTemplate: FC<P> = ({ data, pageContext }) => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!, $seriesId: String, $videoId: String) {
+  query BlogPostBySlug($slug: String!) {
+    # query BlogPostBySlug($slug: String!, $seriesId: String, $videoId: String) {
     site {
       siteMetadata {
         title
@@ -134,8 +135,8 @@ export const pageQuery = graphql`
       frontmatter {
         title
         tags
-        seriesId
-        videoId
+        # seriesId
+        # videoId
         featured_image
         featuredImage {
           childImageSharp {
@@ -147,18 +148,18 @@ export const pageQuery = graphql`
       }
       tableOfContents(absolute: false, maxDepth: 6, heading: null)
     }
-    series(id: { eq: $seriesId }) {
-      id
-      title
-    }
-    video(id: { eq: $videoId }) {
-      id
-      title
-      thumb
-      url
-    }
+    # series(id: { eq: $seriesId }) {
+    #   id
+    #   title
+    # }
+    # video(id: { eq: $videoId }) {
+    #   id
+    #   title
+    #   thumb
+    #   url
+    # }
     allMarkdownRemark(
-      filter: { frontmatter: { seriesId: { eq: $seriesId } } }
+      # filter: { frontmatter: { seriesId: { eq: $seriesId } } }
       sort: { order: ASC, fields: fields___date }
     ) {
       nodes {
@@ -167,10 +168,10 @@ export const pageQuery = graphql`
           slug
           date
         }
-        frontmatter {
-          title
-          seriesId
-        }
+        # frontmatter {
+        #   title
+        #   seriesId
+        # }
       }
     }
   }

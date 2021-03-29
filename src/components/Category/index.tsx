@@ -29,14 +29,14 @@ export const CateogryPosts: FC<CateogryPostsProps> = ({
           모든글
         </Link>{" "}
       </Styled.CategoryListItem>
-      <Styled.CategoryListItem>
+      {/* <Styled.CategoryListItem>
         <Link
           to="/category/series"
           className={activeCategory === "series" ? "active" : ""}
         >
           연재물
         </Link>{" "}
-      </Styled.CategoryListItem>
+      </Styled.CategoryListItem> */}
       <Styled.CategoryListItem>
         <Link
           className={activeCategory === "dev" ? "active" : ""}

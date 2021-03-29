@@ -16,8 +16,8 @@ exports.crateBlogPost = async ({ graphql, actions }) => {
               title
               category
               permalink
-              seriesId
-              videoId
+              # seriesId
+              # videoId
             }
           }
         }
@@ -39,8 +39,8 @@ exports.crateBlogPost = async ({ graphql, actions }) => {
       context: {
         slug: p.fields.slug,
         date: p.fields.date,
-        seriesId: p.frontmatter.seriesId,
-        videoId: p.frontmatter.videoId,
+        // seriesId: p.frontmatter.seriesId,
+        // videoId: p.frontmatter.videoId,
         previous: i === posts.length - 1 ? null : posts[i + 1],
         next: i === 0 ? null : posts[i - 1],
       },

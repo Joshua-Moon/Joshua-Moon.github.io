@@ -78,7 +78,7 @@ const BlogIndex: FC<P> = ({ data }: P) => {
           />
           <Link to="/category/">더보기</Link>
         </Section>
-        <Section
+        {/* <Section
           title={
             <>
               <Icon type={IconType.Video} size={4} />
@@ -87,7 +87,7 @@ const BlogIndex: FC<P> = ({ data }: P) => {
           }
         >
           <PostList posts={videos} />
-        </Section>
+        </Section> */}
       </Container>
     </HomeLayout>
   )

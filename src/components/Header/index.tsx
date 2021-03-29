@@ -24,10 +24,10 @@ const Header: React.FC<HeaderProps> = ({ noBorder }) => {
             <Icon type={IconType.Article} />
             <span>POSTS</span>
           </Nav>
-          <Nav to="/#videos">
+          {/* <Nav to="/#videos">
             <Icon type={IconType.Video} />
             <span>English</span>
-          </Nav>
+          </Nav> */}
           <Nav to="/tags/">
             <Icon type={IconType.Tag} />
             <span>TAGS</span>
@@ -39,6 +39,9 @@ const Header: React.FC<HeaderProps> = ({ noBorder }) => {
           </Nav>
           <Nav to={`https://github.com/Joshua-Moon`}>
             <Icon type={IconType.Github} style={{ filter: "invert(0.6)" }} />
+          </Nav>
+          <Nav to={`https://gitlab.com/joshua8565`}>
+            <Icon type={IconType.Gitlab} style={{ filter: "invert(0.6)" }} />
           </Nav>
         </Styled.Contacts>
       </Container>
