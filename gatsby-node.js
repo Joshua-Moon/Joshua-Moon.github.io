@@ -20,5 +20,5 @@ exports.createPages = async ({ graphql, actions }) => {
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   sourceNodes.createSeriesNode({ actions, createNodeId, createContentDigest })
-  sourceNodes.createVideoNode({ actions, createNodeId, createContentDigest })
+  // sourceNodes.createVideoNode({ actions, createNodeId, createContentDigest })
 }
